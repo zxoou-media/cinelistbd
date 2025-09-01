@@ -3,10 +3,17 @@
     {
       "title": "দ্য সাইলেন্ট রেইন",
       "sequel": "1",
-      "genre": ["crime"," thriller"],
+      "genre": [
+        "crime",
+        " thriller"
+      ],
       "language": "bangla",
       "type": "movie",
-      "quality": ["480p","720p","1080p"],
+      "quality": [
+        "480p",
+        "720p",
+        "1080p"
+      ],
       "release": "2023-08-15",
       "rating": 8.5,
       "director": "আনিসুর রহমান",
@@ -15,18 +22,34 @@
       "description": "একজন সাংবাদিক একটি রহস্যময় বৃষ্টির ঘটনা তদন্ত করে, যা শহরের সবকিছু বদলে দেয়। এই বৃষ্টিতে লুকিয়ে আছে এক বিশাল ষড়যন্ত্র, যা উন্মোচন করতে গিয়ে সে জড়িয়ে পড়ে এক ভয়ংকর খেলায়।",
       "trailer": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "download_links": [
-        { "quality": "1080p", "url": "https://example.com/movie1_1080p.mp4" },
-        { "quality": "720p", "url": "https://example.com/movie1_720p.mp4" },
-        { "quality": "480p", "url": "https://example.com/movie1_480p.mp4" }
+        {
+          "quality": "1080p",
+          "url": "https://example.com/movie1_1080p.mp4"
+        },
+        {
+          "quality": "720p",
+          "url": "https://example.com/movie1_720p.mp4"
+        },
+        {
+          "quality": "480p",
+          "url": "https://example.com/movie1_480p.mp4"
+        }
       ]
     },
-{
+    {
       "title": "দ্য সাইলেন্ট রেইন",
       "sequel": "1",
-      "genre": ["crime"," thriller"],
+      "genre": [
+        "crime",
+        " thriller"
+      ],
       "language": "bangla",
       "type": "movie",
-      "quality": ["480p","720p","1080p"],
+      "quality": [
+        "480p",
+        "720p",
+        "1080p"
+      ],
       "release": "2023-08-15",
       "rating": 8.5,
       "director": "আনিসুর রহমান",
@@ -35,18 +58,34 @@
       "description": "একজন সাংবাদিক একটি রহস্যময় বৃষ্টির ঘটনা তদন্ত করে, যা শহরের সবকিছু বদলে দেয়। এই বৃষ্টিতে লুকিয়ে আছে এক বিশাল ষড়যন্ত্র, যা উন্মোচন করতে গিয়ে সে জড়িয়ে পড়ে এক ভয়ংকর খেলায়।",
       "trailer": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "download_links": [
-        { "quality": "1080p", "url": "https://example.com/movie1_1080p.mp4" },
-        { "quality": "720p", "url": "https://example.com/movie1_720p.mp4" },
-        { "quality": "480p", "url": "https://example.com/movie1_480p.mp4" }
+        {
+          "quality": "1080p",
+          "url": "https://example.com/movie1_1080p.mp4"
+        },
+        {
+          "quality": "720p",
+          "url": "https://example.com/movie1_720p.mp4"
+        },
+        {
+          "quality": "480p",
+          "url": "https://example.com/movie1_480p.mp4"
+        }
       ]
     },
-{
+    {
       "title": "দ্য সাইলেন্ট রেইন",
       "sequel": "1",
-      "genre": ["crime"," thriller"],
+      "genre": [
+        "crime",
+        " thriller"
+      ],
       "language": "bangla",
       "type": "movie",
-      "quality": ["480p","720p","1080p"],
+      "quality": [
+        "480p",
+        "720p",
+        "1080p"
+      ],
       "release": "2023-08-15",
       "rating": 8.5,
       "director": "আনিসুর রহমান",
@@ -55,18 +94,34 @@
       "description": "একজন সাংবাদিক একটি রহস্যময় বৃষ্টির ঘটনা তদন্ত করে, যা শহরের সবকিছু বদলে দেয়। এই বৃষ্টিতে লুকিয়ে আছে এক বিশাল ষড়যন্ত্র, যা উন্মোচন করতে গিয়ে সে জড়িয়ে পড়ে এক ভয়ংকর খেলায়।",
       "trailer": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "download_links": [
-        { "quality": "1080p", "url": "https://example.com/movie1_1080p.mp4" },
-        { "quality": "720p", "url": "https://example.com/movie1_720p.mp4" },
-        { "quality": "480p", "url": "https://example.com/movie1_480p.mp4" }
+        {
+          "quality": "1080p",
+          "url": "https://example.com/movie1_1080p.mp4"
+        },
+        {
+          "quality": "720p",
+          "url": "https://example.com/movie1_720p.mp4"
+        },
+        {
+          "quality": "480p",
+          "url": "https://example.com/movie1_480p.mp4"
+        }
       ]
     },
-{
+    {
       "title": "দ্য সাইলেন্ট রেইন",
       "sequel": "1",
-      "genre": ["crime"," thriller"],
+      "genre": [
+        "crime",
+        " thriller"
+      ],
       "language": "bangla",
       "type": "movie",
-      "quality": ["480p","720p","1080p"],
+      "quality": [
+        "480p",
+        "720p",
+        "1080p"
+      ],
       "release": "2023-08-15",
       "rating": 8.5,
       "director": "আনিসুর রহমান",
@@ -75,18 +130,34 @@
       "description": "একজন সাংবাদিক একটি রহস্যময় বৃষ্টির ঘটনা তদন্ত করে, যা শহরের সবকিছু বদলে দেয়। এই বৃষ্টিতে লুকিয়ে আছে এক বিশাল ষড়যন্ত্র, যা উন্মোচন করতে গিয়ে সে জড়িয়ে পড়ে এক ভয়ংকর খেলায়।",
       "trailer": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "download_links": [
-        { "quality": "1080p", "url": "https://example.com/movie1_1080p.mp4" },
-        { "quality": "720p", "url": "https://example.com/movie1_720p.mp4" },
-        { "quality": "480p", "url": "https://example.com/movie1_480p.mp4" }
+        {
+          "quality": "1080p",
+          "url": "https://example.com/movie1_1080p.mp4"
+        },
+        {
+          "quality": "720p",
+          "url": "https://example.com/movie1_720p.mp4"
+        },
+        {
+          "quality": "480p",
+          "url": "https://example.com/movie1_480p.mp4"
+        }
       ]
     },
-{
+    {
       "title": "দ্য সাইলেন্ট রেইন",
       "sequel": "1",
-      "genre": ["crime"," thriller"],
+      "genre": [
+        "crime",
+        " thriller"
+      ],
       "language": "bangla",
       "type": "movie",
-      "quality": ["480p","720p","1080p"],
+      "quality": [
+        "480p",
+        "720p",
+        "1080p"
+      ],
       "release": "2023-08-15",
       "rating": 8.5,
       "director": "আনিসুর রহমান",
@@ -95,18 +166,34 @@
       "description": "একজন সাংবাদিক একটি রহস্যময় বৃষ্টির ঘটনা তদন্ত করে, যা শহরের সবকিছু বদলে দেয়। এই বৃষ্টিতে লুকিয়ে আছে এক বিশাল ষড়যন্ত্র, যা উন্মোচন করতে গিয়ে সে জড়িয়ে পড়ে এক ভয়ংকর খেলায়।",
       "trailer": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "download_links": [
-        { "quality": "1080p", "url": "https://example.com/movie1_1080p.mp4" },
-        { "quality": "720p", "url": "https://example.com/movie1_720p.mp4" },
-        { "quality": "480p", "url": "https://example.com/movie1_480p.mp4" }
+        {
+          "quality": "1080p",
+          "url": "https://example.com/movie1_1080p.mp4"
+        },
+        {
+          "quality": "720p",
+          "url": "https://example.com/movie1_720p.mp4"
+        },
+        {
+          "quality": "480p",
+          "url": "https://example.com/movie1_480p.mp4"
+        }
       ]
     },
-{
+    {
       "title": "দ্য সাইলেন্ট রেইন",
       "sequel": "1",
-      "genre": ["crime"," thriller"],
+      "genre": [
+        "crime",
+        " thriller"
+      ],
       "language": "bangla",
       "type": "movie",
-      "quality": ["480p","720p","1080p"],
+      "quality": [
+        "480p",
+        "720p",
+        "1080p"
+      ],
       "release": "2023-08-15",
       "rating": 8.5,
       "director": "আনিসুর রহমান",
@@ -115,15 +202,25 @@
       "description": "একজন সাংবাদিক একটি রহস্যময় বৃষ্টির ঘটনা তদন্ত করে, যা শহরের সবকিছু বদলে দেয়। এই বৃষ্টিতে লুকিয়ে আছে এক বিশাল ষড়যন্ত্র, যা উন্মোচন করতে গিয়ে সে জড়িয়ে পড়ে এক ভয়ংকর খেলায়।",
       "trailer": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "download_links": [
-        { "quality": "1080p", "url": "https://example.com/movie1_1080p.mp4" },
-        { "quality": "720p", "url": "https://example.com/movie1_720p.mp4" },
-        { "quality": "480p", "url": "https://example.com/movie1_480p.mp4" }
+        {
+          "quality": "1080p",
+          "url": "https://example.com/movie1_1080p.mp4"
+        },
+        {
+          "quality": "720p",
+          "url": "https://example.com/movie1_720p.mp4"
+        },
+        {
+          "quality": "480p",
+          "url": "https://example.com/movie1_480p.mp4"
+        }
       ]
     },
-
     {
       "title": "অগ্নিপথের যোদ্ধা",
-      "genre": "অ্যাকশন",
+      "genre": [
+        "অ্যাকশন"
+      ],
       "year": 2022,
       "rating": 7.8,
       "director": "ফারহান আহমেদ",
@@ -132,20 +229,36 @@
       "description": "একজন অবসরপ্রাপ্ত সেনা কর্মকর্তা তার গ্রামের মানুষদের বাঁচাতে একা যুদ্ধ শুরু করে। তার গ্রামে হঠাৎ হামলা করে একটি সন্ত্রাসী দল, আর সে তাদের বিরুদ্ধে রুখে দাঁড়ায়।",
       "trailer": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "download_links": [
-        { "quality": "1080p", "url": "https://example.com/movie2_1080p.mp4" },
-        { "quality": "720p", "url": "https://example.com/movie2_720p.mp4" },
-        { "quality": "480p", "url": "https://example.com/movie2_480p.mp4" }
+        {
+          "quality": "1080p",
+          "url": "https://example.com/movie2_1080p.mp4"
+        },
+        {
+          "quality": "720p",
+          "url": "https://example.com/movie2_720p.mp4"
+        },
+        {
+          "quality": "480p",
+          "url": "https://example.com/movie2_480p.mp4"
+        }
       ]
-    },
-{
+    }
+  ],
   "web series": [
     {
       "title": "দ্য সাইলেন্ট রেইন",
       "episode": "1-10",
-      "genre": ["crime"," thriller"],
+      "genre": [
+        "crime",
+        " thriller"
+      ],
       "language": "bangla",
-      "type": "movie",
-      "quality": ["480p","720p","1080p"],
+      "type": "web series",
+      "quality": [
+        "480p",
+        "720p",
+        "1080p"
+      ],
       "release": "2023-08-15",
       "rating": 8.5,
       "director": "আনিসুর রহমান",
@@ -154,18 +267,34 @@
       "description": "একজন সাংবাদিক একটি রহস্যময় বৃষ্টির ঘটনা তদন্ত করে, যা শহরের সবকিছু বদলে দেয়। এই বৃষ্টিতে লুকিয়ে আছে এক বিশাল ষড়যন্ত্র, যা উন্মোচন করতে গিয়ে সে জড়িয়ে পড়ে এক ভয়ংকর খেলায়।",
       "trailer": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "download_links": [
-        { "quality": "1080p", "url": "https://example.com/movie1_1080p.mp4" },
-        { "quality": "720p", "url": "https://example.com/movie1_720p.mp4" },
-        { "quality": "480p", "url": "https://example.com/movie1_480p.mp4" }
+        {
+          "quality": "1080p",
+          "url": "https://example.com/movie1_1080p.mp4"
+        },
+        {
+          "quality": "720p",
+          "url": "https://example.com/movie1_720p.mp4"
+        },
+        {
+          "quality": "480p",
+          "url": "https://example.com/movie1_480p.mp4"
+        }
       ]
     },
-{
+    {
       "title": "দ্য সাইলেন্ট রেইন",
       "episode": "1-10",
-      "genre": ["crime"," thriller"],
+      "genre": [
+        "crime",
+        " thriller"
+      ],
       "language": "bangla",
-      "type": "movie",
-      "quality": ["480p","720p","1080p"],
+      "type": "web series",
+      "quality": [
+        "480p",
+        "720p",
+        "1080p"
+      ],
       "release": "2023-08-15",
       "rating": 8.5,
       "director": "আনিসুর রহমান",
@@ -174,18 +303,34 @@
       "description": "একজন সাংবাদিক একটি রহস্যময় বৃষ্টির ঘটনা তদন্ত করে, যা শহরের সবকিছু বদলে দেয়। এই বৃষ্টিতে লুকিয়ে আছে এক বিশাল ষড়যন্ত্র, যা উন্মোচন করতে গিয়ে সে জড়িয়ে পড়ে এক ভয়ংকর খেলায়।",
       "trailer": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "download_links": [
-        { "quality": "1080p", "url": "https://example.com/movie1_1080p.mp4" },
-        { "quality": "720p", "url": "https://example.com/movie1_720p.mp4" },
-        { "quality": "480p", "url": "https://example.com/movie1_480p.mp4" }
+        {
+          "quality": "1080p",
+          "url": "https://example.com/movie1_1080p.mp4"
+        },
+        {
+          "quality": "720p",
+          "url": "https://example.com/movie1_720p.mp4"
+        },
+        {
+          "quality": "480p",
+          "url": "https://example.com/movie1_480p.mp4"
+        }
       ]
     },
-{
+    {
       "title": "দ্য সাইলেন্ট রেইন",
       "episode": "1-10",
-      "genre": ["crime"," thriller"],
+      "genre": [
+        "crime",
+        " thriller"
+      ],
       "language": "bangla",
-      "type": "movie",
-      "quality": ["480p","720p","1080p"],
+      "type": "web series",
+      "quality": [
+        "480p",
+        "720p",
+        "1080p"
+      ],
       "release": "2023-08-15",
       "rating": 8.5,
       "director": "আনিসুর রহমান",
@@ -194,18 +339,34 @@
       "description": "একজন সাংবাদিক একটি রহস্যময় বৃষ্টির ঘটনা তদন্ত করে, যা শহরের সবকিছু বদলে দেয়। এই বৃষ্টিতে লুকিয়ে আছে এক বিশাল ষড়যন্ত্র, যা উন্মোচন করতে গিয়ে সে জড়িয়ে পড়ে এক ভয়ংকর খেলায়।",
       "trailer": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "download_links": [
-        { "quality": "1080p", "url": "https://example.com/movie1_1080p.mp4" },
-        { "quality": "720p", "url": "https://example.com/movie1_720p.mp4" },
-        { "quality": "480p", "url": "https://example.com/movie1_480p.mp4" }
+        {
+          "quality": "1080p",
+          "url": "https://example.com/movie1_1080p.mp4"
+        },
+        {
+          "quality": "720p",
+          "url": "https://example.com/movie1_720p.mp4"
+        },
+        {
+          "quality": "480p",
+          "url": "https://example.com/movie1_480p.mp4"
+        }
       ]
     },
-{
+    {
       "title": "দ্য সাইলেন্ট রেইন",
       "episode": "1-10",
-      "genre": ["crime"," thriller"],
+      "genre": [
+        "crime",
+        " thriller"
+      ],
       "language": "bangla",
-      "type": "movie",
-      "quality": ["480p","720p","1080p"],
+      "type": "web series",
+      "quality": [
+        "480p",
+        "720p",
+        "1080p"
+      ],
       "release": "2023-08-15",
       "rating": 8.5,
       "director": "আনিসুর রহমান",
@@ -214,18 +375,34 @@
       "description": "একজন সাংবাদিক একটি রহস্যময় বৃষ্টির ঘটনা তদন্ত করে, যা শহরের সবকিছু বদলে দেয়। এই বৃষ্টিতে লুকিয়ে আছে এক বিশাল ষড়যন্ত্র, যা উন্মোচন করতে গিয়ে সে জড়িয়ে পড়ে এক ভয়ংকর খেলায়।",
       "trailer": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "download_links": [
-        { "quality": "1080p", "url": "https://example.com/movie1_1080p.mp4" },
-        { "quality": "720p", "url": "https://example.com/movie1_720p.mp4" },
-        { "quality": "480p", "url": "https://example.com/movie1_480p.mp4" }
+        {
+          "quality": "1080p",
+          "url": "https://example.com/movie1_1080p.mp4"
+        },
+        {
+          "quality": "720p",
+          "url": "https://example.com/movie1_720p.mp4"
+        },
+        {
+          "quality": "480p",
+          "url": "https://example.com/movie1_480p.mp4"
+        }
       ]
     },
-{
+    {
       "title": "দ্য সাইলেন্ট রেইন",
       "episode": "1-10",
-      "genre": ["crime"," thriller"],
+      "genre": [
+        "crime",
+        " thriller"
+      ],
       "language": "bangla",
-      "type": "movie",
-      "quality": ["480p","720p","1080p"],
+      "type": "web series",
+      "quality": [
+        "480p",
+        "720p",
+        "1080p"
+      ],
       "release": "2023-08-15",
       "rating": 8.5,
       "director": "আনিসুর রহমান",
@@ -234,18 +411,34 @@
       "description": "একজন সাংবাদিক একটি রহস্যময় বৃষ্টির ঘটনা তদন্ত করে, যা শহরের সবকিছু বদলে দেয়। এই বৃষ্টিতে লুকিয়ে আছে এক বিশাল ষড়যন্ত্র, যা উন্মোচন করতে গিয়ে সে জড়িয়ে পড়ে এক ভয়ংকর খেলায়।",
       "trailer": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "download_links": [
-        { "quality": "1080p", "url": "https://example.com/movie1_1080p.mp4" },
-        { "quality": "720p", "url": "https://example.com/movie1_720p.mp4" },
-        { "quality": "480p", "url": "https://example.com/movie1_480p.mp4" }
+        {
+          "quality": "1080p",
+          "url": "https://example.com/movie1_1080p.mp4"
+        },
+        {
+          "quality": "720p",
+          "url": "https://example.com/movie1_720p.mp4"
+        },
+        {
+          "quality": "480p",
+          "url": "https://example.com/movie1_480p.mp4"
+        }
       ]
     },
-{
+    {
       "title": "দ্য সাইলেন্ট রেইন",
       "episode": "1-10",
-      "genre": ["crime"," thriller"],
+      "genre": [
+        "crime",
+        " thriller"
+      ],
       "language": "bangla",
-      "type": "movie",
-      "quality": ["480p","720p","1080p"],
+      "type": "web series",
+      "quality": [
+        "480p",
+        "720p",
+        "1080p"
+      ],
       "release": "2023-08-15",
       "rating": 8.5,
       "director": "আনিসুর রহমান",
@@ -254,11 +447,19 @@
       "description": "একজন সাংবাদিক একটি রহস্যময় বৃষ্টির ঘটনা তদন্ত করে, যা শহরের সবকিছু বদলে দেয়। এই বৃষ্টিতে লুকিয়ে আছে এক বিশাল ষড়যন্ত্র, যা উন্মোচন করতে গিয়ে সে জড়িয়ে পড়ে এক ভয়ংকর খেলায়।",
       "trailer": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "download_links": [
-        { "quality": "1080p", "url": "https://example.com/movie1_1080p.mp4" },
-        { "quality": "720p", "url": "https://example.com/movie1_720p.mp4" },
-        { "quality": "480p", "url": "https://example.com/movie1_480p.mp4" }
+        {
+          "quality": "1080p",
+          "url": "https://example.com/movie1_1080p.mp4"
+        },
+        {
+          "quality": "720p",
+          "url": "https://example.com/movie1_720p.mp4"
+        },
+        {
+          "quality": "480p",
+          "url": "https://example.com/movie1_480p.mp4"
+        }
       ]
-    },
-    // ... বাকি মুভিগুলো একই ফরম্যাটে যোগ করুন
+    }
   ]
 }
