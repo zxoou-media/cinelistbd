@@ -1,7 +1,7 @@
-// একটি ফাংশন যা JSON ফাইল থেকে ডেটা লোড করবে
+// একটি ফাংশন যা API থেকে ডেটা লোড করবে
 async function fetchData() {
     try {
-        const response = await fetch('data.json');
+        const response = await fetch('/api/movies'); // URL পরিবর্তন করা হয়েছে
         if (!response.ok) {
             throw new Error('ডেটা লোড করা যায়নি।');
         }
@@ -69,7 +69,9 @@ function displayRelatedMovies(allMovies, currentMovie) {
 
     // একই জনরার মুভিগুলো খুঁজে বের করা
     const relatedMovies = allMovies.filter(movie => {
-        return movie.genre === currentMovie.genre && movie.id !== currentMovie.id;
+        // জনরা অ্যারে থেকে মিল খুঁজে বের করার জন্য পরিবর্তিত লজিক
+        const hasMatchingGenre = movie.genre.some(genre => currentMovie.genre.includes(genre));
+        return hasMatchingGenre && movie.id !== currentMovie.id;
     }).slice(0, 4); // শুধুমাত্র প্রথম ৪টি মুভি দেখানো হবে
 
     // যদি সম্পর্কিত মুভি না পাওয়া যায়, তাহলে বার্তা প্রদর্শন করা
@@ -85,7 +87,7 @@ function displayRelatedMovies(allMovies, currentMovie) {
 
         // কার্ডে ক্লিক করার কার্যকারিতা যোগ করা
         movieCard.addEventListener('click', () => {
-            window.location.href = `movie_details.html?id=${movie.id}`;
+            window.location.href = `/details/${movie.id}`; // URL পরিবর্তন করা হয়েছে
         });
     });
 }
@@ -96,8 +98,9 @@ async function init() {
     if (!data) return;
 
     const allMovies = data.movies;
-    const params = new URLSearchParams(window.location.search);
-    const movieId = params.get('id');
+    const pathSegments = window.location.pathname.split('/');
+    const movieId = pathSegments[pathSegments.length - 1]; // URL থেকে আইডি বের করা হয়েছে
+    
     const currentMovie = allMovies.find(m => m.id == movieId);
 
     if (currentMovie) {
