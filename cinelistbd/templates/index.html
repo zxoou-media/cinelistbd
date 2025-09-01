@@ -15,43 +15,43 @@
         <a href="{{ url_for('home') }}" class="logo">MovieFlix</a>
         <nav class="nav-menu">
             <ul>
-                <li><a href="{{ url_for('home') }}">হোম</a></li>
-                <li><a href="#">মুভি</a></li>
-                <li><a href="#">টিভি শো</a></li>
-                <li><a href="#">জনরা</a></li>
-                <li><a href="#">অনুরোধ</a></a></li>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="#">Movies</a></li>
+                <li><a href="#">Web Series</a></li>
+                <li><a href="#">Genera</a></li>
+                <li><a href="#">Request</a></a></li>
             </ul>
         </nav>
         <div class="search-bar">
-            <input type="text" id="search-input" placeholder="মুভি, সিরিজ বা অভিনেতার নাম খুঁজুন...">
-            <button class="search-btn">অনুসন্ধান</button>
+            <input type="text" id="search-input" placeholder="Search Movie Name...">
+            <button class="search-btn">Search</button>
         </div>
     </header>
 
     <main class="main-content">
         <div class="filter-sort-container">
-            <h2 class="section-title">মুভি</h2>
+            <h2 class="section-title">Movie</h2>
             <div class="filters">
                 <select class="filter-item">
-                    <option value="">জনরা</option>
+                    <option value="">Genera</option>
                 </select>
                 <select class="filter-item">
-                    <option value="">বছর</option>
+                    <option value="">Year</option>
                 </select>
                 <select class="filter-item">
-                    <option value="">রেটিং</option>
+                    <option value="">Rating</option>
                 </select>
             </div>
         </div>
 
         <section class="movie-section">
-            <h2 class="section-title">নতুন মুভি</h2>
+            <h2 class="section-title">New Movies</h2>
             <div class="movie-grid" id="latest-movies-grid">
                 </div>
         </section>
 
         <section class="movie-section">
-            <h2 class="section-title">জনপ্রিয় মুভি</h2>
+            <h2 class="section-title">Popular Movies</h2>
             <div class="movie-grid" id="popular-movies-grid">
                 </div>
         </section>
