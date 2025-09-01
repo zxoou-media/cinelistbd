@@ -46,11 +46,10 @@ function displayMovieDetails(movie) {
             </div>
 
             <div class="download-links">
-                <h3>ডাউনলোড</h3>
-                <a href="#">1080p Full HD</a>
-                <a href="#">720p HD</a>
-                <a href="#">480p SD</a>
-            </div>
+    <h3>ডাউনলোড</h3>
+    ${movie.download_links.map(link => `<a href="${link.url}">${link.quality}</a>`).join('')}
+</div>
+
 
             <div class="related-movies">
                 <h3>সম্পর্কিত মুভি</h3>
