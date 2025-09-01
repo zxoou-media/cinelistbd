@@ -1,7 +1,75 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
+    <<!DOCTYPE html>
+<html lang="bn">
+<head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>মুভি ডাউনলোড ওয়েবসাইট - MovieFlix</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header class="header">
+        <a href="{{ url_for('home') }}" class="logo">MovieFlix</a>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="{{ url_for('home') }}">হোম</a></li>
+                <li><a href="#">মুভি</a></li>
+                <li><a href="#">টিভি শো</a></li>
+                <li><a href="#">জনরা</a></li>
+                <li><a href="#">অনুরোধ</a></a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="মুভি, সিরিজ বা অভিনেতার নাম খুঁজুন...">
+            <button class="search-btn">অনুসন্ধান</button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="filter-sort-container">
+            <h2 class="section-title">মুভি</h2>
+            <div class="filters">
+                <select class="filter-item">
+                    <option value="">জনরা</option>
+                </select>
+                <select class="filter-item">
+                    <option value="">বছর</option>
+                </select>
+                <select class="filter-item">
+                    <option value="">রেটিং</option>
+                </select>
+            </div>
+        </div>
+
+        <section class="movie-section">
+            <h2 class="section-title">নতুন মুভি</h2>
+            <div class="movie-grid" id="latest-movies-grid">
+                </div>
+        </section>
+
+        <section class="movie-section">
+            <h2 class="section-title">জনপ্রিয় মুভি</h2>
+            <div class="movie-grid" id="popular-movies-grid">
+                </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">যোগাযোগ</a>
+            <a href="#">গোপনীয়তা নীতি</a>
+            <a href="#">শর্তাবলী</a>
+        </div>
+        <p>&copy; 2025 মুভিফ্লিক্স। সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+ charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>মুভি ডাউনলোড ওয়েবসাইট - MovieFlix</title>
     <link rel="stylesheet" href="style.css">
