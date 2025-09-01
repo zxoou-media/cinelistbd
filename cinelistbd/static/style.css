@@ -1,1 +1,227 @@
-ccccc
+/* গ্লোবাল স্টাইল এবং ফন্ট */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+}
+
+/* হেডার স্টাইল */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #1f1f1f;
+    border-bottom: 1px solid #333;
+}
+
+.logo {
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-menu li {
+    margin-right: 25px;
+}
+
+.nav-menu a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: #00aaff;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    width: 300px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    background-color: #333;
+    color: #e0e0e0;
+    outline: none;
+}
+
+.search-bar input::placeholder {
+    color: #a0a0a0;
+}
+
+.search-btn {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #00aaff;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+    background-color: #0088cc;
+}
+
+/* মূল কন্টেন্ট এবং সেকশন স্টাইল */
+.main-content {
+    padding: 40px;
+}
+
+.section-title {
+    font-size: 24px;
+    border-bottom: 2px solid #00aaff;
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 30px;
+}
+
+.filter-sort-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.filters {
+    display: flex;
+    gap: 15px;
+}
+
+.filter-item {
+    padding: 10px 15px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    outline: none;
+}
+
+/* মুভি গ্রিড স্টাইল */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+.movie-card {
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.movie-info {
+    padding: 15px;
+}
+
+.movie-info h3 {
+    margin: 0 0 5px;
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.movie-info p {
+    margin: 0;
+    color: #a0a0a0;
+    font-size: 14px;
+}
+
+/* ফুটার স্টাইল */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1f1f1f;
+    border-top: 1px solid #333;
+}
+
+.footer-links a {
+    color: #a0a0a0;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-links a:hover {
+    color: #e0e0e0;
+}
+
+/* মুভি বিস্তারিত পেজের স্টাইল */
+#movie-details-section {
+    display: flex;
+    gap: 40px;
+    padding: 50px 0;
+}
+
+.details-poster {
+    width: 350px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.details-info {
+    flex-grow: 1;
+}
+
+.details-info h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    color: #00aaff;
+}
+
+.details-info p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.download-links {
+    margin-top: 30px;
+}
+
+.download-links a {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 15px;
+    border: 1px solid #444;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.download-links a:hover {
+    background-color: #00aaff;
+    border-color: #00aaff;
+}
