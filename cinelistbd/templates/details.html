@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>মুভি বিস্তারিত - MovieFlix</title>
-    <link rel="stylesheet" href="style.css">
+    <title>মুভি ডাউনলোড ওয়েবসাইট - MovieFlix</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
     <header class="header">
-        <a href="index.html" class="logo">MovieFlix</a>
+        <a href="{{ url_for('home') }}" class="logo">MovieFlix</a>
         <nav class="nav-menu">
             <ul>
-                <li><a href="index.html">হোম</a></li>
+                <li><a href="{{ url_for('home') }}">হোম</a></li>
                 <li><a href="#">মুভি</a></li>
                 <li><a href="#">টিভি শো</a></li>
                 <li><a href="#">জনরা</a></li>
-                <li><a href="#">অনুরোধ</a></li>
+                <li><a href="#">অনুরোধ</a></a></li>
             </ul>
         </nav>
         <div class="search-bar">
@@ -26,8 +26,32 @@
     </header>
 
     <main class="main-content">
-        <section id="movie-details-section">
-            </section>
+        <div class="filter-sort-container">
+            <h2 class="section-title">মুভি</h2>
+            <div class="filters">
+                <select class="filter-item">
+                    <option value="">জনরা</option>
+                </select>
+                <select class="filter-item">
+                    <option value="">বছর</option>
+                </select>
+                <select class="filter-item">
+                    <option value="">রেটিং</option>
+                </select>
+            </div>
+        </div>
+
+        <section class="movie-section">
+            <h2 class="section-title">নতুন মুভি</h2>
+            <div class="movie-grid" id="latest-movies-grid">
+                </div>
+        </section>
+
+        <section class="movie-section">
+            <h2 class="section-title">জনপ্রিয় মুভি</h2>
+            <div class="movie-grid" id="popular-movies-grid">
+                </div>
+        </section>
     </main>
 
     <footer class="footer">
@@ -39,6 +63,6 @@
         <p>&copy; 2025 মুভিফ্লিক্স। সর্বস্বত্ব সংরক্ষিত।</p>
     </footer>
 
-    <script src="details.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
