@@ -1,11 +1,26 @@
-import http.server
-import socketserver
+from flask import Flask, render_template, jsonify, send_from_directory
+from flask_cors import CORS
+import json, os
 
-PORT = 8000
+app = Flask(__name__)
+CORS(app)
 
-# SimpleHTTPRequestHandler ব্যবহার করে একটি সাধারণ সার্ভার তৈরি করা
-Handler = http.server.SimpleHTTPRequestHandler
+DATA_FILE = os.path.join(os.path.dirname(__file__), 'data', 'movies.json')
 
-with socketserver.TCPServer(("", PORT), Handler) as httpd:
-    print("সার্ভার চালু হয়েছে http://localhost:8000")
-    httpd.serve_forever()
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/api/movies')
+def movies_api():
+    with open(DATA_FILE, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    return jsonify(data)
+
+@app.route('/img/<path:filename>')
+def images(filename):
+    return send_from_directory(os.path.join(app.root_path, 'static', 'img'), filename)
+
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=True, host='0.0.0.0', port=port)
