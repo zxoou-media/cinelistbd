@@ -1,32 +1,18 @@
-async function fetchMovieDetails() {
+// একটি ফাংশন যা JSON ফাইল থেকে ডেটা লোড করবে
+async function fetchData() {
     try {
-        // URL থেকে মুভির আইডি বের করা
-        const params = new URLSearchParams(window.location.search);
-        const movieId = params.get('id');
-
-        if (!movieId) {
-            document.getElementById('movie-details-section').innerHTML = '<h2>মুভি খুঁজে পাওয়া যায়নি।</h2>';
-            return;
-        }
-
         const response = await fetch('data.json');
         if (!response.ok) {
             throw new Error('ডেটা লোড করা যায়নি।');
         }
-        const data = await response.json();
-        const movie = data.movies.find(m => m.id == movieId);
-
-        if (movie) {
-            displayMovieDetails(movie);
-        } else {
-            document.getElementById('movie-details-section').innerHTML = '<h2>মুভি খুঁজে পাওয়া যায়নি।</h2>';
-        }
-
+        return await response.json();
     } catch (error) {
         console.error('ফ্যাচিং সমস্যা:', error);
+        return null;
     }
 }
 
+// একটি ফাংশন যা মুভির বিস্তারিত তথ্য প্রদর্শন করবে
 function displayMovieDetails(movie) {
     const detailsContainer = document.getElementById('movie-details-section');
 
@@ -46,18 +32,80 @@ function displayMovieDetails(movie) {
             </div>
 
             <div class="download-links">
-    <h3>ডাউনলোড</h3>
-    ${movie.download_links.map(link => `<a href="${link.url}">${link.quality}</a>`).join('')}
-</div>
-
+                <h3>ডাউনলোড</h3>
+                ${movie.download_links.map(link => `<a href="${link.url}">${link.quality}</a>`).join('')}
+            </div>
 
             <div class="related-movies">
                 <h3>সম্পর্কিত মুভি</h3>
-                </div>
+                <div class="movie-grid" id="related-movies-grid">
+                    </div>
+            </div>
         </div>
     `;
 
     detailsContainer.innerHTML = html;
 }
 
-document.addEventListener('DOMContentLoaded', fetchMovieDetails);
+// একটি ফাংশন যা মুভির কার্ড তৈরি করবে
+function createMovieCard(movie) {
+    const card = document.createElement('div');
+    card.classList.add('movie-card');
+    card.dataset.id = movie.id;
+
+    card.innerHTML = `
+        <img src="${movie.poster}" alt="${movie.title} পোস্টার">
+        <div class="movie-info">
+            <h3>${movie.title}</h3>
+        </div>
+    `;
+    return card;
+}
+
+// একটি ফাংশন যা সম্পর্কিত মুভি খুঁজে বের করে প্রদর্শন করবে
+function displayRelatedMovies(allMovies, currentMovie) {
+    const relatedMoviesContainer = document.getElementById('related-movies-grid');
+    if (!relatedMoviesContainer) return;
+
+    // একই জনরার মুভিগুলো খুঁজে বের করা
+    const relatedMovies = allMovies.filter(movie => {
+        return movie.genre === currentMovie.genre && movie.id !== currentMovie.id;
+    }).slice(0, 4); // শুধুমাত্র প্রথম ৪টি মুভি দেখানো হবে
+
+    // যদি সম্পর্কিত মুভি না পাওয়া যায়, তাহলে বার্তা প্রদর্শন করা
+    if (relatedMovies.length === 0) {
+        relatedMoviesContainer.innerHTML = '<p>এই ধরনের আর কোনো মুভি পাওয়া যায়নি।</p>';
+        return;
+    }
+
+    // সম্পর্কিত মুভিগুলো প্রদর্শন করা
+    relatedMovies.forEach(movie => {
+        const movieCard = createMovieCard(movie);
+        relatedMoviesContainer.appendChild(movieCard);
+
+        // কার্ডে ক্লিক করার কার্যকারিতা যোগ করা
+        movieCard.addEventListener('click', () => {
+            window.location.href = `movie_details.html?id=${movie.id}`;
+        });
+    });
+}
+
+// প্রধান ফাংশন যা পেজ লোড হলে কাজ করবে
+async function init() {
+    const data = await fetchData();
+    if (!data) return;
+
+    const allMovies = data.movies;
+    const params = new URLSearchParams(window.location.search);
+    const movieId = params.get('id');
+    const currentMovie = allMovies.find(m => m.id == movieId);
+
+    if (currentMovie) {
+        displayMovieDetails(currentMovie);
+        displayRelatedMovies(allMovies, currentMovie);
+    } else {
+        document.getElementById('movie-details-section').innerHTML = '<h2>মুভি খুঁজে পাওয়া যায়নি।</h2>';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', init);
