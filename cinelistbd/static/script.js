@@ -1,7 +1,7 @@
-// একটি ফাংশন যা JSON ফাইল থেকে ডেটা লোড করবে
+// একটি ফাংশন যা API থেকে ডেটা লোড করবে
 async function fetchMovies() {
     try {
-        const response = await fetch('data.json');
+        const response = await fetch('/api/movies'); // URL পরিবর্তন করা হয়েছে
         if (!response.ok) {
             throw new Error('ডেটা লোড করা যায়নি।');
         }
@@ -17,7 +17,10 @@ async function fetchMovies() {
 function createMovieCard(movie) {
     const card = document.createElement('div');
     card.classList.add('movie-card');
-    card.dataset.id = movie.id; // ডেটা আইডি যোগ করা হয়েছে
+    card.dataset.id = movie.id;
+
+    // ensure movie.genre is an array before joining
+    const genres = Array.isArray(movie.genre) ? movie.genre.join(', ') : '';
 
     card.innerHTML = `
         <img src="${movie.poster}" alt="${movie.title} পোস্টার">
@@ -48,6 +51,10 @@ function displayMovies(movies, elementId) {
 // প্রধান ফাংশন যা সবকিছু পরিচালনা করবে
 async function init() {
     const allMovies = await fetchMovies();
+    if (allMovies.length === 0) {
+        // ডেটা না পেলে কোনো বার্তা প্রদর্শন করা যেতে পারে
+        return;
+    }
 
     // জনপ্রিয় মুভি (রেটিং অনুসারে সাজানো)
     const popularMovies = [...allMovies].sort((a, b) => b.rating - a.rating);
@@ -62,7 +69,8 @@ async function init() {
     document.querySelectorAll('.movie-card').forEach(card => {
         card.addEventListener('click', () => {
             const movieId = card.dataset.id;
-            window.location.href = `movie_details.html?id=${movieId}`;
+            // URL পরিবর্তন করা হয়েছে
+            window.location.href = `/details/${movieId}`;
         });
     });
 }
