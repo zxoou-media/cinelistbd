@@ -2,22 +2,38 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <title>Movie Details</title>
-  <link rel="stylesheet" href="/static/style.css">
+  <title>{{ movie.title }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <header>
-    <a href="/" class="logo">🎬 MovieFlix</a>
+    <div class="logo"><a href="/">🎬 CineListBD</a></div>
   </header>
 
   <main>
-    <div id="movie-details" class="details-container"></div>
+    <div class="details-container">
+      <img src="{{ movie.poster }}" alt="{{ movie.title }}">
+      <div class="info">
+        <h2>{{ movie.title }}</h2>
+        <p>⭐ রেটিং: {{ movie.rating }}</p>
+        <p>মুক্তি: {{ movie.year }}</p>
+        <p>জনরা: {{ movie.genre }}</p>
+        <p>পরিচালক: {{ movie.director }}</p>
+        <p>অভিনয়: {{ movie.cast }}</p>
+        <p>{{ movie.summary }}</p>
+        <iframe width="100%" height="315" src="{{ movie.trailer }}" frameborder="0" allowfullscreen></iframe>
+        <h3>ডাউনলোড:</h3>
+        <ul>
+          {% for quality, link in movie.downloads.items() %}
+            <li><a href="{{ link }}">{{ quality }}</a></li>
+          {% endfor %}
+        </ul>
+        <h3>স্ক্রিনশট:</h3>
+        {% for shot in movie.screenshots %}
+          <img src="{{ shot }}" width="200">
+        {% endfor %}
+      </div>
+    </div>
   </main>
-
-  <footer>
-    অধিকার সংরক্ষিত © ২০২৩ | ডেভেলপার: সাদমান সাকিব
-  </footer>
-
-  <script src="/static/details.js"></script>
 </body>
 </html>
