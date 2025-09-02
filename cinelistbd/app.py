@@ -19,9 +19,8 @@ def movie_details(movie_id):
 def movies_api():
     with open(DATA_FILE, 'r', encoding='utf-8') as f:
         data = json.load(f)
-    return jsonify(data)
+    return jsonify(data["movies"])
 
-# যদি আপনি ভবিষ্যতে নিজের সার্ভারে ছবি হোস্ট করতে চান
 @app.route('/static/img/<path:filename>')
 def serve_img(filename):
     return send_from_directory(os.path.join(app.root_path, 'static', 'img'), filename)
