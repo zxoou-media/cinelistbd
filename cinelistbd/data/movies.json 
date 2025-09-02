@@ -2,17 +2,28 @@
   "movies": [
     {
       "id": 1,
-      "title": "Pathaan",
-      "year": 2023,
-      "rating": 7.5,
+      "title": "মাটির ময়না",
       "poster": "https://images.pexels.com/photos/33722971/pexels-photo-33722971.jpeg",
-      "genre": ["Action", "Thriller"],
-      "language": "Hindi",
-      "country": "India",
-      "director": "Siddharth Anand",
-      "actors": ["Shah Rukh Khan", "Deepika Padukone"],
-      "summary": "An Indian spy battles a terrorist group threatening national security.",
-      "trailer": "https://www.youtube.com/embed/YoHD9XEInc0"
+      "year": "2002",
+      "rating": "8.5",
+      "genre": "ড্রামা",
+      "country": "বাংলাদেশ",
+      "language": "বাংলা",
+      "director": "তারেক মাসুদ",
+      "cast": "সোহেল রানা, আনোয়ার হোসেন",
+      "summary": "একটি গ্রামের ছেলে ও তার ধর্মীয় শিক্ষার গল্প।",
+      "trailer": "https://www.youtube.com/embed/example1",
+      "screenshots": [
+        "https://i.imgur.com/shot1.jpg",
+        "https://i.imgur.com/shot2.jpg"
+      ],
+      "downloads": {
+        "480p": "https://example.com/480p.mp4",
+        "720p": "https://example.com/720p.mp4",
+        "1080p": "https://example.com/1080p.mp4"
+      },
+      "related": [2, 3]
     }
+    // আরও মুভি যোগ করুন
   ]
 }
