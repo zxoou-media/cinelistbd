@@ -2,16 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const latestGrid = document.getElementById("latest-movies-grid");
   const popularGrid = document.getElementById("popular-movies-grid");
 
-  // ✅ Movie card generator
-  function createMovieCard(movie) {
+  function createCard(movie) {
+    const posterPath = movie.poster.startsWith("http") ? movie.poster : `/static/img/${movie.poster}`;
     const card = document.createElement("div");
     card.className = "movie-card";
-
-    // Poster path handling (external or local)
-    const posterPath = movie.poster.startsWith("http")
-      ? movie.poster
-      : `/static/img/${movie.poster}`;
-
     card.innerHTML = `
       <a href="/details/${movie.id}">
         <img src="${posterPath}" alt="${movie.title}" class="movie-poster">
@@ -22,29 +16,19 @@ document.addEventListener("DOMContentLoaded", () => {
     return card;
   }
 
-  // ✅ Fetch and render movies
-  async function fetchAndRenderMovies() {
+  async function loadMovies() {
     try {
-      const response = await fetch("/api/movies");
-      if (!response.ok) throw new Error("Network response was not ok");
-
-      const movies = await response.json();
-      if (!Array.isArray(movies)) throw new Error("Invalid movie data format");
-
+      const res = await fetch("/api/movies");
+      const movies = await res.json();
       movies.forEach(movie => {
-        const latestCard = createMovieCard(movie);
-        const popularCard = createMovieCard(movie);
-        latestGrid.appendChild(latestCard);
-        popularGrid.appendChild(popularCard);
+        latestGrid.appendChild(createCard(movie));
+        popularGrid.appendChild(createCard(movie));
       });
-
-      console.log("✅ Movies rendered:", movies.length);
-    } catch (error) {
-      console.error("❌ Movie fetch failed:", error);
-      latestGrid.innerHTML = `<p class="error-msg">🎬 Movie data unavailable.</p>`;
-      popularGrid.innerHTML = `<p class="error-msg">🎬 Movie data unavailable.</p>`;
+    } catch (err) {
+      latestGrid.innerHTML = "<p>Movie data unavailable.</p>";
+      popularGrid.innerHTML = "<p>Movie data unavailable.</p>";
     }
   }
 
-  fetchAndRenderMovies();
+  loadMovies();
 });
