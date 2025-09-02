@@ -2,40 +2,48 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <title>MovieFlix</title>
-  <link rel="stylesheet" href="/static/style.css">
+  <title>CineListBD</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <header>
-    <a href="/" class="logo">🎬 MovieFlix</a>
-    <div class="search-bar">
-      <input type="text" placeholder="Search Movie Name...">
-      <button>Search</button>
-    </div>
+    <div class="logo"><a href="/">🎬 CineListBD</a></div>
+    <input type="text" id="search-bar" placeholder="মুভি, সিরিজ, ভাষা লিখুন...">
     <nav>
-      <a href="/">Home</a>
-      <a href="#">Movies</a>
-      <a href="#">TV Shows</a>
-      <a href="#">Genre</a>
-      <a href="#">Year</a>
-      <a href="#">Country</a>
-      <a href="#">Language</a>
-      <a href="#">Request</a>
+      <ul>
+        <li>হোম</li>
+        <li>মুভি</li>
+        <li>টিভি শো</li>
+        <li>জনরা</li>
+        <li>বছর</li>
+        <li>দেশ</li>
+        <li>ভাষা</li>
+        <li>অনুরোধ</li>
+      </ul>
     </nav>
   </header>
 
-  <section>
-    <h2>নতুন মুভি</h2>
-    <div id="latest-movies-grid" class="movie-grid"></div>
+  <main>
+    <section id="banner">স্লাইডার/ব্যানার এখানে আসবে</section>
 
-    <h2>জনপ্রিয় মুভি</h2>
-    <div id="popular-movies-grid" class="movie-grid"></div>
-  </section>
+    <section>
+      <h2>নতুন মুভি</h2>
+      <div id="latest-movies-grid"></div>
+    </section>
+
+    <section>
+      <h2>জনপ্রিয় মুভি</h2>
+      <div id="popular-movies-grid"></div>
+    </section>
+  </main>
 
   <footer>
-    অধিকার সংরক্ষিত © ২০২৩ | ডেভেলপার: সাদমান সাকিব
+    <p>যোগাযোগ | গোপনীয়তা নীতি | শর্তাবলী</p>
+    <div class="social-icons">
+      <span>📘</span><span>🐦</span><span>📸</span>
+    </div>
   </footer>
 
-  <script src="/static/script.js"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
