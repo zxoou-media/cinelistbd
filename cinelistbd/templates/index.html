@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <<!DOCTYPE html>
-<html lang="bn">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>মুভি ডাউনলোড ওয়েবসাইট - MovieFlix</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-
     <header class="header">
         <a href="{{ url_for('home') }}" class="logo">MovieFlix</a>
         <nav class="nav-menu">
@@ -18,8 +14,8 @@
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="#">Movies</a></li>
                 <li><a href="#">Web Series</a></li>
-                <li><a href="#">Genera</a></li>
-                <li><a href="#">Request</a></a></li>
+                <li><a href="#">Genres</a></li>
+                <li><a href="#">Request</a></li>
             </ul>
         </nav>
         <div class="search-bar">
@@ -32,28 +28,20 @@
         <div class="filter-sort-container">
             <h2 class="section-title">Movie</h2>
             <div class="filters">
-                <select class="filter-item">
-                    <option value="">Genera</option>
-                </select>
-                <select class="filter-item">
-                    <option value="">Year</option>
-                </select>
-                <select class="filter-item">
-                    <option value="">Rating</option>
-                </select>
+                <select class="filter-item"><option value="">Genre</option></select>
+                <select class="filter-item"><option value="">Year</option></select>
+                <select class="filter-item"><option value="">Rating</option></select>
             </div>
         </div>
 
         <section class="movie-section">
             <h2 class="section-title">New Movies</h2>
-            <div class="movie-grid" id="latest-movies-grid">
-                </div>
+            <div class="movie-grid" id="latest-movies-grid"></div>
         </section>
 
         <section class="movie-section">
             <h2 class="section-title">Popular Movies</h2>
-            <div class="movie-grid" id="popular-movies-grid">
-                </div>
+            <div class="movie-grid" id="popular-movies-grid"></div>
         </section>
     </main>
 
