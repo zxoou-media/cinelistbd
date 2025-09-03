@@ -27,7 +27,8 @@ function renderMovies(movies) {
 
     card.innerHTML = `
       <a href="${m.trailer}" target="_blank">
-        <img src="${m.poster}" alt="${m.title}" class="poster" />
+        <img src="${m.poster}" alt="${m.title}" class="poster" loading="lazy"
+             onerror="this.onerror=null;this.src='/img/default.jpg';" />
       </a>
       <h3>${m.title}</h3>
       <p>Language: ${Array.isArray(m.lang) ? m.lang.join(', ') : m.lang}</p>
