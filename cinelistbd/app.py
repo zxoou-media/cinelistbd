@@ -1,11 +1,11 @@
 from flask import Flask, render_template, jsonify, send_from_directory
 from flask_cors import CORS
-import json, os
+import os, json
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', template_folder='templates')
 CORS(app)
 
-DATA_FILE = os.path.join(os.path.dirname(__file__), 'data', 'movies.json')
+DATA_FILE = os.path.join(app.root_path, 'data', 'movies.json')
 
 @app.route('/')
 def home():
@@ -18,8 +18,8 @@ def movies_api():
     return jsonify(data)
 
 @app.route('/img/<path:filename>')
-def images(filename):
-    return send_from_directory(os.path.join(app.root_path, 'static', 'img'), filename)
+def serve_image(filename):
+    return send_from_directory(os.path.join(app.static_folder, 'img'), filename)
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
