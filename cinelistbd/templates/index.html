@@ -1,47 +1,57 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <title>CineListBD</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CineList 🎬</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
-  <header>
-    <div class="logo"><a href="/">🎬 CineListBD</a></div>
-    <input type="text" id="search-bar" placeholder="মুভি, সিরিজ, ভাষা লিখুন...">
+  <header class="site-header">
+    <h1 id="site-title">🎬 CineList</h1>
     <nav>
-      <ul>
-        <li>হোম</li>
-        <li>মুভি</li>
-        <li>টিভি শো</li>
-        <li>জনরা</li>
-        <li>বছর</li>
-        <li>দেশ</li>
-        <li>ভাষা</li>
-        <li>অনুরোধ</li>
-      </ul>
+      <a href="#">Home</a>
+      <a href="#trending">Trending</a>
+      <a href="#recent">Recently Updated</a>
     </nav>
+    <div class="filter-bar">
+      <input type="text" id="search-box" placeholder="🔍 Search movies..." />
+      <select id="lang-filter">
+        <option value="">All Languages</option>
+        <option value="English">English</option>
+        <option value="Hindi">Hindi</option>
+        <option value="Bangla">Bangla</option>
+        <option value="Telugu">Telugu</option>
+      </select>
+      <select id="quality-filter">
+        <option value="">All Qualities</option>
+        <option value="480p">480p</option>
+        <option value="720p">720p</option>
+        <option value="1080p">1080p</option>
+      </select>
+      <button id="theme-toggle">🌙 Toggle Dark Mode</button>
+    </div>
   </header>
 
   <main>
-    <section id="banner">স্লাইডার/ব্যানার এখানে আসবে</section>
-
-    <section>
-      <h2>নতুন মুভি</h2>
-      <div id="latest-movies-grid"></div>
+    <section id="trending">
+      <h2>🔥 TRENDING</h2>
+      <div id="trending-scroll" class="scroll-row"></div>
     </section>
 
-    <section>
-      <h2>জনপ্রিয় মুভি</h2>
-      <div id="popular-movies-grid"></div>
+    <div class="app-buttons">
+      <a href="https://www.youtube.com" target="_blank" class="app-btn">📺 YouTube</a>
+      <a href="https://www.tiktok.com" target="_blank" class="app-btn">🎵 TikTok</a>
+    </div>
+
+    <section id="recent">
+      <h2>🆕 RECENTLY UPDATED</h2>
+      <div id="recent-list" class="grid-row"></div>
     </section>
   </main>
 
   <footer>
-    <p>যোগাযোগ | গোপনীয়তা নীতি | শর্তাবলী</p>
-    <div class="social-icons">
-      <span>📘</span><span>🐦</span><span>📸</span>
-    </div>
+    <p>© 2025 CineList — ওয়েবসাইট এর মালিক তানজিদুর রহমান জয় ভাই</p>
   </footer>
 
   <script src="{{ url_for('static', filename='script.js') }}"></script>
