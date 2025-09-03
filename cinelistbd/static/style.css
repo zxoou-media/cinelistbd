@@ -6,11 +6,6 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-h2 {
-  margin: 20px;
-  text-align: center;
-}
-
 header {
   background: linear-gradient(90deg, #ff4b2b, #ff416c);
   color: #fff;
@@ -62,11 +57,7 @@ input, select, button {
   border-radius: 4px;
 }
 
-.trending-card {
-  flex: 0 0 auto;
-  scroll-snap-align: start;
-  min-width: 220px;
-  max-width: 240px;
+.trending-card, .recent-card {
   background: #fff;
   padding: 15px;
   border-radius: 8px;
@@ -75,7 +66,7 @@ input, select, button {
   transition: transform 0.3s;
 }
 
-.trending-card:hover {
+.trending-card:hover, .recent-card:hover {
   transform: scale(1.03);
 }
 
@@ -84,19 +75,6 @@ input, select, button {
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 16px;
   padding: 12px;
-}
-
-.recent-card {
-  background: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-}
-
-.recent-card:hover {
-  transform: scale(1.02);
 }
 
 .poster {
@@ -124,7 +102,6 @@ input, select, button {
   cursor: pointer;
   font-weight: bold;
   margin-top: 10px;
-  transition: background 0.3s;
   text-decoration: none;
   display: inline-block;
 }
