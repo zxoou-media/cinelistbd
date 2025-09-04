@@ -181,4 +181,61 @@ body.dark select,
 body.dark button {
   background-color: #333;
   color: #fff;
-  border:
+  border: 1px solid #555;
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 18px;
+    margin: 16px 0;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  input, select, button {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .trending-card,
+  .recent-card {
+    min-width: 180px;
+    padding: 10px;
+  }
+
+  .poster {
+    max-height: 220px;
+  }
+
+  .app-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .app-btn {
+    width: 90%;
+    margin: 5px auto;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 16px;
+  }
+
+  .poster {
+    max-height: 180px;
+  }
+
+  .watch-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .filter-bar {
+    padding: 0 10px;
+  }
+}
