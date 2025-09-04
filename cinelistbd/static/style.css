@@ -184,6 +184,10 @@ body.dark button {
   border: 1px solid #555;
 }
 
+body {
+  font-size: clamp(14px, 2vw, 18px);
+}
+
 @media (max-width: 768px) {
   h2 {
     font-size: 18px;
