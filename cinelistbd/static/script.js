@@ -22,10 +22,11 @@ async function loadMovies() {
 function renderMovies(movies) {
   const trendingEl = document.getElementById('trending-scroll');
   const recentEl = document.getElementById('recent-list');
-  const recentEl = document.getElementById('latest-list');
-  const recentEl = document.getElementById('popularmovies-list');
-  const recentEl = document.getElementById('popularwebseries-list');
-  const recentEl = document.getElementById('populardrama-list');
+  const latestEl = document.getElementById('latest-list');
+  const moviesEl = document.getElementById('popularmovies-list');
+  const webseriesEl = document.getElementById('popularwebseries-list');
+  const dramaEl = document.getElementById('populardrama-list');
+
   trendingEl.innerHTML = '';
   recentEl.innerHTML = '';
   latestEl.innerHTML = '';
@@ -35,7 +36,15 @@ function renderMovies(movies) {
 
   movies.forEach(m => {
     const card = document.createElement('div');
-    card.className = m.category === 'trending' ? 'trending-card' : 'recent-card' : 'latest-card' : 'movies-card' : 'webseries-card' : 'drama-card';
+
+    switch (m.category) {
+      case 'trending': card.className = 'trending-card'; break;
+      case 'recent': card.className = 'recent-card'; break;
+      case 'latest': card.className = 'latest-card'; break;
+      case 'movies': card.className = 'movies-card'; break;
+      case 'webseries': card.className = 'webseries-card'; break;
+      case 'drama': card.className = 'drama-card'; break;
+    }
 
     card.innerHTML = `
       <a href="${m.trailer}" target="_blank">
@@ -48,12 +57,14 @@ function renderMovies(movies) {
       <a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Movie</a>
     `;
 
-    if (m.category === 'trending') trendingEl.appendChild(card);
-    else recentEl.appendChild(card);
-    else latestEl.appendChild(card);
-    else moviesEl.appendChild(card);
-    else webseriesEl.appendChild(card);
-    else dramaEl.appendChild(card);
+    switch (m.category) {
+      case 'trending': trendingEl.appendChild(card); break;
+      case 'recent': recentEl.appendChild(card); break;
+      case 'latest': latestEl.appendChild(card); break;
+      case 'movies': moviesEl.appendChild(card); break;
+      case 'webseries': webseriesEl.appendChild(card); break;
+      case 'drama': dramaEl.appendChild(card); break;
+    }
   });
 }
 
