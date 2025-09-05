@@ -7,10 +7,17 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
-<div id="site-logo">
-  <img src="{{ url_for('static', filename='img/logo.png') }}" alt="CineListBD Logo" />
-</div>
-<link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
+<header>
+  <div id="site-logo">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="CineListBD Logo" />
+  </div>
+  <nav>...</nav>
+  <div class="filter-bar">...</div>
+</header>
+<head>
+  ...
+  <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
     <nav>
       <a href="#">Home</a>
       <a href="#trending">Trending</a>
