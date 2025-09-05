@@ -220,6 +220,10 @@ body.dark header {
 
 body.dark .trending-card,
 body.dark .recent-card {
+body.dark .latest-card,
+body.dark .movies-card,
+body.dark .webseries-card,
+body.dark .drama-card {
   background-color: #1e1e1e;
   color: #fff;
 }
@@ -332,5 +336,23 @@ body {
   .app-btn {
     width: 90%;
     margin: 5px auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .latest-card,
+  .movies-card,
+  .webseries-card,
+  .drama-card {
+    min-width: 180px;
+    padding: 12px;
+  }
+}
+@media (max-width: 480px) {
+  .latest-card,
+  .movies-card,
+  .webseries-card,
+  .drama-card {
+    min-width: 160px;
   }
 }
