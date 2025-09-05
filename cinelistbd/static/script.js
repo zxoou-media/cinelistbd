@@ -7,8 +7,12 @@ async function loadMovies() {
 
     const trending = data.trending.map(m => ({ ...m, category: 'trending' }));
     const recent = data.recent.map(m => ({ ...m, category: 'recent' }));
+    const latest = data.latest.map(m => ({ ...m, category: 'latest' }));
+    const movies = data.movies.map(m => ({ ...m, category: 'movies' }));
+    const webseries = data.webseries.map(m => ({ ...m, category: 'webseries' }));
+    const drama = data.drama.map(m => ({ ...m, category: 'drama' }));
 
-    allMovies = [...trending, ...recent];
+    allMovies = [...trending, ...recent, ...latest, ...movies, ...webseries, ...drama];
     renderMovies(allMovies);
   } catch (err) {
     console.error("Failed to load movies:", err);
@@ -18,12 +22,20 @@ async function loadMovies() {
 function renderMovies(movies) {
   const trendingEl = document.getElementById('trending-scroll');
   const recentEl = document.getElementById('recent-list');
+  const recentEl = document.getElementById('latest-list');
+  const recentEl = document.getElementById('popularmovies-list');
+  const recentEl = document.getElementById('popularwebseries-list');
+  const recentEl = document.getElementById('populardrama-list');
   trendingEl.innerHTML = '';
   recentEl.innerHTML = '';
+  latestEl.innerHTML = '';
+  moviesEl.innerHTML = '';
+  webseriesEl.innerHTML = '';
+  dramaEl.innerHTML = '';
 
   movies.forEach(m => {
     const card = document.createElement('div');
-    card.className = m.category === 'trending' ? 'trending-card' : 'recent-card';
+    card.className = m.category === 'trending' ? 'trending-card' : 'recent-card' : 'latest-card' : 'movies-card' : 'webseries-card' : 'drama-card';
 
     card.innerHTML = `
       <a href="${m.trailer}" target="_blank">
@@ -38,6 +50,10 @@ function renderMovies(movies) {
 
     if (m.category === 'trending') trendingEl.appendChild(card);
     else recentEl.appendChild(card);
+    else latestEl.appendChild(card);
+    else moviesEl.appendChild(card);
+    else webseriesEl.appendChild(card);
+    else dramaEl.appendChild(card);
   });
 }
 
