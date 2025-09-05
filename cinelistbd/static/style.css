@@ -226,8 +226,8 @@ body.dark .webseries-card,
 body.dark .drama-card {
   background-color: #1e1e1e;
   color: #fff;
+  box-shadow: 0 3px 6px rgba(255,255,255,0.05);
 }
-
 body.dark input,
 body.dark select,
 body.dark button {
@@ -365,4 +365,9 @@ body {
   #site-logo img {
     max-height: 40px;
   }
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
 }
