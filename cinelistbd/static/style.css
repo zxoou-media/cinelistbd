@@ -98,6 +98,54 @@ input, select, button {
 .recent-card:hover {
   transform: scale(1.02);
 }
+.latest-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.latest-card:hover {
+  transform: scale(1.02);
+}
+.movies-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.movies-card:hover {
+  transform: scale(1.02);
+}
+.webseries-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.webseries-card:hover {
+  transform: scale(1.02);
+}
+.drama-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.drama-card:hover {
+  transform: scale(1.02);
+}
 
 .poster {
   width: 100%;
