@@ -356,3 +356,8 @@ body {
     min-width: 160px;
   }
 }
+@media (max-width: 768px) {
+  .filter-bar select {
+    width: 100%;
+  }
+}
