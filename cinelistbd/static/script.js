@@ -20,31 +20,21 @@ async function loadMovies() {
 }
 
 function renderMovies(movies) {
-  const trendingEl = document.getElementById('trending-scroll');
-  const recentEl = document.getElementById('recent-list');
-  const latestEl = document.getElementById('latest-list');
-  const moviesEl = document.getElementById('popularmovies-list');
-  const webseriesEl = document.getElementById('popularwebseries-list');
-  const dramaEl = document.getElementById('populardrama-list');
+  const sections = {
+    trending: document.getElementById('trending-scroll'),
+    recent: document.getElementById('recent-list'),
+    latest: document.getElementById('latest-list'),
+    movies: document.getElementById('popularmovies-list'),
+    webseries: document.getElementById('popularwebseries-list'),
+    drama: document.getElementById('populardrama-list')
+  };
 
-  trendingEl.innerHTML = '';
-  recentEl.innerHTML = '';
-  latestEl.innerHTML = '';
-  moviesEl.innerHTML = '';
-  webseriesEl.innerHTML = '';
-  dramaEl.innerHTML = '';
+  // Clear previous content
+  Object.values(sections).forEach(el => el.innerHTML = '');
 
   movies.forEach(m => {
     const card = document.createElement('div');
-
-    switch (m.category) {
-      case 'trending': card.className = 'trending-card'; break;
-      case 'recent': card.className = 'recent-card'; break;
-      case 'latest': card.className = 'latest-card'; break;
-      case 'movies': card.className = 'movies-card'; break;
-      case 'webseries': card.className = 'webseries-card'; break;
-      case 'drama': card.className = 'drama-card'; break;
-    }
+    card.className = `${m.category}-card`;
 
     card.innerHTML = `
       <a href="${m.trailer}" target="_blank">
@@ -57,36 +47,56 @@ function renderMovies(movies) {
       <a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Movie</a>
     `;
 
-    switch (m.category) {
-      case 'trending': trendingEl.appendChild(card); break;
-      case 'recent': recentEl.appendChild(card); break;
-      case 'latest': latestEl.appendChild(card); break;
-      case 'movies': moviesEl.appendChild(card); break;
-      case 'webseries': webseriesEl.appendChild(card); break;
-      case 'drama': dramaEl.appendChild(card); break;
-    }
+    sections[m.category]?.appendChild(card);
   });
 }
 
 function applyFilters() {
   const searchText = document.getElementById("search-box").value.toLowerCase();
+  const section = document.getElementById("section-filter").value;
+  const platform = document.getElementById("platform-filter").value;
+  const genre = document.getElementById("genre-filter").value;
   const lang = document.getElementById("lang-filter").value;
+  const type = document.getElementById("type-filter").value;
   const quality = document.getElementById("quality-filter").value;
 
   const filtered = allMovies.filter(movie => {
     const matchesSearch = movie.title.toLowerCase().includes(searchText);
+    const matchesSection = !section || movie.category === section;
+    const matchesPlatform = !platform || movie.platform === platform;
+    const matchesGenre = !genre || movie.genre === genre;
     const matchesLang = !lang || (Array.isArray(movie.lang) ? movie.lang.includes(lang) : movie.lang === lang);
+    const matchesType = !type || movie.type === type;
     const matchesQuality = !quality || (Array.isArray(movie.quality) ? movie.quality.includes(quality) : movie.quality === quality);
-    return matchesSearch && matchesLang && matchesQuality;
+
+    return (
+      matchesSearch &&
+      matchesSection &&
+      matchesPlatform &&
+      matchesGenre &&
+      matchesLang &&
+      matchesType &&
+      matchesQuality
+    );
   });
 
   renderMovies(filtered);
 }
 
 function setupFilterListeners() {
-  document.getElementById('search-box').addEventListener('input', applyFilters);
-  document.getElementById('lang-filter').addEventListener('change', applyFilters);
-  document.getElementById('quality-filter').addEventListener('change', applyFilters);
+  const filterIds = [
+    'search-box',
+    'section-filter',
+    'platform-filter',
+    'genre-filter',
+    'lang-filter',
+    'type-filter',
+    'quality-filter'
+  ];
+
+  filterIds.forEach(id => {
+    document.getElementById(id).addEventListener('input', applyFilters);
+  });
 }
 
 function setupDarkModeToggle() {
