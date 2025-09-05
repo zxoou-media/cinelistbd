@@ -252,8 +252,13 @@
     },
     {
       "title": "Dhumketu (2025)",
+      "episode": "1-10",
+      "genre": ["horror", "thriller"],
       "lang": ["Bangla"],
+      "type": ["Web Series"],
       "quality": ["720p"],
+      "country": ["Bangladesh"],
+      "platform": ["Bongo"],
       "date": "2025-08-17",
       "trailer": "https://youtu.be/knGCfzm4jWs?si=POxf91G--H5G6kKX",
       "poster": "https://images.pexels.com/photos/12838778/pexels-photo-12838778.jpeg"
