@@ -21,20 +21,52 @@ async function loadMovies() {
 
 function renderMovies(movies) {
   const sections = {
-    trending: document.getElementById('trending-scroll'),
-    recent: document.getElementById('recent-list'),
-    latest: document.getElementById('latest-list'),
-    movies: document.getElementById('popularmovies-list'),
-    webseries: document.getElementById('popularwebseries-list'),
-    drama: document.getElementById('populardrama-list')
+    trending: {
+      wrapper: document.getElementById('trending'),
+      container: document.getElementById('trending-scroll')
+    },
+    recent: {
+      wrapper: document.getElementById('recent'),
+      container: document.getElementById('recent-list')
+    },
+    latest: {
+      wrapper: document.getElementById('latest'),
+      container: document.getElementById('latest-list')
+    },
+    movies: {
+      wrapper: document.getElementById('movies'),
+      container: document.getElementById('popularmovies-list')
+    },
+    webseries: {
+      wrapper: document.getElementById('webseries'),
+      container: document.getElementById('popularwebseries-list')
+    },
+    drama: {
+      wrapper: document.getElementById('drama'),
+      container: document.getElementById('populardrama-list')
+    }
   };
 
-  Object.values(sections).forEach(el => el.innerHTML = '');
+  // Clear all containers
+  Object.values(sections).forEach(({ container }) => container.innerHTML = '');
 
+  // Track which sections have content
+  const sectionHasContent = {
+    trending: false,
+    recent: false,
+    latest: false,
+    movies: false,
+    webseries: false,
+    drama: false
+  };
+
+  // Render filtered movies
   movies.forEach(m => {
+    const section = sections[m.category];
+    if (!section) return;
+
     const card = document.createElement('div');
     card.className = `${m.category}-card`;
-
     card.innerHTML = `
       <a href="${m.trailer}" target="_blank">
         <img src="${m.poster}" alt="${m.title}" class="poster" />
@@ -48,8 +80,13 @@ function renderMovies(movies) {
       <p>Release: ${m.date || 'N/A'}</p>
       <a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Movie</a>
     `;
+    section.container.appendChild(card);
+    sectionHasContent[m.category] = true;
+  });
 
-    sections[m.category]?.appendChild(card);
+  // Show/hide sections based on content
+  Object.entries(sections).forEach(([key, { wrapper }]) => {
+    wrapper.style.display = sectionHasContent[key] ? 'block' : 'none';
   });
 }
 
