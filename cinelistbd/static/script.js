@@ -29,7 +29,6 @@ function renderMovies(movies) {
     drama: document.getElementById('populardrama-list')
   };
 
-  // Clear previous content
   Object.values(sections).forEach(el => el.innerHTML = '');
 
   movies.forEach(m => {
@@ -43,6 +42,9 @@ function renderMovies(movies) {
       <h3>${m.title}</h3>
       <p>Language: ${Array.isArray(m.lang) ? m.lang.join(', ') : m.lang}</p>
       <p>Quality: ${Array.isArray(m.quality) ? m.quality.join(', ') : m.quality}</p>
+      <p>Genre: ${Array.isArray(m.genre) ? m.genre.join(', ') : m.genre || 'N/A'}</p>
+      <p>Type: ${Array.isArray(m.type) ? m.type.join(', ') : m.type || 'N/A'}</p>
+      <p>Platform: ${Array.isArray(m.platform) ? m.platform.join(', ') : m.platform || 'N/A'}</p>
       <p>Release: ${m.date || 'N/A'}</p>
       <a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Movie</a>
     `;
@@ -63,11 +65,21 @@ function applyFilters() {
   const filtered = allMovies.filter(movie => {
     const matchesSearch = movie.title.toLowerCase().includes(searchText);
     const matchesSection = !section || movie.category === section;
-    const matchesPlatform = !platform || movie.platform === platform;
-    const matchesGenre = !genre || movie.genre === genre;
-    const matchesLang = !lang || (Array.isArray(movie.lang) ? movie.lang.includes(lang) : movie.lang === lang);
-    const matchesType = !type || movie.type === type;
-    const matchesQuality = !quality || (Array.isArray(movie.quality) ? movie.quality.includes(quality) : movie.quality === quality);
+    const matchesPlatform = !platform || (
+      Array.isArray(movie.platform) ? movie.platform.includes(platform) : movie.platform === platform
+    );
+    const matchesGenre = !genre || (
+      Array.isArray(movie.genre) ? movie.genre.includes(genre) : movie.genre === genre
+    );
+    const matchesLang = !lang || (
+      Array.isArray(movie.lang) ? movie.lang.includes(lang) : movie.lang === lang
+    );
+    const matchesType = !type || (
+      Array.isArray(movie.type) ? movie.type.includes(type) : movie.type === type
+    );
+    const matchesQuality = !quality || (
+      Array.isArray(movie.quality) ? movie.quality.includes(quality) : movie.quality === quality
+    );
 
     return (
       matchesSearch &&
