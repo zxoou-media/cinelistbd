@@ -101,8 +101,14 @@ input, select, button {
 #recent-list,
 #latest-list,
 #popularmovies-list,
-#populardrama-list,
-#popularwebseries-list {
+#banglamovies-list,
+#englishmovies-list,
+#hindimovies-list,
+#koreanmovies-list,
+#urdu-list,
+#tamil-list,
+#persian-list,
+#portuguese-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 16px;
@@ -113,8 +119,14 @@ input, select, button {
   #recent-list,
   #latest-list,
   #popularmovies-list,
-  #populardrama-list,
-  #popularwebseries-list {
+  #banglamovies-list,
+  #englishmovies-list,
+  #hindimovies-list,
+  #koreanmovies-list,
+  #urdu-list,
+  #tamil-list,
+  #persian-list,
+  #portuguese-list {
     grid-template-columns: repeat(4, 1fr);
   }
 }
@@ -177,45 +189,13 @@ input, select, button {
   background-color: #e60000;
 }
 
-/* ===== See More Button ===== */
-.see-more-wrapper {
-  text-align: center;
-  margin: 20px 0;
-}
-
-.see-more-btn {
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-weight: bold;
-}
-
-.see-more-btn:hover {
-  background-color: #e63946;
-}
-
-body.dark .see-more-btn {
-  background-color: #cc3333;
-  color: #fff;
-  border: 1px solid #444;
-}
-
-body.dark .see-more-btn:hover {
-  background-color: #aa0000;
-}
-
-/* ===== App Buttons ===== */
+/* ===== App Buttons (পাশাপাশি ও responsive) ===== */
 .app-buttons {
   display: flex;
   justify-content: center;
   gap: 12px;
   margin: 20px 0;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* ছোট স্ক্রিনে নিচে যেতে দিবে */
 }
 
 .app-btn {
@@ -363,4 +343,55 @@ body.dark button {
   }
 
   .site-header {
-    padding: 10
+    padding: 10px;
+  }
+
+  nav a {
+    display: block;
+    margin: 6px 0;
+  }
+
+  .trending-card,
+  .recent-card,
+  .latest-card,
+  .movies-card,
+  .webseries-card,
+  .drama-card {
+    min-width: 160px;
+  }
+
+  .app-buttons {
+    justify-content: center;
+    gap: 10px;
+}
+
+.see-more-wrapper {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.see-more-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.see-more-btn:hover {
+  background-color: #e63946;
+}
+
+body.dark .see-more-btn {
+  background-color: #cc3333;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+body.dark .see-more-btn:hover {
+  background-color: #aa0000;
+}
