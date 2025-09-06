@@ -360,56 +360,6 @@ body.dark button {
     min-width: 160px;
   }
 
-.app-buttons {
-  justify-content: center;
-  gap: 10px;
-}
-.see-more-btn {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  background-color: #ff4b2b;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.see-more-btn:hover {
-  background-color: #e60000;
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin: 30px 0;
-}
-
-.pagination button {
-  padding: 6px 12px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.pagination button:hover {
-  background-color: #555;
-}
-
-#page-numbers button.active {
-  background-color: #ff4b2b;
-}
-body.dark .poster:hover {
-  box-shadow: 0 0 12px rgba(255, 75, 43, 0.4);
-}
-#page-numbers button.active {
-  background-color: #ff4b2b;
-  transform: scale(1.05);
-  transition: transform 0.2s ease;
-}
+  .app-buttons {
+    justify-content: center;
+    gap
