@@ -9,19 +9,19 @@
 <body>
   <header class="site-header">
     <h1 id="site-title">▶ CineList</h1>
-    <!-- Search + Filter bar (reuse from homepage) -->
     {% include 'filter_bar.html' %}
   </header>
 
   <main>
     <section>
-      <h2>{{ section | capitalize }} Section</h2>
+      <h2>{{ section | capitalize }} SECTION</h2>
       <div id="movie-list" class="grid-row"></div>
+      <div id="loader" style="text-align:center; display:none;">লোড হচ্ছে...</div>
       <button id="see-more-btn" class="see-more-btn">আরও দেখুন</button>
     </section>
 
     <div class="pagination">
-      <button id="prev-btn">Previous</button>
+      <button id="prev-btn">আগের পৃষ্ঠা</button>
       <div id="page-numbers"></div>
       <button id="next-btn">Next</button>
     </div>
