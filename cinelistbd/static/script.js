@@ -1,5 +1,22 @@
 let allMovies = [];
 
+const sectionStates = {
+  recent: 0,
+  latest: 0,
+  movies: 0,
+  webseries: 0,
+  drama: 0
+};
+
+const sectionMap = {
+  trending: 'trending-scroll',
+  recent: 'recent-list',
+  latest: 'latest-list',
+  movies: 'popularmovies-list',
+  webseries: 'popularwebseries-list',
+  drama: 'populardrama-list'
+};
+
 async function loadMovies() {
   try {
     const res = await fetch('/api/movies');
@@ -13,57 +30,32 @@ async function loadMovies() {
     const drama = data.drama.map(m => ({ ...m, category: 'drama' }));
 
     allMovies = [...trending, ...recent, ...latest, ...movies, ...webseries, ...drama];
-    renderMovies(allMovies);
+    renderInitialMovies();
   } catch (err) {
     console.error("Failed to load movies:", err);
   }
 }
 
-function renderMovies(movies) {
-  const sections = {
-    trending: {
-      wrapper: document.getElementById('trending'),
-      container: document.getElementById('trending-scroll')
-    },
-    recent: {
-      wrapper: document.getElementById('recent'),
-      container: document.getElementById('recent-list')
-    },
-    latest: {
-      wrapper: document.getElementById('latest'),
-      container: document.getElementById('latest-list')
-    },
-    movies: {
-      wrapper: document.getElementById('movies'),
-      container: document.getElementById('popularmovies-list')
-    },
-    webseries: {
-      wrapper: document.getElementById('webseries'),
-      container: document.getElementById('popularwebseries-list')
-    },
-    drama: {
-      wrapper: document.getElementById('drama'),
-      container: document.getElementById('populardrama-list')
-    }
-  };
+function renderInitialMovies() {
+  renderSection('trending', allMovies.filter(m => m.category === 'trending'));
+  ['recent', 'latest', 'movies', 'webseries', 'drama'].forEach(section => {
+    renderSection(section, allMovies.filter(m => m.category === section), true);
+  });
+}
 
-  Object.values(sections).forEach(({ container }) => container.innerHTML = '');
-  const sectionHasContent = {
-    trending: false,
-    recent: false,
-    latest: false,
-    movies: false,
-    webseries: false,
-    drama: false
-  };
+function renderSection(section, movies, paginated = false) {
+  const container = document.getElementById(sectionMap[section]);
+  if (!container) return;
 
-  movies.forEach(m => {
-    const section = sections[m.category];
-    if (!section) return;
+  if (!paginated) container.innerHTML = '';
 
+  const start = sectionStates[section] * 20;
+  const end = start + 20;
+  const slice = paginated ? movies.slice(start, end) : movies;
+
+  slice.forEach(m => {
     const card = document.createElement('div');
     card.className = `${m.category}-card`;
-
     card.innerHTML = `
       <a href="${m.trailer}" target="_blank">
         <img src="${m.poster}" alt="${m.title}" class="poster" />
@@ -85,13 +77,25 @@ function renderMovies(movies) {
       ${Array.isArray(m.platform) && m.platform.length ? `<p>Platform: ${m.platform.join(', ')}</p>` : ""}
       ${m.trailer ? `<a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Trailer</a>` : ""}
     `;
-
-    section.container.appendChild(card);
-    sectionHasContent[m.category] = true;
+    container.appendChild(card);
   });
 
-  Object.entries(sections).forEach(([key, { wrapper }]) => {
-    wrapper.style.display = sectionHasContent[key] ? 'block' : 'none';
+  if (paginated) {
+    sectionStates[section]++;
+    const seeMoreBtn = document.querySelector(`.see-more-btn[data-section="${section}"]`);
+    if (end >= movies.length && seeMoreBtn) {
+      seeMoreBtn.style.display = 'none';
+    }
+  }
+}
+
+function setupSeeMoreButtons() {
+  document.querySelectorAll('.see-more-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const section = btn.getAttribute('data-section');
+      const movies = allMovies.filter(m => m.category === section);
+      renderSection(section, movies, true);
+    });
   });
 }
 
@@ -135,6 +139,19 @@ function applyFilters() {
   });
 
   renderMovies(filtered);
+}
+
+function renderMovies(filteredMovies) {
+  Object.keys(sectionMap).forEach(section => {
+    const container = document.getElementById(sectionMap[section]);
+    container.innerHTML = '';
+    sectionStates[section] = 0;
+  });
+
+  Object.keys(sectionStates).forEach(section => {
+    const movies = filteredMovies.filter(m => m.category === section);
+    renderSection(section, movies, true);
+  });
 }
 
 function setupFilterListeners() {
@@ -192,15 +209,4 @@ function autoScrollTrending() {
           break;
         }
       }
-    }, 1500);
-  });
-
-  setInterval(scrollToCard, 3000);
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  loadMovies();
-  setupFilterListeners();
-  setupDarkModeToggle();
-  autoScrollTrending();
-});
+    }, 150
