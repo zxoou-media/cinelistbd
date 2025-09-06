@@ -44,7 +44,8 @@ function renderInitialMovies() {
 }
 
 function getPosterPath(m) {
-  return m.poster ? `/img/${m.poster}` : '/img/default.jpg';
+  if (!m.poster) return '/img/default.jpg';
+  return m.poster.startsWith('http') ? m.poster : `/img/${m.poster}`;
 }
 
 function renderSection(section, movies, paginated = false) {
