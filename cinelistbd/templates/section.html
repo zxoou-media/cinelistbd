@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ section | capitalize }} ▶ CineListBD</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <header class="site-header">
+    <h1 id="site-title">▶ CineList</h1>
+    <!-- Search + Filter bar (reuse from homepage) -->
+    {% include 'filter_bar.html' %}
+  </header>
+
+  <main>
+    <section>
+      <h2>{{ section | capitalize }} Section</h2>
+      <div id="movie-list" class="grid-row"></div>
+      <button id="see-more-btn" class="see-more-btn">আরও দেখুন</button>
+    </section>
+
+    <div class="pagination">
+      <button id="prev-btn">Previous</button>
+      <div id="page-numbers"></div>
+      <button id="next-btn">Next</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 CineList — তানজিদুর রহমান জয় ভাই</p>
+  </footer>
+
+  <script>
+    const section = "{{ section }}";
+  </script>
+  <script src="{{ url_for('static', filename='section.js') }}"></script>
+</body>
+</html>
