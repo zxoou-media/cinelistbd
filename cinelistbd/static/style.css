@@ -1,9 +1,11 @@
+/* Base styles */
 body {
   font-family: Arial, sans-serif;
   background: #f0f0f0;
   margin: 0;
   padding: 0;
   transition: background 0.3s, color 0.3s;
+  font-size: clamp(14px, 2vw, 18px);
 }
 
 h2 {
@@ -43,6 +45,7 @@ input, select, button {
   border: 1px solid #ccc;
 }
 
+/* Trending scroll row */
 .scroll-row {
   display: flex;
   overflow-x: auto;
@@ -79,6 +82,7 @@ input, select, button {
   transform: scale(1.03);
 }
 
+/* Grid layout for all sections */
 .grid-row {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -86,54 +90,45 @@ input, select, button {
   padding: 12px;
 }
 
-.recent-card {
-  background: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
+/* Responsive override: all sections except trending */
+#recent-list,
+#latest-list,
+#popularmovies-list,
+#banglamovies-list,
+#englishmovies-list,
+#hindimovies-list,
+#koreanmovies-list,
+#urdu-list,
+#tamil-list,
+#persian-list,
+#portuguese-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 12px;
 }
 
-.recent-card:hover {
-  transform: scale(1.02);
-}
-.latest-card {
-  background: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-}
-
-.latest-card:hover {
-  transform: scale(1.02);
-}
-.movies-card {
-  background: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
+@media (min-width: 768px) {
+  #recent-list,
+  #latest-list,
+  #popularmovies-list,
+  #banglamovies-list,
+  #englishmovies-list,
+  #hindimovies-list,
+  #koreanmovies-list,
+  #urdu-list,
+  #tamil-list,
+  #persian-list,
+  #portuguese-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
-.movies-card:hover {
-  transform: scale(1.02);
-}
-.webseries-card {
-  background: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-}
-
-.webseries-card:hover {
-  transform: scale(1.02);
-}
+/* Card styles */
+.recent-card,
+.latest-card,
+.movies-card,
+.webseries-card,
 .drama-card {
   background: #fff;
   padding: 15px;
@@ -143,6 +138,10 @@ input, select, button {
   transition: transform 0.3s;
 }
 
+.recent-card:hover,
+.latest-card:hover,
+.movies-card:hover,
+.webseries-card:hover,
 .drama-card:hover {
   transform: scale(1.02);
 }
@@ -209,6 +208,7 @@ footer {
   margin-top: 20px;
 }
 
+/* Dark mode */
 body.dark {
   background-color: #121212;
   color: #f0f0f0;
@@ -228,6 +228,7 @@ body.dark .drama-card {
   color: #fff;
   box-shadow: 0 3px 6px rgba(255,255,255,0.05);
 }
+
 body.dark input,
 body.dark select,
 body.dark button {
@@ -236,11 +237,7 @@ body.dark button {
   border: 1px solid #555;
 }
 
-body {
-  font-size: clamp(14px, 2vw, 18px);
-}
-
-/* Responsive adjustments for tablets and smaller screens */
+/* Responsive tweaks */
 @media (max-width: 768px) {
   h2 {
     font-size: 18px;
@@ -259,7 +256,11 @@ body {
   }
 
   .trending-card,
-  .recent-card {
+  .recent-card,
+  .latest-card,
+  .movies-card,
+  .webseries-card,
+  .drama-card {
     min-width: 180px;
     padding: 12px;
   }
@@ -284,23 +285,15 @@ body {
     font-size: 14px;
     padding: 8px;
   }
+
+  .filter-bar select {
+    width: 100%;
+  }
 }
 
-/* Responsive tweaks for mobile devices */
 @media (max-width: 480px) {
   h2 {
     font-size: 16px;
-  }
-
-.filter-bar {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 0 12px;
-  }
-
-  input, select, button {
-    width: 100%;
-    font-size: 14px;
   }
 
   .poster {
@@ -322,7 +315,11 @@ body {
   }
 
   .trending-card,
-  .recent-card {
+  .recent-card,
+  .latest-card,
+  .movies-card,
+  .webseries-card,
+  .drama-card {
     min-width: 160px;
   }
 
@@ -336,28 +333,5 @@ body {
   .app-btn {
     width: 90%;
     margin: 5px auto;
-  }
-}
-
-@media (max-width: 768px) {
-  .latest-card,
-  .movies-card,
-  .webseries-card,
-  .drama-card {
-    min-width: 180px;
-    padding: 12px;
-  }
-}
-@media (max-width: 480px) {
-  .latest-card,
-  .movies-card,
-  .webseries-card,
-  .drama-card {
-    min-width: 160px;
-  }
-}
-@media (max-width: 768px) {
-  .filter-bar select {
-    width: 100%;
   }
 }
