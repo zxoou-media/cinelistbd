@@ -21,13 +21,6 @@ def movies_api():
 def serve_image(filename):
     return send_from_directory(os.path.join(app.static_folder, 'img'), filename)
 
-@app.route('/section/<key>')
-def section_page(key):
-    valid_keys = ['recent', 'latest', 'movies', 'webseries', 'drama']
-    if key not in valid_keys:
-        return render_template('404.html'), 404
-    return render_template('section.html', section=key)
-
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(debug=True, host='0.0.0.0', port=port)
