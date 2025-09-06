@@ -368,3 +368,6 @@ body.dark button {
     margin-bottom: 4px;
   }
 }
+.section-title {
+  margin: 16px 0 8px; /* উপরে নিচে কমিয়ে cinematic balance */
+}
