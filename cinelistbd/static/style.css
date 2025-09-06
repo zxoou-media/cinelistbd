@@ -362,4 +362,36 @@ body.dark button {
 
   .app-buttons {
     justify-content: center;
-    gap
+    gap: 10px;
+}
+
+.see-more-wrapper {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.see-more-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.see-more-btn:hover {
+  background-color: #e63946;
+}
+
+body.dark .see-more-btn {
+  background-color: #cc3333;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+body.dark .see-more-btn:hover {
+  background-color: #aa0000;
+}
