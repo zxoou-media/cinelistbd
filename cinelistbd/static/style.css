@@ -1,16 +1,20 @@
-/* Base styles */
+/* ===== Base styles ===== */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Arial, sans-serif;
   background: #f0f0f0;
   margin: 0;
   padding: 0;
   transition: background 0.3s, color 0.3s;
-  font-size: clamp(14px, 2vw, 18px);
+  font-size: 16px; /* Fixed font size */
 }
 
 h2 {
-  margin: 20px;
+  margin: 24px 0 12px;
   text-align: center;
+  font-weight: bold;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.5px;
 }
 
 header {
@@ -45,7 +49,7 @@ input, select, button {
   border: 1px solid #ccc;
 }
 
-/* Trending scroll row */
+/* ===== Trending scroll row ===== */
 .scroll-row {
   display: flex;
   overflow-x: auto;
@@ -82,7 +86,7 @@ input, select, button {
   transform: scale(1.03);
 }
 
-/* Grid layout for all sections */
+/* ===== Grid layout for all sections ===== */
 .grid-row {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -90,7 +94,7 @@ input, select, button {
   padding: 12px;
 }
 
-/* Responsive override: all sections except trending */
+/* ===== Section-specific grid overrides ===== */
 #recent-list,
 #latest-list,
 #popularmovies-list,
@@ -124,7 +128,7 @@ input, select, button {
   }
 }
 
-/* Card styles */
+/* ===== Card styles for all sections ===== */
 .recent-card,
 .latest-card,
 .movies-card,
@@ -146,6 +150,7 @@ input, select, button {
   transform: scale(1.02);
 }
 
+/* ===== Poster styling ===== */
 .poster {
   width: 100%;
   height: auto;
@@ -162,6 +167,7 @@ input, select, button {
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
+/* ===== Watch Trailer Button ===== */
 .watch-btn {
   background-color: #ff3c3c;
   color: white;
@@ -180,6 +186,7 @@ input, select, button {
   background-color: #e60000;
 }
 
+/* ===== App Buttons ===== */
 .app-buttons {
   text-align: center;
   margin: 20px 0;
@@ -200,6 +207,7 @@ input, select, button {
   background-color: #555;
 }
 
+/* ===== Footer ===== */
 footer {
   text-align: center;
   background: #222;
@@ -208,7 +216,7 @@ footer {
   margin-top: 20px;
 }
 
-/* Dark mode */
+/* ===== Dark Mode ===== */
 body.dark {
   background-color: #121212;
   color: #f0f0f0;
@@ -237,11 +245,25 @@ body.dark button {
   border: 1px solid #555;
 }
 
-/* Responsive tweaks */
+/* ===== Typography Enhancements ===== */
+.grid-card h3 {
+  font-weight: bold;
+  font-size: 1.05em;
+  margin-bottom: 6px;
+}
+
+.grid-card p {
+  margin: 4px 0;
+  font-size: 0.95em;
+  line-height: 1.4;
+  color: #444;
+}
+
+/* ===== Responsive Tweaks ===== */
 @media (max-width: 768px) {
   h2 {
-    font-size: 18px;
-    margin: 16px 0;
+    font-size: 22px;
+    margin: 20px 0;
   }
 
   .filter-bar {
@@ -293,7 +315,7 @@ body.dark button {
 
 @media (max-width: 480px) {
   h2 {
-    font-size: 16px;
+    font-size: 20px;
   }
 
   .poster {
