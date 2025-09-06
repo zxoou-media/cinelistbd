@@ -1,5 +1,15 @@
 let allMovies = [];
 
+let sectionPages = {
+  recent: 1,
+  latest: 1,
+  movies: 1,
+  webseries: 1,
+  drama: 1
+};
+
+const perPage = 20;
+
 async function loadMovies() {
   try {
     const res = await fetch('/api/movies');
@@ -47,51 +57,60 @@ function renderMovies(movies) {
     }
   };
 
-  Object.values(sections).forEach(({ container }) => container.innerHTML = '');
-  const sectionHasContent = {
-    trending: false,
-    recent: false,
-    latest: false,
-    movies: false,
-    webseries: false,
-    drama: false
-  };
-
-  movies.forEach(m => {
-    const section = sections[m.category];
-    if (!section) return;
-
-    const card = document.createElement('div');
-    card.className = `${m.category}-card`;
-
-    card.innerHTML = `
-      <a href="${m.trailer}" target="_blank">
-        <img src="${m.poster}" alt="${m.title}" class="poster" />
-      </a>
-      <h3>${m.title}</h3>
-      ${m.sequel ? `<p>Sequel: ${m.sequel}</p>` : ""}
-      ${m.episode && Array.isArray(m.type) && m.type.includes("Web Series") ? `<p>Episode: ${m.episode}</p>` : ""}
-      ${Array.isArray(m.genre) && m.genre.length ? `<p>Genre: ${m.genre.join(', ')}</p>` : ""}
-      ${Array.isArray(m.lang) && m.lang.length ? `<p>Language: ${m.lang.join(', ')}</p>` : ""}
-      ${Array.isArray(m.country) && m.country.length ? `<p>Country: ${m.country.join(', ')}</p>` : ""}
-      ${Array.isArray(m.type) && m.type.length ? `<p>Type: ${m.type.join(', ')}</p>` : ""}
-      ${Array.isArray(m.actors) && m.actors.length ? `<p>Actors: ${m.actors.join(', ')}</p>` : ""}
-      ${Array.isArray(m.directors) && m.directors.length ? `<p>Directors: ${m.directors.join(', ')}</p>` : ""}
-      ${m.runtime ? `<p>Runtime: ${m.runtime}</p>` : ""}
-      ${m.date ? `<p>Release: ${m.date}</p>` : ""}
-      ${Array.isArray(m.quality) && m.quality.length ? `<p>Quality: ${m.quality.join(', ')}</p>` : ""}
-      ${m.imdb ? `<p>IMDb Rating: ${m.imdb}</p>` : ""}
-      ${m.tmdb ? `<p>TMDb Rating: ${m.tmdb}</p>` : ""}
-      ${Array.isArray(m.platform) && m.platform.length ? `<p>Platform: ${m.platform.join(', ')}</p>` : ""}
-      ${m.trailer ? `<a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Trailer</a>` : ""}
-    `;
-
-    section.container.appendChild(card);
-    sectionHasContent[m.category] = true;
+  Object.values(sections).forEach(({ container, wrapper }) => {
+    container.innerHTML = '';
+    const seeMoreBtn = wrapper.querySelector('.see-more-btn');
+    if (seeMoreBtn) seeMoreBtn.remove();
   });
 
-  Object.entries(sections).forEach(([key, { wrapper }]) => {
-    wrapper.style.display = sectionHasContent[key] ? 'block' : 'none';
+  Object.keys(sectionPages).forEach(key => {
+    const sectionMovies = movies.filter(m => m.category === key);
+    const start = (sectionPages[key] - 1) * perPage;
+    const end = start + perPage;
+    const paginated = sectionMovies.slice(start, end);
+
+    paginated.forEach(m => {
+      const card = document.createElement('div');
+      card.className = `${m.category}-card`;
+      card.innerHTML = `
+        <a href="${m.trailer}" target="_blank">
+          <img src="${m.poster}" alt="${m.title}" class="poster" />
+        </a>
+        <h3>${m.title}</h3>
+        ${m.sequel ? `<p>Sequel: ${m.sequel}</p>` : ""}
+        ${m.episode && Array.isArray(m.type) && m.type.includes("Web Series") ? `<p>Episode: ${m.episode}</p>` : ""}
+        ${Array.isArray(m.genre) && m.genre.length ? `<p>Genre: ${m.genre.join(', ')}</p>` : ""}
+        ${Array.isArray(m.lang) && m.lang.length ? `<p>Language: ${m.lang.join(', ')}</p>` : ""}
+        ${Array.isArray(m.country) && m.country.length ? `<p>Country: ${m.country.join(', ')}</p>` : ""}
+        ${Array.isArray(m.type) && m.type.length ? `<p>Type: ${m.type.join(', ')}</p>` : ""}
+        ${Array.isArray(m.actors) && m.actors.length ? `<p>Actors: ${m.actors.join(', ')}</p>` : ""}
+        ${Array.isArray(m.directors) && m.directors.length ? `<p>Directors: ${m.directors.join(', ')}</p>` : ""}
+        ${m.runtime ? `<p>Runtime: ${m.runtime}</p>` : ""}
+        ${m.date ? `<p>Release: ${m.date}</p>` : ""}
+        ${Array.isArray(m.quality) && m.quality.length ? `<p>Quality: ${m.quality.join(', ')}</p>` : ""}
+        ${m.imdb ? `<p>IMDb Rating: ${m.imdb}</p>` : ""}
+        ${m.tmdb ? `<p>TMDb Rating: ${m.tmdb}</p>` : ""}
+        ${Array.isArray(m.platform) && m.platform.length ? `<p>Platform: ${m.platform.join(', ')}</p>` : ""}
+        ${m.trailer ? `<a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Trailer</a>` : ""}
+      `;
+      sections[m.category].container.appendChild(card);
+    });
+
+    if (end < sectionMovies.length) {
+      const btn = document.createElement('button');
+      btn.className = 'see-more-btn';
+      btn.textContent = 'আরও দেখুন';
+      btn.addEventListener('click', () => {
+        sectionPages[key]++;
+        renderMovies(allMovies);
+        setTimeout(() => {
+          sections[key].wrapper.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      });
+      sections[key].wrapper.appendChild(btn);
+    }
+
+    sections[key].wrapper.style.display = sectionMovies.length ? 'block' : 'none';
   });
 }
 
@@ -181,12 +200,10 @@ function autoScrollTrending() {
 
     scrollTimeout = setTimeout(() => {
       isUserScrolling = false;
-
       const cards = trending.querySelectorAll('.trending-card');
       for (let i = 0; i < cards.length; i++) {
         const cardLeft = cards[i].offsetLeft;
         const scrollLeft = trending.scrollLeft;
-
         if (cardLeft >= scrollLeft) {
           index = i - 1 >= 0 ? i - 1 : 0;
           break;
