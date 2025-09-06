@@ -189,21 +189,24 @@ input, select, button {
   background-color: #e60000;
 }
 
-/* ===== App Buttons ===== */
+/* ===== App Buttons (পাশাপাশি ও responsive) ===== */
 .app-buttons {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
   margin: 20px 0;
+  flex-wrap: wrap; /* ছোট স্ক্রিনে নিচে যেতে দিবে */
 }
 
 .app-btn {
   background-color: #333;
   color: #fff;
   padding: 10px 20px;
-  margin: 0 10px;
   border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
   display: inline-block;
+  transition: background 0.3s;
 }
 
 .app-btn:hover {
@@ -304,15 +307,15 @@ body.dark button {
   }
 
   .app-buttons {
-    display: flex;
-    flex-direction: column;
+    justify-content: center;
     gap: 10px;
-    align-items: center;
   }
 
   .app-btn {
-    width: 90%;
-    margin: 5px auto;
+    font-size: 14px;
+    padding: 8px 16px;
+    width: auto;
+    margin: 0;
   }
 
   footer {
@@ -358,6 +361,5 @@ body.dark button {
   }
 
   .app-buttons {
-    display: flex;
-    flex-direction: column;
-    gap:
+    justify-content: center;
+    gap
