@@ -249,13 +249,13 @@ body.dark button {
 .grid-card h3 {
   font-weight: bold;
   font-size: 1.05em;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .grid-card p {
-  margin: 4px 0;
+  margin: 3px 0;
   font-size: 0.95em;
-  line-height: 1.4;
+  line-height: 1.2;
   color: #444;
 }
 
