@@ -47,10 +47,7 @@ function renderMovies(movies) {
     }
   };
 
-  // Clear all containers
   Object.values(sections).forEach(({ container }) => container.innerHTML = '');
-
-  // Track which sections have content
   const sectionHasContent = {
     trending: false,
     recent: false,
@@ -60,31 +57,39 @@ function renderMovies(movies) {
     drama: false
   };
 
-  // Render filtered movies
   movies.forEach(m => {
     const section = sections[m.category];
     if (!section) return;
 
     const card = document.createElement('div');
     card.className = `${m.category}-card`;
+
     card.innerHTML = `
       <a href="${m.trailer}" target="_blank">
         <img src="${m.poster}" alt="${m.title}" class="poster" />
       </a>
       <h3>${m.title}</h3>
-      <p>Language: ${Array.isArray(m.lang) ? m.lang.join(', ') : m.lang}</p>
-      <p>Quality: ${Array.isArray(m.quality) ? m.quality.join(', ') : m.quality}</p>
-      <p>Genre: ${Array.isArray(m.genre) ? m.genre.join(', ') : m.genre || 'N/A'}</p>
-      <p>Type: ${Array.isArray(m.type) ? m.type.join(', ') : m.type || 'N/A'}</p>
-      <p>Platform: ${Array.isArray(m.platform) ? m.platform.join(', ') : m.platform || 'N/A'}</p>
-      <p>Release: ${m.date || 'N/A'}</p>
-      <a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Movie</a>
+      ${m.sequel ? `<p>Sequel: ${m.sequel}</p>` : ""}
+      ${m.episode && Array.isArray(m.type) && m.type.includes("Web Series") ? `<p>Episode: ${m.episode}</p>` : ""}
+      ${Array.isArray(m.genre) && m.genre.length ? `<p>Genre: ${m.genre.join(', ')}</p>` : ""}
+      ${Array.isArray(m.lang) && m.lang.length ? `<p>Language: ${m.lang.join(', ')}</p>` : ""}
+      ${Array.isArray(m.country) && m.country.length ? `<p>Country: ${m.country.join(', ')}</p>` : ""}
+      ${Array.isArray(m.type) && m.type.length ? `<p>Type: ${m.type.join(', ')}</p>` : ""}
+      ${Array.isArray(m.actors) && m.actors.length ? `<p>Actors: ${m.actors.join(', ')}</p>` : ""}
+      ${Array.isArray(m.directors) && m.directors.length ? `<p>Directors: ${m.directors.join(', ')}</p>` : ""}
+      ${m.runtime ? `<p>Runtime: ${m.runtime}</p>` : ""}
+      ${m.date ? `<p>Release: ${m.date}</p>` : ""}
+      ${Array.isArray(m.quality) && m.quality.length ? `<p>Quality: ${m.quality.join(', ')}</p>` : ""}
+      ${m.imdb ? `<p>IMDb Rating: ${m.imdb}</p>` : ""}
+      ${m.tmdb ? `<p>TMDb Rating: ${m.tmdb}</p>` : ""}
+      ${Array.isArray(m.platform) && m.platform.length ? `<p>Platform: ${m.platform.join(', ')}</p>` : ""}
+      ${m.trailer ? `<a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Trailer</a>` : ""}
     `;
+
     section.container.appendChild(card);
     sectionHasContent[m.category] = true;
   });
 
-  // Show/hide sections based on content
   Object.entries(sections).forEach(([key, { wrapper }]) => {
     wrapper.style.display = sectionHasContent[key] ? 'block' : 'none';
   });
