@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, send_from_directory
+from flask import Flask, render_template, jsonify, send_from_directory, request
 from flask_cors import CORS
 import os, json
 
@@ -13,9 +13,18 @@ def home():
 
 @app.route('/api/movies')
 def movies_api():
+    section = request.args.get('section')
+    offset = int(request.args.get('offset', 0))
+    limit = int(request.args.get('limit', 20))
+
     with open(DATA_FILE, 'r', encoding='utf-8') as f:
         data = json.load(f)
-    return jsonify(data)
+
+    if section and section in data:
+        sliced = data[section][offset:offset + limit]
+        return jsonify({'movies': sliced})
+    else:
+        return jsonify(data)
 
 @app.route('/img/<path:filename>')
 def serve_image(filename):
