@@ -43,6 +43,10 @@ function renderInitialMovies() {
   });
 }
 
+function getPosterPath(m) {
+  return m.poster ? `/img/${m.poster}` : '/img/default.jpg';
+}
+
 function renderSection(section, movies, paginated = false) {
   const container = document.getElementById(sectionMap[section]);
   if (!container) return;
@@ -56,9 +60,10 @@ function renderSection(section, movies, paginated = false) {
   slice.forEach(m => {
     const card = document.createElement('div');
     card.className = `${m.category}-card`;
+    const posterPath = getPosterPath(m);
     card.innerHTML = `
       <a href="${m.trailer}" target="_blank">
-        <img src="${m.poster}" alt="${m.title}" class="poster" />
+        <img src="${posterPath}" alt="${m.title}" class="poster" />
       </a>
       <h3>${m.title}</h3>
       ${m.sequel ? `<p>Sequel: ${m.sequel}</p>` : ""}
@@ -209,4 +214,17 @@ function autoScrollTrending() {
           break;
         }
       }
-    }, 150
+    }, 150);
+  });
+
+  setInterval(scrollToCard, 3000);
+}
+
+// Initialize everything
+document.addEventListener('DOMContentLoaded', () => {
+  loadMovies();
+  setupSeeMoreButtons();
+  setupFilterListeners();
+  setupDarkModeToggle();
+  autoScrollTrending();
+});
