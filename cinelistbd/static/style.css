@@ -357,6 +357,28 @@ body.dark button {
     margin: 5px auto;
   }
 }
+.social-buttons {
+  display: flex;
+  gap: 12px; /* বাটনের মাঝে ফাঁকা */
+  justify-content: center; /* মাঝখানে রাখতে চাইলে */
+  flex-wrap: nowrap; /* ছোট স্ক্রিনে নিচে চলে যেতে দিবে */
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+}
+
+.youtube {
+  background-color: #FF0000;
+}
+
+.tiktok {
+  background-color: #000000;
+}
 @media (max-width: 480px) {
   .grid-card p {
     margin: 2px 0;
