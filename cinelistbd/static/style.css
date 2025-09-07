@@ -409,17 +409,15 @@ body.dark button {
     gap: 10px;
 }
 
-/* ===== See More Button Wrapper ===== */
 .see-more-wrapper {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center; /* vertical centering if needed */
+  align-items: center;
   margin: 20px auto;
   text-align: center;
 }
 
-/* ===== See More Button Styles ===== */
 .see-more-btn {
   background-color: #800000;
   color: white;
@@ -432,14 +430,13 @@ body.dark button {
   display: inline-block;
   text-align: center;
   transition: background-color 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* ===== Hover Effect ===== */
 .see-more-btn:hover {
   background-color: #e63946;
 }
 
-/* ===== Dark Mode Compatibility ===== */
 body.dark .see-more-btn {
   background-color: #cc3333;
   color: #fff;
@@ -450,7 +447,6 @@ body.dark .see-more-btn:hover {
   background-color: #aa0000;
 }
 
-/* ===== Responsive Tweaks ===== */
 @media (max-width: 768px) {
   .see-more-btn {
     font-size: 15px;
