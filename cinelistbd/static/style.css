@@ -574,10 +574,10 @@ section[style*="display: block"] {
 /* Mobile override */
 @media (max-width: 480px) {
   .filter-row {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
 
   .filter-row select {
     font-size: 13px;
