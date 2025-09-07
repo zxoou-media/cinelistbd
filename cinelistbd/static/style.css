@@ -414,7 +414,9 @@ body.dark button {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 20px 0;
+  align-items: center; /* vertical centering if needed */
+  margin: 20px auto;
+  text-align: center;
 }
 
 /* ===== See More Button Styles ===== */
@@ -426,10 +428,10 @@ body.dark button {
   font-size: 16px;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
   font-weight: bold;
   display: inline-block;
   text-align: center;
+  transition: background-color 0.3s ease;
 }
 
 /* ===== Hover Effect ===== */
@@ -450,11 +452,6 @@ body.dark .see-more-btn:hover {
 
 /* ===== Responsive Tweaks ===== */
 @media (max-width: 768px) {
-  .see-more-wrapper {
-    justify-content: center;
-    margin: 20px 0;
-  }
-
   .see-more-btn {
     font-size: 15px;
     padding: 10px 18px;
