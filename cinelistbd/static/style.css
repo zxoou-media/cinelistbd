@@ -414,11 +414,11 @@ body.dark .drama-card p {
     margin: 20px 0;
   }
 
-  .filter-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 12px;
+  }
 
   input, select, button {
     width: 100%;
@@ -569,20 +569,4 @@ section[style*="display: none"] {
 section[style*="display: block"] {
   opacity: 1;
   transform: scaleY(1);
-}
-
-/* ===== Mobile Filter Layout Fix ===== */
-@media (max-width: 480px) {
-  .filter-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-  .filter-row select {
-    width: 100%;
-    min-width: unset;
-    font-size: 13px;
-    box-sizing: border-box;
-  }
 }
