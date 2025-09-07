@@ -536,20 +536,40 @@ section[style*="display: block"] {
   transform: scaleY(1);
 }
 
-/* ===== Mobile Layout Fix for Search & Filters ===== */
+/* ===== Grid Layout Enhancement for Search & Filter Row ===== */
 @media (max-width: 480px) {
-  h2 {
-    font-size: 22px;
-    margin: 20px 0;
-  }
-
-  .filter-bar {
-    flex-direction: column;
-    align-items: stretch;
+  .search-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
     padding: 0 12px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
-  input, select, button {
+  #search-box,
+  #theme-toggle {
     width: 100%;
     font-size: 14px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    box-sizing: border-box;
   }
+
+  .filter-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 0 12px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .filter-row select {
+    width: 100%;
+    font-size: 13px;
+    padding: 10px;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+}
