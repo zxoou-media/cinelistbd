@@ -27,7 +27,7 @@ h2,
 
 .section-heading-wrapper h2 {
   display: inline-block;
-  background-color: #89CFF0;
+  background-color: #00A33D;
   color: white;
   padding: 10px 24px;
   border-radius: 8px;
@@ -42,7 +42,7 @@ h2,
 }
 
 body.dark .section-heading-wrapper h2 {
-  background-color: #cc3333;
+  background-color: #008000;
   color: #fff;
 }
 
