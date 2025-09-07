@@ -20,6 +20,34 @@ h2,
   color: #333;
 }
 
+section h2 {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: inline-block;
+  margin: 20px auto 12px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+section h2:hover {
+  background-color: #e63946;
+}
+
+/* Dark mode compatibility */
+body.dark section h2 {
+  background-color: #cc3333;
+  color: #fff;
+}
+
+body.dark section h2:hover {
+  background-color: #aa0000;
+}
+
 header {
   background: linear-gradient(90deg, #ff4b2b, #ff416c);
   color: #fff;
