@@ -20,46 +20,45 @@ h2,
   color: #333;
 }
 
-/* ===== Section Titles Styled as Buttons ===== */
-section h2 {
+.section-heading-wrapper {
+  text-align: center;
+  margin: 30px 0 16px;
+}
+
+.section-heading-wrapper h2 {
+  display: inline-block;
   background-color: #ff4d4d;
   color: white;
   padding: 10px 24px;
   border-radius: 8px;
   font-size: 20px;
   font-weight: bold;
-  text-align: center;
-  display: inline-block;
-  margin: 20px auto 12px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   transition: background-color 0.3s ease;
 }
 
-/* Hover effect */
-section h2:hover {
+.section-heading-wrapper h2:hover {
   background-color: #e63946;
 }
 
-/* Dark mode compatibility */
-body.dark section h2 {
+body.dark .section-heading-wrapper h2 {
   background-color: #cc3333;
   color: #fff;
 }
 
-body.dark section h2:hover {
+body.dark .section-heading-wrapper h2:hover {
   background-color: #aa0000;
 }
 
-/* Responsive tweaks */
 @media (max-width: 768px) {
-  section h2 {
+  .section-heading-wrapper h2 {
     font-size: 18px;
     padding: 8px 20px;
   }
 }
 
 @media (max-width: 480px) {
-  section h2 {
+  .section-heading-wrapper h2 {
     font-size: 16px;
     padding: 6px 16px;
   }
