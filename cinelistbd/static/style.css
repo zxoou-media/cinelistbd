@@ -559,7 +559,7 @@ section[style*="display: block"] {
   .filter-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: 8px;
     padding: 0 12px;
     width: 100%;
     box-sizing: border-box;
@@ -567,8 +567,9 @@ section[style*="display: block"] {
 
   .filter-row select {
     width: 100%;
+    min-width: unset;
     font-size: 13px;
-    padding: 10px;
+    padding: 8px;
     border-radius: 6px;
     box-sizing: border-box;
   }
