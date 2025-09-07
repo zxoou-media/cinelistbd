@@ -550,8 +550,8 @@ section[style*="display: block"] {
   #search-box,
   #theme-toggle {
     width: 100%;
-    font-size: 13px;
-    padding: 0px 12px;
+    font-size: 14px;
+    padding: 8px 12px;
     border-radius: 6px;
     box-sizing: border-box;
   }
