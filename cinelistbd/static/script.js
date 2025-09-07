@@ -144,19 +144,27 @@ function applyFilters() {
     );
   });
 
-  renderMovies(filtered);
-}
-
 function renderMovies(filteredMovies) {
   Object.keys(sectionMap).forEach(section => {
     const container = document.getElementById(sectionMap[section]);
     container.innerHTML = '';
     sectionStates[section] = 0;
+
+    // Hide section wrapper initially
+    const wrapper = container.closest('section');
+    if (wrapper) wrapper.style.display = 'none';
   });
 
   Object.keys(sectionStates).forEach(section => {
     const movies = filteredMovies.filter(m => m.category === section);
-    renderSection(section, movies, true);
+    if (movies.length > 0) {
+      renderSection(section, movies, true);
+
+      // Show section wrapper only if movies exist
+      const container = document.getElementById(sectionMap[section]);
+      const wrapper = container.closest('section');
+      if (wrapper) wrapper.style.display = 'block';
+    }
   });
 }
 
