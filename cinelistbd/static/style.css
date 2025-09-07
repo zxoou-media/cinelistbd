@@ -573,3 +573,31 @@ section[style*="display: block"] {
     box-sizing: border-box;
   }
 }
+
+@media (min-width: 768px) {
+  .search-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 12px;
+    padding: 0 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .filter-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 0 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .filter-row select {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+}
