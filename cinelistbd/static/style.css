@@ -538,23 +538,64 @@ section[style*="display: block"] {
 
 /* ===== Grid Layout Enhancement for Search & Filter Row ===== */
 @media (max-width: 480px) {
+.search-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+/* Search box styling */
+#search-box {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+#search-box:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Dark mode toggle button */
+#theme-toggle {
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#theme-toggle:hover {
+  background-color: #555;
+}
+
+/* Responsive tweaks for mobile */
+@media (max-width: 480px) {
   .search-row {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-    padding: 0 12px;
-    width: 100%;
-    box-sizing: border-box;
+    gap: 8px;
   }
 
-  #search-box,
-  #theme-toggle {
-    width: 100%;
-    font-size: 14px;
-    padding: 8px 12px;
-    border-radius: 6px;
-    box-sizing: border-box;
+  #search-box {
+    font-size: 13px;
+    padding: 9px 12px;
   }
+
+  #theme-toggle {
+    font-size: 13px;
+    padding: 9px 12px;
+  }
+}
 
   .filter-row {
     display: grid;
