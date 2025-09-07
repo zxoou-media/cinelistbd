@@ -408,6 +408,7 @@ body.dark button {
     justify-content: center;
     gap: 10px;
 }
+} /* ← Missing closing brace for @media (max-width: 480px) */
 
 /* ===== See More Button Styles (Global + Responsive + Dark Mode) ===== */
 /* ===== See More Button Wrapper ===== */
@@ -418,6 +419,10 @@ body.dark button {
   align-items: center;
   margin: 20px auto;
   text-align: center;
+}
+
+.see-more-wrapper {
+  margin: 20px auto 30px;
 }
 
 /* ===== See More Button Styles ===== */
