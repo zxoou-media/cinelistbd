@@ -332,6 +332,23 @@ body.dark button {
   border: 1px solid #555;
 }
 
+/* ===== Dark Mode Typography Fix ===== */
+body.dark .recent-card h3,
+body.dark .latest-card h3,
+body.dark .movies-card h3,
+body.dark .webseries-card h3,
+body.dark .drama-card h3 {
+  color: #f0f0f0;
+}
+
+body.dark .recent-card p,
+body.dark .latest-card p,
+body.dark .movies-card p,
+body.dark .webseries-card p,
+body.dark .drama-card p {
+  color: #ccc;
+}
+
 /* ===== Typography Enhancements ===== */
 .recent-card h3,
 .latest-card h3,
