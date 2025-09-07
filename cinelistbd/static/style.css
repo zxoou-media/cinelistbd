@@ -50,50 +50,87 @@ body.dark .section-heading-wrapper h2:hover {
   background-color: #aa0000;
 }
 
-@media (max-width: 768px) {
-  .section-heading-wrapper h2 {
-    font-size: 18px;
-    padding: 8px 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .section-heading-wrapper h2 {
-    font-size: 16px;
-    padding: 6px 16px;
-  }
-}
-
-header {
-  background: linear-gradient(90deg, #ff4b2b, #ff416c);
-  color: #fff;
-  padding: 15px;
-  text-align: center;
+/* ===== Header Layout Refinement ===== */
+.site-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  text-align: center;
+  gap: 12px;
+  padding: 20px;
+  background: linear-gradient(90deg, #ff4b2b, #ff416c);
+  color: white;
+}
+
+#site-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 nav a {
-  color: #fff;
-  margin: 0 10px;
-  text-decoration: none;
+  display: inline-block;
+  padding: 10px 24px;
+  background-color: white;
+  color: #ff3c3c;
   font-weight: bold;
+  border-radius: 6px;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
 }
 
-.filter-bar {
+nav a:hover {
+  background-color: #ffe5e5;
+}
+
+/* ===== Search + Dark Mode Row ===== */
+.search-row {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
   flex-wrap: wrap;
-  justify-content: center;
+  margin-top: 10px;
 }
 
-input, select, button {
-  padding: 8px;
-  border-radius: 5px;
+#search-box {
+  flex: 1 1 60%;
+  padding: 10px 16px;
+  border-radius: 6px;
   border: 1px solid #ccc;
+  font-size: 15px;
+  min-width: 240px;
+}
+
+#theme-toggle {
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: none;
+  background-color: #333;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* ===== Filter Rows Grouping ===== */
+.filter-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.filter-row select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  min-width: 160px;
+  background-color: white;
+  color: #333;
+  font-weight: bold;
 }
 
 /* ===== Trending scroll row ===== */
@@ -233,13 +270,13 @@ input, select, button {
   background-color: #e60000;
 }
 
-/* ===== App Buttons (পাশাপাশি ও responsive) ===== */
+/* ===== App Buttons ===== */
 .app-buttons {
   display: flex;
   justify-content: center;
   gap: 12px;
   margin: 20px 0;
-  flex-wrap: wrap; /* ছোট স্ক্রিনে নিচে যেতে দিবে */
+  flex-wrap: wrap;
 }
 
 .app-btn {
@@ -407,11 +444,10 @@ body.dark button {
   .app-buttons {
     justify-content: center;
     gap: 10px;
+  }
 }
-} /* End of @media (max-width: 480px) */
 
-/* ===== See More Button Styles (Global + Responsive + Dark Mode) ===== */
-/* ===== See More Button Wrapper ===== */
+/* ===== See More Button Styles ===== */
 .see-more-wrapper {
   width: 100%;
   display: flex;
@@ -421,7 +457,6 @@ body.dark button {
   text-align: center;
 }
 
-/* ===== See More Button Styles ===== */
 .see-more-btn {
   background-color: #800000;
   color: white;
@@ -438,12 +473,10 @@ body.dark button {
   transition: background-color 0.3s ease;
 }
 
-/* ===== Hover Effect ===== */
 .see-more-btn:hover {
   background-color: #e63946;
 }
 
-/* ===== Dark Mode Compatibility ===== */
 body.dark .see-more-btn {
   background-color: #cc3333;
   color: #fff;
@@ -454,7 +487,6 @@ body.dark .see-more-btn:hover {
   background-color: #aa0000;
 }
 
-/* ===== Responsive Tweaks ===== */
 @media (max-width: 768px) {
   .see-more-btn {
     font-size: 15px;
@@ -469,6 +501,7 @@ body.dark .see-more-btn:hover {
   }
 }
 
+/* ===== Section Visibility Animation ===== */
 section {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
