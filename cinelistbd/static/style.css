@@ -1,4 +1,4 @@
-/* ===== Base Styles ===== */
+/* ===== Base styles ===== */
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   background: #f0f0f0;
@@ -8,65 +8,18 @@ body {
   font-size: 16px;
 }
 
-/* ===== Header ===== */
-header {
-  background: linear-gradient(90deg, #ff4b2b, #ff416c);
-  color: #fff;
-  padding: 15px 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+h2,
+.section-title {
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 22px;
+  text-align: center;
+  margin: 20px 0 12px;
+  letter-spacing: 0.5px;
+  color: #333;
 }
 
-#site-title {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-nav a {
-  color: #fff;
-  margin: 0 10px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-/* ===== Filter Bar ===== */
-.filter-bar {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 12px;
-  padding: 12px 20px;
-}
-
-input, select, button {
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-}
-
-#search-box {
-  width: 100%;
-}
-
-#theme-toggle {
-  background-color: #333;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-#theme-toggle:hover {
-  background-color: #555;
-}
-
-/* ===== Section Headings ===== */
 .section-heading-wrapper {
   text-align: center;
   margin: 30px 0 16px;
@@ -97,7 +50,53 @@ body.dark .section-heading-wrapper h2:hover {
   background-color: #aa0000;
 }
 
-/* ===== Trending Scroll Row ===== */
+@media (max-width: 768px) {
+  .section-heading-wrapper h2 {
+    font-size: 18px;
+    padding: 8px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-heading-wrapper h2 {
+    font-size: 16px;
+    padding: 6px 16px;
+  }
+}
+
+header {
+  background: linear-gradient(90deg, #ff4b2b, #ff416c);
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+input, select, button {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* ===== Trending scroll row ===== */
 .scroll-row {
   display: flex;
   overflow-x: auto;
@@ -134,9 +133,26 @@ body.dark .section-heading-wrapper h2:hover {
   transform: scale(1.03);
 }
 
-/* ===== Grid Layout ===== */
-.grid-row,
-.movie-grid {
+/* ===== Grid layout for all sections ===== */
+.grid-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 12px;
+}
+
+/* ===== Section-specific grid overrides ===== */
+#recent-list,
+#latest-list,
+#popularmovies-list,
+#banglamovies-list,
+#englishmovies-list,
+#hindimovies-list,
+#koreanmovies-list,
+#urdu-list,
+#tamil-list,
+#persian-list,
+#portuguese-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 16px;
@@ -144,13 +160,22 @@ body.dark .section-heading-wrapper h2:hover {
 }
 
 @media (min-width: 768px) {
-  .grid-row,
-  .movie-grid {
+  #recent-list,
+  #latest-list,
+  #popularmovies-list,
+  #banglamovies-list,
+  #englishmovies-list,
+  #hindimovies-list,
+  #koreanmovies-list,
+  #urdu-list,
+  #tamil-list,
+  #persian-list,
+  #portuguese-list {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-/* ===== Cards ===== */
+/* ===== Card styles for all sections ===== */
 .recent-card,
 .latest-card,
 .movies-card,
@@ -172,22 +197,24 @@ body.dark .section-heading-wrapper h2:hover {
   transform: scale(1.02);
 }
 
-/* ===== Poster ===== */
+/* ===== Poster styling ===== */
 .poster {
   width: 100%;
-  aspect-ratio: 2/3;
+  height: auto;
+  max-height: 300px;
   object-fit: cover;
   border-radius: 6px;
   margin-bottom: 10px;
   cursor: pointer;
   transition: box-shadow 0.3s;
+  display: block;
 }
 
 .poster:hover {
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
-/* ===== Watch Button ===== */
+/* ===== Watch Trailer Button ===== */
 .watch-btn {
   background-color: #ff3c3c;
   color: white;
@@ -206,13 +233,13 @@ body.dark .section-heading-wrapper h2:hover {
   background-color: #e60000;
 }
 
-/* ===== App Buttons ===== */
+/* ===== App Buttons (পাশাপাশি ও responsive) ===== */
 .app-buttons {
   display: flex;
   justify-content: center;
   gap: 12px;
   margin: 20px 0;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* ছোট স্ক্রিনে নিচে যেতে দিবে */
 }
 
 .app-btn {
@@ -222,6 +249,7 @@ body.dark .section-heading-wrapper h2:hover {
   border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
+  display: inline-block;
   transition: background 0.3s;
 }
 
@@ -238,41 +266,36 @@ footer {
   margin-top: 20px;
 }
 
-/* ===== See More Button ===== */
-.see-more-wrapper {
-  display: flex;
-  justify-content: center;
-  margin: 20px auto;
+/* ===== Dark Mode ===== */
+body.dark {
+  background-color: #121212;
+  color: #f0f0f0;
 }
 
-.see-more-btn {
-  background-color: #800000;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease;
+body.dark header {
+  background: linear-gradient(90deg, #333, #555);
 }
 
-.see-more-btn:hover {
-  background-color: #e63946;
-}
-
-body.dark .see-more-btn {
-  background-color: #cc3333;
+body.dark .trending-card,
+body.dark .recent-card,
+body.dark .latest-card,
+body.dark .movies-card,
+body.dark .webseries-card,
+body.dark .drama-card {
+  background-color: #1e1e1e;
   color: #fff;
-  border: 1px solid #444;
+  box-shadow: 0 3px 6px rgba(255,255,255,0.05);
 }
 
-body.dark .see-more-btn:hover {
-  background-color: #aa0000;
+body.dark input,
+body.dark select,
+body.dark button {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
 }
 
-/* ===== Typography ===== */
+/* ===== Typography Enhancements ===== */
 .recent-card h3,
 .latest-card h3,
 .movies-card h3,
@@ -295,44 +318,17 @@ body.dark .see-more-btn:hover {
   color: #444;
 }
 
-body.dark .recent-card h3,
-body.dark .latest-card h3,
-body.dark .movies-card h3,
-body.dark .webseries-card h3,
-body.dark .drama-card h3 {
-  color: #f0f0f0;
-}
-
-body.dark .recent-card p,
-body.dark .latest-card p,
-body.dark .movies-card p,
-body.dark .webseries-card p,
-body.dark .drama-card p {
-  color: #ccc;
-}
-
-/* ===== Dark Mode ===== */
-body.dark {
-  background-color: #121212;
-  color: #f0f0f0;
-}
-
-body.dark header {
-  background: linear-gradient(90deg, #333, #555);
-}
-
-body.dark input,
-body.dark select,
-body.dark button {
-  background-color: #333;
-  color: #fff;
-  border: 1px solid #555;
-}
-
-/* ===== Responsive ===== */
+/* ===== Responsive Tweaks ===== */
 @media (max-width: 768px) {
+  h2 {
+    font-size: 22px;
+    margin: 20px 0;
+  }
+
   .filter-bar {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 12px;
   }
 
   input, select, button {
@@ -340,15 +336,126 @@ body.dark button {
     font-size: 14px;
   }
 
+  .trending-card,
+  .recent-card,
+  .latest-card,
+  .movies-card,
+  .webseries-card,
+  .drama-card {
+    min-width: 180px;
+    padding: 12px;
+  }
+
   .poster {
     max-height: 220px;
+  }
+
+  .app-buttons {
+    justify-content: center;
+    gap: 10px;
   }
 
   .app-btn {
     font-size: 14px;
     padding: 8px 16px;
+    width: auto;
+    margin: 0;
   }
 
+  footer {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .filter-bar select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 20px;
+  }
+
+  .poster {
+    max-height: 220px;
+  }
+
+  .watch-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .site-header {
+    padding: 10px;
+  }
+
+  nav a {
+    display: block;
+    margin: 6px 0;
+  }
+
+  .trending-card,
+  .recent-card,
+  .latest-card,
+  .movies-card,
+  .webseries-card,
+  .drama-card {
+    min-width: 160px;
+  }
+
+  .app-buttons {
+    justify-content: center;
+    gap: 10px;
+}
+} /* End of @media (max-width: 480px) */
+
+/* ===== See More Button Styles (Global + Responsive + Dark Mode) ===== */
+/* ===== See More Button Wrapper ===== */
+.see-more-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  text-align: center;
+}
+
+/* ===== See More Button Styles ===== */
+.see-more-btn {
+  background-color: #800000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  display: inline-block;
+  text-align: center;
+  margin: 0 auto;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
+}
+
+/* ===== Hover Effect ===== */
+.see-more-btn:hover {
+  background-color: #e63946;
+}
+
+/* ===== Dark Mode Compatibility ===== */
+body.dark .see-more-btn {
+  background-color: #cc3333;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+body.dark .see-more-btn:hover {
+  background-color: #aa0000;
+}
+
+/* ===== Responsive Tweaks ===== */
+@media (max-width: 768px) {
   .see-more-btn {
     font-size: 15px;
     padding: 10px 18px;
@@ -356,11 +463,8 @@ body.dark button {
 }
 
 @media (max-width: 480px) {
-  .poster {
-    max-height: 200px;
-  }
-
-  .watch-btn {
-    padding: 6px 12px;
+  .see-more-btn {
     font-size: 14px;
+    padding: 8px 16px;
   }
+}
