@@ -143,7 +143,8 @@ function applyFilters() {
       matchesQuality
     );
   });
-
+renderMovies(filtered);
+}
 function renderMovies(filteredMovies) {
   Object.keys(sectionMap).forEach(section => {
     const container = document.getElementById(sectionMap[section]);
