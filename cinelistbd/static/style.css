@@ -536,13 +536,24 @@ section[style*="display: block"] {
   transform: scaleY(1);
 }
 
-/* ===== Mobile Filter Layout Fix ===== */
+/* ===== Mobile Layout Fix for Search & Filters ===== */
 @media (max-width: 480px) {
+  .search-row,
   .filter-row {
+    width: 100%;
+    max-width: 100vw;
+    padding: 0 12px;
+    box-sizing: border-box;
     flex-direction: column;
     align-items: stretch;
-    gap: 8px;
-    padding: 0 12px;
+    gap: 10px;
+  }
+
+  #search-box,
+  #theme-toggle {
+    width: 100%;
+    min-width: unset;
+    font-size: 14px;
     box-sizing: border-box;
   }
 
