@@ -173,7 +173,7 @@ nav a:hover {
 /* ===== Grid layout for all sections ===== */
 .grid-row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 12px;
   padding: 10px;
 }
@@ -191,7 +191,7 @@ nav a:hover {
 #persian-list,
 #portuguese-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 12px;
   padding: 10px;
 }
@@ -238,17 +238,17 @@ nav a:hover {
 .poster {
   width: 100%;
   height: auto;
-  max-height: 200px;
+  max-height: 300px;
   object-fit: cover;
   border-radius: 6px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   cursor: pointer;
   transition: box-shadow 0.3s;
   display: block;
 }
 
 .poster:hover {
-  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 /* ===== Watch Trailer Button ===== */
