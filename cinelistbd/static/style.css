@@ -416,6 +416,7 @@ section[style*="display: block"] {
   transform: scaleY(1);
 }
 
+/* =====Mobile Breakpoint===== */
 @media (max-width: 480px) {
   h2 {
     font-size: 20px;
