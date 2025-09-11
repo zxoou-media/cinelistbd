@@ -177,7 +177,7 @@ body {
 /* ===== Grid layout for all sections ===== */
 .grid-row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 16px;
   padding: 0 12px; /* ✅ Equal left/right padding */
   box-sizing: border-box; /* ✅ Prevent overflow */
@@ -199,7 +199,7 @@ body {
 #persian-list,
 #portuguese-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 16px;
   padding: 0 12px; /* ✅ Match grid-row padding */
   box-sizing: border-box;
