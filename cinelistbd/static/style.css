@@ -170,12 +170,18 @@ nav a:hover {
   transform: scale(1.03);
 }
 
+body {
+  overflow-x: hidden;
+}
+
 /* ===== Grid layout for all sections ===== */
 .grid-row {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 16px;
-  padding: 12px;
+  padding: 0 12px; /* ✅ Equal left/right padding */
+  box-sizing: border-box; /* ✅ Prevent overflow */
+  max-width: 100%;         /* ✅ Contain within screen */
 }
 
 /* ===== Section-specific grid overrides ===== */
@@ -195,7 +201,9 @@ nav a:hover {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 16px;
-  padding: 12px;
+  padding: 0 12px; /* ✅ Match grid-row padding */
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -228,6 +236,10 @@ nav a:hover {
   text-align: center;
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
   transition: transform 0.3s;
+  min-width: 0;       /* ✅ Prevent overflow */
+  width: 100%;         /* ✅ Fill grid cell */
+  position: relative;  /* ✅ Prevent stacking */
+  z-index: 1;
 }
 
 .recent-card:hover,
@@ -249,6 +261,8 @@ nav a:hover {
   cursor: pointer;
   transition: box-shadow 0.3s;
   display: block;
+  position: relative;
+  z-index: 1;
 }
 
 .poster:hover {
