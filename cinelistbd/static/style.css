@@ -170,19 +170,6 @@ nav a:hover {
   transform: scale(1.03);
 }
 
-/* ===== Global Fix ===== */
-body {
-  overflow-x: hidden;
-}
-
-/* ===== Section Wrapper ===== */
-.section-wrapper {
-  padding: 0 12px;
-  box-sizing: border-box;
-  max-width: 100%;
-  overflow: hidden;
-}
-
 /* ===== Grid layout for all sections ===== */
 .grid-row {
   display: grid;
