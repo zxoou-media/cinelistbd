@@ -648,7 +648,9 @@ section[style*="display: block"] {
   .filter-bar select {
     width: 100%;
   }
+}
 
+  @media (max-width: 768px) {
   .see-more-btn {
     font-size: 15px;
     padding: 10px 18px;
@@ -672,7 +674,9 @@ section[style*="display: block"] {
   #portuguese-list {
     grid-template-columns: repeat(4, 1fr);
   }
+}
 
+  @media (min-width: 768px) {
   .search-row {
     display: grid;
     grid-template-columns: 2fr 1fr;
