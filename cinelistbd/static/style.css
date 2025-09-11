@@ -456,19 +456,20 @@ section[style*="display: block"] {
 
 @media (max-width: 480px) {
   .filter-row {
-    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* ✅ auto-fit ensures wrapping */
-    gap: 8px;
-    padding: 0 12px;
-    width: 100%;
-    box-sizing: border-box;
-  }
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* ✅ 3 compact columns */
+  gap: 6px; /* ✅ Slightly reduced gap */
+  padding: 0 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
 
-  .filter-row select {
-    min-width: unset; /* ✅ remove fixed width */
-    width: 100%;
-    font-size: 13px;
-    padding: 8px;
-  }
+.filter-row select {
+  width: 100%;
+  font-size: 12px; /* ✅ Slightly smaller text */
+  padding: 6px 8px; /* ✅ Compact padding */
+  border-radius: 6px;
+  box-sizing: border-box;
 }
 
 @media (max-width: 480px) {
