@@ -170,15 +170,13 @@ nav a:hover {
   transform: scale(1.03);
 }
 
-/* ===== Grid layout for all sections ===== */
-.grid-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 16px;
-  padding: 12px;
+/* ===== Global Fix ===== */
+body {
+  overflow-x: hidden;
 }
 
-/* ===== Section-specific grid overrides ===== */
+/* ===== Grid Layout ===== */
+.grid-row,
 #recent-list,
 #latest-list,
 #popularmovies-list,
@@ -196,9 +194,11 @@ nav a:hover {
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 16px;
   padding: 12px;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
-/* ===== Card styles for all sections ===== */
+/* ===== Card Styles ===== */
 .recent-card,
 .latest-card,
 .movies-card,
@@ -210,6 +210,8 @@ nav a:hover {
   text-align: center;
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
   transition: transform 0.3s;
+  min-width: 0;
+  width: 100%;
 }
 
 .recent-card:hover,
@@ -220,7 +222,7 @@ nav a:hover {
   transform: scale(1.02);
 }
 
-/* ===== Poster styling ===== */
+/* ===== Poster Styling ===== */
 .poster {
   width: 100%;
   height: auto;
@@ -231,6 +233,8 @@ nav a:hover {
   cursor: pointer;
   transition: box-shadow 0.3s;
   display: block;
+  position: relative;
+  z-index: 1;
 }
 
 .poster:hover {
@@ -318,23 +322,6 @@ body.dark button {
   border: 1px solid #555;
 }
 
-/* ===== Dark Mode Typography Fix ===== */
-body.dark .recent-card h3,
-body.dark .latest-card h3,
-body.dark .movies-card h3,
-body.dark .webseries-card h3,
-body.dark .drama-card h3 {
-  color: #f0f0f0;
-}
-
-body.dark .recent-card p,
-body.dark .latest-card p,
-body.dark .movies-card p,
-body.dark .webseries-card p,
-body.dark .drama-card p {
-  color: #ccc;
-}
-
 /* ===== Typography Enhancements ===== */
 .recent-card h3,
 .latest-card h3,
@@ -358,7 +345,23 @@ body.dark .drama-card p {
   color: #444;
 }
 
-/* ===== See More Button Styles ===== */
+body.dark .recent-card h3,
+body.dark .latest-card h3,
+body.dark .movies-card h3,
+body.dark .webseries-card h3,
+body.dark .drama-card h3 {
+  color: #f0f0f0;
+}
+
+body.dark .recent-card p,
+body.dark .latest-card p,
+body.dark .movies-card p,
+body.dark .webseries-card p,
+body.dark .drama-card p {
+  color: #ccc;
+}
+
+/* ===== See More Button ===== */
 .see-more-wrapper {
   width: 100%;
   display: flex;
@@ -416,7 +419,7 @@ section[style*="display: block"] {
   transform: scaleY(1);
 }
 
-/* =====Mobile Breakpoint===== */
+/* ===== Responsive: Mobile (≤480px) ===== */
 @media (max-width: 480px) {
   h2 {
     font-size: 20px;
@@ -453,116 +456,51 @@ section[style*="display: block"] {
     justify-content: center;
     gap: 10px;
   }
-}
 
-@media (max-width: 480px) {
   .see-more-btn {
     font-size: 14px;
     padding: 8px 16px;
   }
-}
 
-@media (max-width: 480px) {
-.search-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 10px;
-  padding: 12px;
-  width: 100%;
-  box-sizing: border-box;
-  align-items: center;
-}
-
-/* Search box styling */
-#search-box {
-  width: 100%;
-  padding: 10px 14px;
-  font-size: 14px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
-}
-
-#search-box:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-/* Dark mode toggle button */
-#theme-toggle {
-  padding: 10px 14px;
-  font-size: 14px;
-  border-radius: 6px;
-  background-color: #333;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#theme-toggle:hover {
-  background-color: #555;
-}
-
-@media (max-width: 480px) {
-.search-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 10px;
-  padding: 12px;
-  width: 100%;
-  box-sizing: border-box;
-  align-items: center;
-}
-
-/* Search box styling */
-#search-box {
-  width: 100%;
-  padding: 10px 14px;
-  font-size: 14px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
-}
-
-#search-box:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-/* Dark mode toggle button */
-#theme-toggle {
-  padding: 10px 14px;
-  font-size: 14px;
-  border-radius: 6px;
-  background-color: #333;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#theme-toggle:hover {
-  background-color: #555;
-}
-
-@media (max-width: 480px) {
   .search-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
     gap: 8px;
+    padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
   }
 
   #search-box {
-    font-size: 13px;
+    width: 100%;
     padding: 9px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+
+  #search-box:focus {
+    border-color: #007bff;
+    outline: none;
   }
 
   #theme-toggle {
-    font-size: 13px;
     padding: 9px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
-}
+
+  #theme-toggle:hover {
+    background-color: #555;
+  }
 
   .filter-row {
     display: grid;
@@ -583,7 +521,7 @@ section[style*="display: block"] {
   }
 }
 
-/* =====Tablet & Small Desktop Breakpoint===== */
+/* ===== Responsive: Tablet (≤768px) ===== */
 @media (max-width: 768px) {
   h2 {
     font-size: 22px;
@@ -596,7 +534,9 @@ section[style*="display: block"] {
     padding: 0 12px;
   }
 
-  input, select, button {
+  input,
+  select,
+  button {
     width: 100%;
     font-size: 14px;
   }
@@ -635,16 +575,14 @@ section[style*="display: block"] {
   .filter-bar select {
     width: 100%;
   }
-}
 
-  @media (max-width: 768px) {
   .see-more-btn {
     font-size: 15px;
     padding: 10px 18px;
   }
 }
 
-/* =====Desktop Breakpoint===== */
+/* ===== Responsive: Laptop (≤768px) ===== */
 @media (min-width: 768px) {
   #recent-list,
   #latest-list,
@@ -661,9 +599,7 @@ section[style*="display: block"] {
   #portuguese-list {
     grid-template-columns: repeat(4, 1fr);
   }
-}
 
-  @media (min-width: 768px) {
   .search-row {
     display: grid;
     grid-template-columns: 2fr 1fr;
