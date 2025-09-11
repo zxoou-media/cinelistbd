@@ -102,28 +102,41 @@ nav a:hover {
 /* ===== Search & Filter ===== */
 .search-row {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
   margin-top: 10px;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
+
 #search-box {
-  flex: 1 1 60%;
+  flex: 1;
   padding: 10px 16px;
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 15px;
   min-width: 240px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
+
 #theme-toggle {
   padding: 10px 16px;
-  border-radius: 6px;
-  border: none;
+  border-radius: 8px;
+  border: 1px solid #444;
   background-color: #333;
   color: white;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+#theme-toggle:hover {
+  background-color: #444;
+  border-color: #666;
 }
 .filter-row {
   display: grid;
@@ -158,6 +171,22 @@ nav a:hover {
 }
 
 @media (max-width: 480px) {
+  .search-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  #search-box,
+  #theme-toggle {
+    width: 100%;
+    font-size: 13px;
+    padding: 9px 12px;
+  }
+}
+
+@media (max-width: 480px) {
   .filter-row {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* ✅ Auto-wrap */
     gap: 8px;
@@ -166,6 +195,26 @@ nav a:hover {
   .filter-row select {
     font-size: 12px;
     padding: 8px 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 16px;
+  }
+
+  #search-box {
+    flex: 1 1 60%;
+    font-size: 14px;
+    padding: 9px 14px;
+  }
+
+  #theme-toggle {
+    font-size: 13px;
+    padding: 9px 14px;
   }
 }
 
