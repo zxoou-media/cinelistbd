@@ -529,6 +529,12 @@ section[style*="display: block"] {
   }
 }
 
+.section-wrapper {
+  padding: 0 12px;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
 /* =====Tablet & Small Desktop Breakpoint===== */
 @media (max-width: 768px) {
   h2 {
