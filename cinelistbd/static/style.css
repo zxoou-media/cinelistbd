@@ -125,22 +125,24 @@ nav a:hover {
   font-size: 15px;
   cursor: pointer;
 }
-.filter-row {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 10px;
-}
 .filter-row select {
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  min-width: 160px;
-  background-color: white;
+  appearance: none;
+  background-color: #f5f5f5;
   color: #333;
-  font-weight: bold;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+.filter-row select:hover {
+  background-color: #eaeaea;
 }
 
 /* ===== Trending Scroll Row ===== */
@@ -471,20 +473,14 @@ section[style*="display: block"] {
 
 @media (max-width: 480px) {
   .filter-row {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr)); /* ✅ 3 compact columns */
-  gap: 6px; /* ✅ Slightly reduced gap */
-  padding: 0 12px;
-  width: 100%;
-  box-sizing: border-box;
-}
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* ✅ Auto-wrap if needed */
+    gap: 6px;
+  }
 
-.filter-row select {
-  width: 100%;
-  font-size: 12px; /* ✅ Slightly smaller text */
-  padding: 6px 8px; /* ✅ Compact padding */
-  border-radius: 6px;
-  box-sizing: border-box;
+  .filter-row select {
+    font-size: 11px;
+    padding: 5px 8px;
+  }
 }
 
 @media (max-width: 480px) {
