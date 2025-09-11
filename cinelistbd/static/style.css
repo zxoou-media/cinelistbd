@@ -555,6 +555,25 @@ section[style*="display: block"] {
   }
 }
 
+@media (max-width: 480px) {
+  .dark-mode-toggle {
+    font-size: 12px;       
+    padding: 6px 10px;           
+    border-radius: 8px;          
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #444;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .dark-mode-toggle:hover {
+    background-color: #333;
+    border-color: #666;
+  }
+}
+
 @media (min-width: 768px) {
   .search-row {
     display: grid;
