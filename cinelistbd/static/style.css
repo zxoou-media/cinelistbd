@@ -454,9 +454,9 @@ section[style*="display: block"] {
     padding: 9px 12px;
   }
 
+@media (max-width: 480px) {
   .filter-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* ✅ auto-fit ensures wrapping */
     gap: 8px;
     padding: 0 12px;
     width: 100%;
@@ -464,11 +464,10 @@ section[style*="display: block"] {
   }
 
   .filter-row select {
+    min-width: unset; /* ✅ remove fixed width */
     width: 100%;
     font-size: 13px;
     padding: 8px;
-    border-radius: 6px;
-    box-sizing: border-box;
   }
 }
 
