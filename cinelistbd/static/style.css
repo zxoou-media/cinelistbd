@@ -171,14 +171,7 @@ nav a:hover {
 }
 
 /* ===== Grid layout for all sections ===== */
-.grid-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 16px;
-  padding: 12px;
-}
-
-/* ===== Section-specific grid overrides ===== */
+.grid-row,
 #recent-list,
 #latest-list,
 #popularmovies-list,
@@ -195,7 +188,9 @@ nav a:hover {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 16px;
-  padding: 12px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 /* ===== Card styles for all sections ===== */
@@ -223,18 +218,20 @@ nav a:hover {
 /* ===== Poster styling ===== */
 .poster {
   width: 100%;
-  height: auto;
-  max-height: 300px;
+  max-width: 100%;
   object-fit: cover;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  transition: box-shadow 0.3s;
   display: block;
+  margin-bottom: 10px;
+  z-index: 1;
+  position: relative;
 }
 
 .poster:hover {
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+body {
+  overflow-x: hidden;
 }
 
 /* ===== Watch Trailer Button ===== */
