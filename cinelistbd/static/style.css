@@ -43,13 +43,19 @@ h2,
   transition: background-color 0.3s ease;
 }
 #trending .section-heading-wrapper h2 {
-  font-size: 18px;           /* ✅ Smaller font */
-  padding: 8px 20px;         /* ✅ Reduced padding */
-  margin-bottom: 10px;       /* ✅ Less vertical space */
-  letter-spacing: 0.3px;     /* ✅ Slightly tighter spacing */
-  background-color: #ff3c3c; /* Optional: match other section color */
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: inline-block;
+  font-size: 20px;              /* ✅ Match RECENT section */
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 10px 24px;           /* ✅ Balanced padding */
+  margin: 20px 0 12px;          /* ✅ Same vertical spacing */
+  background-color: #00A33D;    /* ✅ Same green tone */
+  color: white;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
 }
 .section-heading-wrapper h2:hover {
   background-color: #e63946;
