@@ -184,7 +184,14 @@ body {
 }
 
 /* ===== Grid layout for all sections ===== */
-.grid-row,
+.grid-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 12px;
+}
+
+/* ===== Section-specific grid overrides ===== */
 #recent-list,
 #latest-list,
 #popularmovies-list,
@@ -201,9 +208,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 16px;
-  padding: 0 12px;
-  box-sizing: border-box;
-  max-width: 100%;
+  padding: 12px;
 }
 
 /* ===== Card styles for all sections ===== */
@@ -218,8 +223,6 @@ body {
   text-align: center;
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
   transition: transform 0.3s;
-  min-width: 0;
-  width: 100%;
 }
 
 .recent-card:hover,
@@ -233,12 +236,18 @@ body {
 /* ===== Poster styling ===== */
 .poster {
   width: 100%;
-  max-width: 100%;
+  height: auto;
+  max-height: 300px;
   object-fit: cover;
-  display: block;
+  border-radius: 6px;
   margin-bottom: 10px;
-  z-index: 1;
-  position: relative;
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+  display: block;
+}
+
+.poster:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 /* ===== Watch Trailer Button ===== */
@@ -322,6 +331,23 @@ body.dark button {
   border: 1px solid #555;
 }
 
+/* ===== Dark Mode Typography Fix ===== */
+body.dark .recent-card h3,
+body.dark .latest-card h3,
+body.dark .movies-card h3,
+body.dark .webseries-card h3,
+body.dark .drama-card h3 {
+  color: #f0f0f0;
+}
+
+body.dark .recent-card p,
+body.dark .latest-card p,
+body.dark .movies-card p,
+body.dark .webseries-card p,
+body.dark .drama-card p {
+  color: #ccc;
+}
+
 /* ===== Typography Enhancements ===== */
 .recent-card h3,
 .latest-card h3,
@@ -343,22 +369,6 @@ body.dark button {
   font-size: 0.95em;
   line-height: 1.3;
   color: #444;
-}
-
-body.dark .recent-card h3,
-body.dark .latest-card h3,
-body.dark .movies-card h3,
-body.dark .webseries-card h3,
-body.dark .drama-card h3 {
-  color: #f0f0f0;
-}
-
-body.dark .recent-card p,
-body.dark .latest-card p,
-body.dark .movies-card p,
-body.dark .webseries-card p,
-body.dark .drama-card p {
-  color: #ccc;
 }
 
 /* ===== See More Button Styles ===== */
