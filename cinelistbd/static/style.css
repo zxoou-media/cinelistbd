@@ -170,13 +170,15 @@ nav a:hover {
   transform: scale(1.03);
 }
 
-/* ===== Global Fix ===== */
-body {
-  overflow-x: hidden;
+/* ===== Grid layout for all sections ===== */
+.grid-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 12px;
 }
 
-/* ===== Grid Layout ===== */
-.grid-row,
+/* ===== Section-specific grid overrides ===== */
 #recent-list,
 #latest-list,
 #popularmovies-list,
@@ -194,11 +196,27 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 16px;
   padding: 12px;
-  box-sizing: border-box;
-  max-width: 100%;
 }
 
-/* ===== Card Styles ===== */
+@media (min-width: 768px) {
+  #recent-list,
+  #latest-list,
+  #popularmovies-list,
+  #popularwebseries-list,
+  #populardrama-list,
+  #banglamovies-list,
+  #englishmovies-list,
+  #hindimovies-list,
+  #koreanmovies-list,
+  #urdu-list,
+  #tamil-list,
+  #persian-list,
+  #portuguese-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ===== Card styles for all sections ===== */
 .recent-card,
 .latest-card,
 .movies-card,
@@ -210,8 +228,6 @@ body {
   text-align: center;
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
   transition: transform 0.3s;
-  min-width: 0;
-  width: 100%;
 }
 
 .recent-card:hover,
@@ -222,7 +238,7 @@ body {
   transform: scale(1.02);
 }
 
-/* ===== Poster Styling ===== */
+/* ===== Poster styling ===== */
 .poster {
   width: 100%;
   height: auto;
@@ -233,8 +249,6 @@ body {
   cursor: pointer;
   transition: box-shadow 0.3s;
   display: block;
-  position: relative;
-  z-index: 1;
 }
 
 .poster:hover {
@@ -322,6 +336,23 @@ body.dark button {
   border: 1px solid #555;
 }
 
+/* ===== Dark Mode Typography Fix ===== */
+body.dark .recent-card h3,
+body.dark .latest-card h3,
+body.dark .movies-card h3,
+body.dark .webseries-card h3,
+body.dark .drama-card h3 {
+  color: #f0f0f0;
+}
+
+body.dark .recent-card p,
+body.dark .latest-card p,
+body.dark .movies-card p,
+body.dark .webseries-card p,
+body.dark .drama-card p {
+  color: #ccc;
+}
+
 /* ===== Typography Enhancements ===== */
 .recent-card h3,
 .latest-card h3,
@@ -345,23 +376,99 @@ body.dark button {
   color: #444;
 }
 
-body.dark .recent-card h3,
-body.dark .latest-card h3,
-body.dark .movies-card h3,
-body.dark .webseries-card h3,
-body.dark .drama-card h3 {
-  color: #f0f0f0;
+/* ===== Responsive Tweaks ===== */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 22px;
+    margin: 20px 0;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 12px;
+  }
+
+  input, select, button {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .trending-card,
+  .recent-card,
+  .latest-card,
+  .movies-card,
+  .webseries-card,
+  .drama-card {
+    min-width: 180px;
+    padding: 12px;
+  }
+
+  .poster {
+    max-height: 220px;
+  }
+
+  .app-buttons {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .app-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+    width: auto;
+    margin: 0;
+  }
+
+  footer {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .filter-bar select {
+    width: 100%;
+  }
 }
 
-body.dark .recent-card p,
-body.dark .latest-card p,
-body.dark .movies-card p,
-body.dark .webseries-card p,
-body.dark .drama-card p {
-  color: #ccc;
+@media (max-width: 480px) {
+  h2 {
+    font-size: 20px;
+  }
+
+  .poster {
+    max-height: 220px;
+  }
+
+  .watch-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .site-header {
+    padding: 10px;
+  }
+
+  nav a {
+    display: block;
+    margin: 6px 0;
+  }
+
+  .trending-card,
+  .recent-card,
+  .latest-card,
+  .movies-card,
+  .webseries-card,
+  .drama-card {
+    min-width: 160px;
+  }
+
+  .app-buttons {
+    justify-content: center;
+    gap: 10px;
+  }
 }
 
-/* ===== See More Button ===== */
+/* ===== See More Button Styles ===== */
 .see-more-wrapper {
   width: 100%;
   display: flex;
@@ -401,6 +508,20 @@ body.dark .see-more-btn:hover {
   background-color: #aa0000;
 }
 
+@media (max-width: 768px) {
+  .see-more-btn {
+    font-size: 15px;
+    padding: 10px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .see-more-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
 /* ===== Section Visibility Animation ===== */
 section {
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -419,88 +540,66 @@ section[style*="display: block"] {
   transform: scaleY(1);
 }
 
-/* ===== Responsive: Mobile (≤480px) ===== */
+/* ===== Grid Layout Enhancement for Search & Filter Row ===== */
 @media (max-width: 480px) {
-  h2 {
-    font-size: 20px;
-  }
+.search-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+}
 
-  .poster {
-    max-height: 220px;
-  }
+/* Search box styling */
+#search-box {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
 
-  .watch-btn {
-    padding: 6px 12px;
-    font-size: 14px;
-  }
+#search-box:focus {
+  border-color: #007bff;
+  outline: none;
+}
 
-  .site-header {
-    padding: 10px;
-  }
+/* Dark mode toggle button */
+#theme-toggle {
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-  nav a {
-    display: block;
-    margin: 6px 0;
-  }
+#theme-toggle:hover {
+  background-color: #555;
+}
 
-  .trending-card,
-  .recent-card,
-  .latest-card,
-  .movies-card,
-  .webseries-card,
-  .drama-card {
-    min-width: 160px;
-  }
-
-  .app-buttons {
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .see-more-btn {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-
+/* Responsive tweaks for mobile */
+@media (max-width: 480px) {
   .search-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
     gap: 8px;
-    padding: 12px;
-    width: 100%;
-    box-sizing: border-box;
-    align-items: center;
   }
 
   #search-box {
-    width: 100%;
-    padding: 9px 12px;
     font-size: 13px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease;
-  }
-
-  #search-box:focus {
-    border-color: #007bff;
-    outline: none;
+    padding: 9px 12px;
   }
 
   #theme-toggle {
-    padding: 9px 12px;
     font-size: 13px;
-    border-radius: 6px;
-    background-color: #333;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    padding: 9px 12px;
   }
-
-  #theme-toggle:hover {
-    background-color: #555;
-  }
+}
 
   .filter-row {
     display: grid;
@@ -521,85 +620,7 @@ section[style*="display: block"] {
   }
 }
 
-/* ===== Responsive: Tablet (≤768px) ===== */
-@media (max-width: 768px) {
-  h2 {
-    font-size: 22px;
-    margin: 20px 0;
-  }
-
-  .filter-bar {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 0 12px;
-  }
-
-  input,
-  select,
-  button {
-    width: 100%;
-    font-size: 14px;
-  }
-
-  .trending-card,
-  .recent-card,
-  .latest-card,
-  .movies-card,
-  .webseries-card,
-  .drama-card {
-    min-width: 180px;
-    padding: 12px;
-  }
-
-  .poster {
-    max-height: 220px;
-  }
-
-  .app-buttons {
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .app-btn {
-    font-size: 14px;
-    padding: 8px 16px;
-    width: auto;
-    margin: 0;
-  }
-
-  footer {
-    font-size: 14px;
-    padding: 8px;
-  }
-
-  .filter-bar select {
-    width: 100%;
-  }
-
-  .see-more-btn {
-    font-size: 15px;
-    padding: 10px 18px;
-  }
-}
-
-/* ===== Responsive: Laptop (≤768px) ===== */
 @media (min-width: 768px) {
-  #recent-list,
-  #latest-list,
-  #popularmovies-list,
-  #popularwebseries-list,
-  #populardrama-list,
-  #banglamovies-list,
-  #englishmovies-list,
-  #hindimovies-list,
-  #koreanmovies-list,
-  #urdu-list,
-  #tamil-list,
-  #persian-list,
-  #portuguese-list {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
   .search-row {
     display: grid;
     grid-template-columns: 2fr 1fr;
