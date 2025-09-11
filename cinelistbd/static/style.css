@@ -125,24 +125,82 @@ nav a:hover {
   font-size: 15px;
   cursor: pointer;
 }
+.filter-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* ✅ 3 items per row */
+  gap: 10px;
+  padding: 0 12px;
+  margin-top: 12px;
+  box-sizing: border-box;
+}
+
 .filter-row select {
   appearance: none;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
   color: #333;
   border: 1px solid #ccc;
-  border-radius: 6px;
-  padding: 6px 10px;
-  font-size: 12px;
+  border-radius: 12px;             /* ✅ Rounded like home button */
+  padding: 10px 12px;
+  font-size: 13px;
   font-weight: 600;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* ✅ Button-like depth */
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
   width: 100%;
   box-sizing: border-box;
 }
+
 .filter-row select:hover {
-  background-color: #eaeaea;
+  background-color: #f0f0f0;
+  border-color: #999;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 480px) {
+  .filter-row {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* ✅ Auto-wrap */
+    gap: 8px;
+  }
+
+  .filter-row select {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* ✅ 3 items per row */
+    gap: 10px;
+    padding: 0 16px;
+    margin-top: 12px;
+    box-sizing: border-box;
+  }
+
+  .filter-row select {
+    appearance: none;
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 12px;             /* ✅ Rounded like home button */
+    padding: 8px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .filter-row select:hover {
+    background-color: #f0f0f0;
+    border-color: #999;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
 }
 
 /* ===== Trending Scroll Row ===== */
@@ -417,6 +475,17 @@ body.dark .see-more-btn:hover {
   background-color: #aa0000;
 }
 
+body.dark .filter-row select {
+  background-color: #222;
+  color: #fff;
+  border-color: #444;
+}
+
+body.dark .filter-row select:hover {
+  background-color: #333;
+  border-color: #666;
+}
+
 @media (max-width: 768px) {
   .see-more-btn {
     font-size: 15px;
@@ -472,18 +541,6 @@ section[style*="display: block"] {
   }
 
 @media (max-width: 480px) {
-  .filter-row {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* ✅ Auto-wrap if needed */
-    gap: 6px;
-  }
-
-  .filter-row select {
-    font-size: 11px;
-    padding: 5px 8px;
-  }
-}
-
-@media (max-width: 480px) {
   .trending-card {
     min-width: 160px; /* ✅ reduce width */
     max-width: 180px;
@@ -505,23 +562,6 @@ section[style*="display: block"] {
     gap: 12px;
     padding: 0 16px;
     width: 100%;
-    box-sizing: border-box;
-  }
-
-  .filter-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    padding: 0 16px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .filter-row select {
-    width: 100%;
-    font-size: 14px;
-    padding: 10px;
-    border-radius: 6px;
     box-sizing: border-box;
   }
 }
