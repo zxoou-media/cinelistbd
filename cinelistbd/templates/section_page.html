@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CineListBD | Sections</title>
-  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="{% if dark_mode %}dark{% endif %}">
+<body>
 
   <!-- 🔍 Search + Dark Mode -->
   <div class="search-row">
@@ -34,7 +34,7 @@
         <div class="movie-grid">
           {% for movie in section.movies %}
             <div class="movie-card">
-              <img src="{{ movie.poster }}" alt="{{ movie.title }}" />
+              <img src="{{ movie.poster }}" alt="{{ movie.title }}" loading="lazy" />
               <h3>{{ movie.title }}</h3>
               <p>{{ movie.lang | join(', ') }} | {{ movie.quality | join(', ') }}</p>
               <a href="{{ movie.trailer }}" target="_blank">Watch Trailer</a>
@@ -48,15 +48,18 @@
   <!-- 🔁 Pagination -->
   <div class="pagination">
     {% if current_page > 1 %}
-      <a href="/sections/{{ current_page - 1 }}" class="page-btn">Previous</a>
+      <a href="{{ url_for('section_page', page=current_page - 1) }}" class="page-btn">Previous</a>
     {% endif %}
 
     {% for page_num in page_range %}
-      <a href="/sections/{{ page_num }}" class="page-btn {% if page_num == current_page %}active{% endif %}">{{ page_num }}</a>
+      <a href="{{ url_for('section_page', page=page_num) }}"
+         class="page-btn {% if page_num == current_page %}active{% endif %}">
+         {{ page_num }}
+      </a>
     {% endfor %}
 
     {% if current_page < total_pages %}
-      <a href="/sections/{{ current_page + 1 }}" class="page-btn">Next</a>
+      <a href="{{ url_for('section_page', page=current_page + 1) }}" class="page-btn">Next</a>
     {% endif %}
   </div>
 
