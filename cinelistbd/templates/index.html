@@ -8,205 +8,116 @@
 </head>
 <body>
 <header class="site-header">
-    <h1 id="site-title">▶ CineList</h1>
-    <nav>
-      <a href="#">Home</a>
-    </nav>
-<div class="search-row">
-  <input type="text" id="search-box" placeholder="🔍 Search movies..." />
-  <button id="theme-toggle">🌙 Dark Mode</button>
-</div>
-<div class="filter-row">
-<select id="section-filter">
-  <option value="">All Sections</option>
-  <option value="trending">Trending</option>
-  <option value="recent">Recently Updated</option>
-  <option value="latest">Latest Movies</option>
-  <option value="movies">Most Popular Movies</option>
-  <option value="webseries">Most Popular Web Series</option>
-  <option value="drama">Most Popular Drama</option>
-</select>
-<select id="platform-filter">
-        <option value="">All OTT Platform</option>
-        <option value="Netflix">Netflix</option>
-        <option value="Amazon Prime Video">Amazon Prime Video</option>
-        <option value="Disney+">Disney+</option>
-        <option value="Apple TV+">Apple TV+</option>
-<option value="HBO Max">HBO Max</option>
-<option value="Hoichoi">Hoichoi</option>
-        <option value="Bing">Bing</option>
-        <option value="Bongo">Bongo</option>
-        <option value="Chorki">Chorki</option>
-<option value="Disney+ Hotstar">Disney+ Hotstar</option>
-<option value="Zee5">Zee5</option>
-        <option value="Sony LIV">Sony LIV</option>
-        <option value="JioCinema">JioCinema</option>
-        <option value="ALTBalaji">ALTBalaji</option>
-<option value="Marvel (MCU)">Marvel (MCU)</option>
-<option value="DC">DC</option>
-        <option value="Peacock">Peacock</option>
-        <option value="Tubi">Tubi</option>
-        <option value="Pluto TV">Pluto TV</option>
-      </select>
-<select id="genre-filter">
-        <option value="">All Genres</option>
-        <option value="Crime">Crime</option>
-        <option value="Romance">Romance</option>
-        <option value="Horror">Horror</option>
-        <option value="Sci-Fi">Sci-Fi</option>
-<option value="Anime">Anime</option>
-<option value="Action">Action</option>
-        <option value="Thriller">Thriller</option>
-        <option value="War">War</option>
-        <option value="Sports">Sports</option>
-<option value="Mystery">Mystery</option>
-<option value="Comedy">Comedy</option>
-        <option value="Fantasy">Fantasy</option>
-        <option value="Suspense">Suspense</option>
-        <option value="Survival">Survival</option>
-<option value="Family">Family</option>
-<option value="Adventure">Adventure</option>
-        <option value="Historical">Historical</option>
-        <option value="Documentary">Documentary</option>
-        <option value="Western">Western</option>
-<option value="Biography">Biography</option>
-<option value="Psychological">Psychological</option>
-        <option value="Superhero">Superhero</option>
-        <option value="Animation">Animation</option>
-        <option value="Cartoon">Cartoon</option>
-<option value="Music">Music</option>
-      </select>
-    </div>
-<div class="filter-row">
-      <select id="lang-filter">
-        <option value="">All Languages</option>
-        <option value="English">English</option>
-        <option value="Hindi">Hindi</option>
-        <option value="Bangla">Bangla</option>
-        <option value="Tamil">Tamil</option>
-        <option value="Telugu">Telugu</option>
-       <option value="Korean">Korean</option>
-        <option value="Japanese">Japanese</option>
-        <option value="Chinese">Chinese</option>
-        <option value="Russian">Russian</option>
-        <option value="French">French</option>
-        <option value="Spanish">Spanish</option>
-        <option value="Turkish">Turkish</option>
-        <option value="Urdu">Urdu</option>
-        <option value="Italian">Italian</option>
-        <option value="German">German</option>
-        <option value="Portuguese">Portuguese</option>
-        <option value="Persian">Persian</option>
-        <option value="Polish">Polish</option>
-        <option value="Kannada">Kannada</option>
-        <option value="Malayalam">Malayalam</option>
-        <option value="Gujarati">Gujarati</option>
-        <option value="Marathi">Marathi</option>
-        <option value="Punjabi">Punjabi</option>
-        <option value="Nepali">Nepali</option>
-        <option value="Others">Others</option>
-      </select>
-<select id="type-filter">
-        <option value="">All Types</option>
-        <option value="Movie">Movie</option>
-        <option value="Web Series">Web Series</option>
-        <option value="Drama">Drama</option>
-        <option value="Tv Show">Tv Show</option>
-<option value="Short Flim">Short Flim</option>
-      </select>
-      <select id="quality-filter">
-        <option value="">All Qualities</option>
-        <option value="480p">480p</option>
-        <option value="720p">720p</option>
-        <option value="1080p">1080p</option>
-        <option value="4k">4k</option>
-        <option value="WEB-DL">WEB-DL</option>
-        <option value="WEB-DL [HD]">WEB-DL [HD]</option>
-        <option value="HDRip">HDRip</option>
-        <option value="PRE-HDRip">PRE-HDRip</option>
-        <option value="4K uHDRip WEBRip">4K uHDRip WEBRip</option>
-        <option value="S-Print">S-Print</option>
-        <option value="Dual Audio Org">Dual Audio Org</option>
-        <option value="Hindi Dub Org">Hindi Dub Org</option>
-        <option value="Bangla Dub Org">Bangla Dub Org</option>
-        <option value="Blu-Ray">Blu-Ray</option>
-      </select>
-    </div>
-  </header>
+  <h1 id="site-title">▶ CineList</h1>
+  <nav><a href="#">Home</a></nav>
 
-<main>
-  <section id="trending">
-    <div class="section-heading-wrapper">
-      <h2>🔥 TRENDING</h2>
-    </div>
-    <div id="trending-scroll" class="scroll-row"></div>
-  </section>
-
-  <div class="app-buttons">
-    <a href="https://www.youtube.com" target="_blank" class="app-btn">📺 YouTube</a>
-    <a href="https://www.tiktok.com" target="_blank" class="app-btn">🎵 TikTok</a>
+  <!-- 🔍 Search + Dark Mode -->
+  <div class="search-row">
+    <input type="text" id="search-box" placeholder="🔍 Search movies..." />
+    <button id="theme-toggle">🌙 Dark Mode</button>
   </div>
 
-  <!-- RECENT -->
-  <section id="recent">
-    <div class="section-heading-wrapper">
-      <h2>🆕 RECENTLY UPDATED</h2>
-    </div>
-    <div id="recent-list" class="grid-row"></div>
-    <div class="see-more-wrapper">
-      <button class="see-more-btn" data-section="recent">See More</button>
-    </div>
-  </section>
+  <!-- 🎛️ Filter Buttons -->
+  <div class="filter-row">
+    <!-- তোমার আগের filter rows এখানে 그대로 থাকবে -->
+    <!-- Section, Platform, Genre, Language, Type, Quality filters -->
+  </div>
+</header>
 
-  <!-- LATEST -->
-  <section id="latest">
-    <div class="section-heading-wrapper">
-      <h2>Latest Movies</h2>
-    </div>
-    <div id="latest-list" class="grid-row"></div>
-    <div class="see-more-wrapper">
-      <button class="see-more-btn" data-section="latest">See More</button>
-    </div>
-  </section>
+<main>
+  <!-- 🔁 Dynamic Section Rendering -->
+  <div class="section-wrapper">
+    {% for section in sections %}
+      {% if section.title == "Trending" %}
+        <div class="section">
+          <div class="section-heading-wrapper">
+            <h2>🔥 {{ section.title }}</h2>
+          </div>
+          <div id="trending-scroll" class="scroll-row">
+            {% for movie in section.movies[:20] %}
+              <div class="movie-card">
+                <img src="{{ movie.poster }}" alt="{{ movie.title }}" loading="lazy"
+                     onerror="this.onerror=null;this.src='/static/img/fallback.jpg';" />
+                <h3>{{ movie.title }}</h3>
+                <p>
+                  {% if movie.lang %}{{ movie.lang | join(', ') }}{% endif %}
+                  {% if movie.quality %} | {{ movie.quality | join(', ') }}{% endif %}
+                </p>
+                {% if movie.trailer %}
+                  <a href="{{ movie.trailer }}" target="_blank">Watch Trailer</a>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+          {% if section.movies|length > 20 %}
+            <div class="see-more-wrapper">
+              <button class="see-more-btn" data-section="trending">See More</button>
+            </div>
+          {% endif %}
+        </div>
+      {% else %}
+        <div class="section">
+          <div class="section-heading-wrapper">
+            <h2>{{ section.title }}</h2>
+          </div>
+          <div class="movie-grid">
+            {% for movie in section.movies[:20] %}
+              <div class="movie-card">
+                <img src="{{ movie.poster }}" alt="{{ movie.title }}" loading="lazy"
+                     onerror="this.onerror=null;this.src='/static/img/fallback.jpg';" />
+                <h3>{{ movie.title }}</h3>
+                <p>
+                  {% if movie.lang %}{{ movie.lang | join(', ') }}{% endif %}
+                  {% if movie.quality %} | {{ movie.quality | join(', ') }}{% endif %}
+                </p>
+                {% if movie.trailer %}
+                  <a href="{{ movie.trailer }}" target="_blank">Watch Trailer</a>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+          {% if section.movies|length > 20 %}
+            <div class="see-more-wrapper">
+              <button class="see-more-btn" data-section="{{ section.title | lower | replace(' ', '') }}">See More</button>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
 
-  <!-- MOVIES -->
-  <section id="movies">
-    <div class="section-heading-wrapper">
-      <h2>Most Popular Movies</h2>
-    </div>
-    <div id="popularmovies-list" class="grid-row"></div>
-    <div class="see-more-wrapper">
-      <button class="see-more-btn" data-section="movies">See More</button>
-    </div>
-  </section>
+  <!-- 🔁 Pagination -->
+  <div class="pagination">
+    {% if current_page > 1 %}
+      <a href="{{ url_for('section_page', page=current_page - 1) }}" class="page-btn">Previous</a>
+    {% endif %}
 
-  <!-- WEBSERIES -->
-  <section id="webseries">
-    <div class="section-heading-wrapper">
-      <h2>Most Popular Web Series</h2>
-    </div>
-    <div id="popularwebseries-list" class="grid-row"></div>
-    <div class="see-more-wrapper">
-      <button class="see-more-btn" data-section="webseries">See More</button>
-    </div>
-  </section>
+    {% for page_num in page_range %}
+      <a href="{{ url_for('section_page', page=page_num) }}"
+         class="page-btn {% if page_num == current_page %}active{% endif %}">
+         {{ page_num }}
+      </a>
+    {% endfor %}
 
-  <!-- DRAMA -->
-  <section id="drama">
-    <div class="section-heading-wrapper">
-      <h2>Most Popular Drama</h2>
-    </div>
-    <div id="populardrama-list" class="grid-row"></div>
-    <div class="see-more-wrapper">
-      <button class="see-more-btn" data-section="drama">See More</button>
-    </div>
-  </section>
+    {% if current_page < total_pages %}
+      <a href="{{ url_for('section_page', page=current_page + 1) }}" class="page-btn">Next</a>
+    {% endif %}
+  </div>
 </main>
 
-  <footer>
-    <p>© 2025 CineList — ওয়েবসাইট এর মালিক তানজিদুর রহমান জয় ভাই</p>
-  </footer>
+<footer>
+  <p>© 2025 CineList — ওয়েবসাইট এর মালিক তানজিদুর রহমান জয় ভাই</p>
+</footer>
 
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script>
+  // 🔁 Auto-scroll for trending section
+  setInterval(() => {
+    const scrollContainer = document.getElementById('trending-scroll');
+    if (scrollContainer) {
+      scrollContainer.scrollLeft += 1;
+    }
+  }, 30);
+</script>
 </body>
 </html>
