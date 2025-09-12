@@ -34,10 +34,16 @@
         <div class="movie-grid">
           {% for movie in section.movies %}
             <div class="movie-card">
-              <img src="{{ movie.poster }}" alt="{{ movie.title }}" loading="lazy" />
+              <img src="{{ movie.poster }}" alt="{{ movie.title }}" loading="lazy"
+                   onerror="this.onerror=null;this.src='/static/img/fallback.jpg';" />
               <h3>{{ movie.title }}</h3>
-              <p>{{ movie.lang | join(', ') }} | {{ movie.quality | join(', ') }}</p>
-              <a href="{{ movie.trailer }}" target="_blank">Watch Trailer</a>
+              <p>
+                {% if movie.lang %}{{ movie.lang | join(', ') }}{% endif %}
+                {% if movie.quality %} | {{ movie.quality | join(', ') }}{% endif %}
+              </p>
+              {% if movie.trailer %}
+                <a href="{{ movie.trailer }}" target="_blank">Watch Trailer</a>
+              {% endif %}
             </div>
           {% endfor %}
         </div>
