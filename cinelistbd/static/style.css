@@ -74,13 +74,13 @@ body.dark .section-heading-wrapper h2:hover {
 }
 
 body.dark #trending .section-heading-wrapper h2 {
-  background-color: #444;
-  color: #fff;
+  background-color: #00A33D;
+  color: #e63946;
   box-shadow: 0 2px 6px rgba(255,255,255,0.1);
 }
 
 body.dark #trending .section-heading-wrapper h2:hover {
-  background-color: #666; /* ✅ Slightly lighter on hover */
+  background-color: #00A33D; /* ✅ Slightly lighter on hover */
 }
 
 /* ===== Header ===== */
