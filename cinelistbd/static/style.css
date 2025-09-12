@@ -74,7 +74,7 @@ body.dark .section-heading-wrapper h2:hover {
 }
 
 body.dark #trending .section-heading-wrapper h2 {
-  background-color: #e63946;
+  background-color: #008000;
   color: #fff;
   box-shadow: 0 2px 6px rgba(255,255,255,0.1);
 }
