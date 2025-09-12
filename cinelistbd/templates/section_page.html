@@ -8,13 +8,11 @@
 </head>
 <body>
 
-  <!-- 🔍 Search + Dark Mode -->
   <div class="search-row">
     <input type="text" id="search-box" placeholder="Search movies..." />
     <button id="theme-toggle">Dark Mode</button>
   </div>
 
-  <!-- 🎛️ Filter Buttons -->
   <div class="filter-row">
     <select><option>All Sections</option></select>
     <select><option>All OTT Platform</option></select>
@@ -24,7 +22,6 @@
     <select><option>All Qualities</option></select>
   </div>
 
-  <!-- 🎬 Sections -->
   <div class="section-wrapper">
     {% for section in sections %}
       <div class="section">
@@ -51,7 +48,6 @@
     {% endfor %}
   </div>
 
-  <!-- 🔁 Pagination -->
   <div class="pagination">
     {% if current_page > 1 %}
       <a href="{{ url_for('section_page', page=current_page - 1) }}" class="page-btn">Previous</a>
