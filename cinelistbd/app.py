@@ -1,41 +1,48 @@
-from flask import Flask, render_template, jsonify, send_from_directory, request, redirect, url_for
-from flask_cors import CORS
+from flask import Flask, render_template, jsonify, send_from_directory, request
 import os, json
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
-CORS(app)
-
 DATA_FILE = os.path.join(app.root_path, 'data', 'movies.json')
 
-# 🔹 Redirect root to first paginated section
 @app.route('/')
 def home():
-    return redirect(url_for('section_page', page=1))
+    with open(DATA_FILE, 'r', encoding='utf-8') as f:
+        data = json.load(f)
 
-# 🔹 Paginated section rendering
+    home_sections = ["trending", "recent", "latest"]
+    sections = []
+    for key in home_sections:
+        sections.append({
+            "title": key.replace("-", " ").title(),
+            "id": key,
+            "movies": data.get(key, [])
+        })
+
+    return render_template("index.html", sections=sections, current_page=1, total_pages=1, page_range=[1])
+
 @app.route('/sections/<int:page>')
 def section_page(page):
     with open(DATA_FILE, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
-    sections = data.get("sections", [])
-    total_pages = (len(sections) + 2) // 3  # Show 3 sections per page
+    all_keys = [k for k in data.keys() if k not in ["trending", "recent", "latest"]]
+    total_pages = (len(all_keys) + 2) // 3
+    start = (page - 1) * 3
+    end = start + 3
+    current_keys = all_keys[start:end]
 
-    start_index = (page - 1) * 3
-    end_index = start_index + 3
-    current_sections = sections[start_index:end_index]
+    sections = []
+    for key in current_keys:
+        sections.append({
+            "title": key.replace("-", " ").title(),
+            "id": key,
+            "movies": data.get(key, [])
+        })
 
-    start = max(1, page - 2)
-    end = min(total_pages, start + 4)
-    page_range = list(range(start, end + 1))
+    page_range = list(range(max(1, page - 2), min(total_pages, page + 2) + 1))
 
-    return render_template("index.html",
-                           sections=current_sections,
-                           current_page=page,
-                           total_pages=total_pages,
-                           page_range=page_range)
+    return render_template("index.html", sections=sections, current_page=page, total_pages=total_pages, page_range=page_range)
 
-# 🔹 API for JS-based lazy loading
 @app.route('/api/movies')
 def movies_api():
     section = request.args.get('section')
@@ -45,27 +52,15 @@ def movies_api():
     with open(DATA_FILE, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
-    # If using new structure: data["sections"] → list of dicts
-    if "sections" in data:
-        for sec in data["sections"]:
-            if sec["title"].lower().replace(" ", "") == section:
-                sliced = sec["movies"][offset:offset + limit]
-                return jsonify({'movies': sliced})
-        return jsonify({'movies': []})
+    if section and section in data:
+        sliced = data[section][offset:offset + limit]
+        return jsonify({'movies': sliced})
     else:
-        # Legacy structure
-        if section and section in data:
-            sliced = data[section][offset:offset + limit]
-            return jsonify({'movies': sliced})
-        else:
-            return jsonify(data)
+        return jsonify({'movies': []})
 
-# 🔹 Serve poster images
 @app.route('/img/<path:filename>')
 def serve_image(filename):
     return send_from_directory(os.path.join(app.static_folder, 'img'), filename)
 
-# 🔹 Run app
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(debug=True, host='0.0.0.0', port=port)
+    app.run(debug=True)
