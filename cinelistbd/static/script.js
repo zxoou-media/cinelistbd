@@ -1,14 +1,14 @@
 let allMovies = [];
 const sectionStates = {
-  trending: 0,
-  recent: 0,
-  latest: 0,
-  movies: 0,
-  webseries: 0,
-  drama: 0
+  trending: 0, recent: 0, latest: 0,
+  movies: 0, webseries: 0, drama: 0
 };
 
-// 🔹 Load section from backend
+function getPosterPath(m) {
+  if (!m.poster || m.poster.trim() === "") return null;
+  return m.poster.startsWith('http') ? m.poster : `/img/${m.poster}`;
+}
+
 async function loadSection(section) {
   try {
     const res = await fetch(`/api/movies?section=${section}&offset=0&limit=20`);
@@ -21,7 +21,6 @@ async function loadSection(section) {
   }
 }
 
-// 🔹 Load more on See More click
 async function loadMore(section) {
   const offset = sectionStates[section] * 20;
   try {
@@ -35,13 +34,6 @@ async function loadMore(section) {
   }
 }
 
-// 🔹 Poster fallback
-function getPosterPath(m) {
-  if (!m.poster || m.poster.trim() === "") return null;
-  return m.poster.startsWith('http') ? m.poster : `/img/${m.poster}`;
-}
-
-// 🔹 Render section
 function renderSection(section, movies, paginated = false) {
   const container = document.getElementById(`${section}-list`);
   if (!container) return;
@@ -60,21 +52,9 @@ function renderSection(section, movies, paginated = false) {
         ${posterPath ? `<img src="${posterPath}" alt="${m.title}" class="poster" />` : `<div class="poster-frame">No Poster</div>`}
       </a>
       <h3>${m.title}</h3>
-      ${m.sequel ? `<p>Sequel: ${m.sequel}</p>` : ""}
-      ${m.episode && Array.isArray(m.type) && m.type.includes("Web Series") ? `<p>Episode: ${m.episode}</p>` : ""}
-      ${Array.isArray(m.genre) ? `<p>Genre: ${m.genre.join(', ')}</p>` : ""}
-      ${Array.isArray(m.lang) ? `<p>Language: ${m.lang.join(', ')}</p>` : ""}
-      ${Array.isArray(m.country) ? `<p>Country: ${m.country.join(', ')}</p>` : ""}
-      ${Array.isArray(m.type) ? `<p>Type: ${m.type.join(', ')}</p>` : ""}
-      ${Array.isArray(m.actors) ? `<p>Actors: ${m.actors.join(', ')}</p>` : ""}
-      ${Array.isArray(m.directors) ? `<p>Directors: ${m.directors.join(', ')}</p>` : ""}
-      ${m.runtime ? `<p>Runtime: ${m.runtime}</p>` : ""}
       ${m.date ? `<p>Release: ${m.date}</p>` : ""}
+      ${Array.isArray(m.lang) ? `<p>Language: ${m.lang.join(', ')}</p>` : ""}
       ${Array.isArray(m.quality) ? `<p>Quality: ${m.quality.join(', ')}</p>` : ""}
-      ${m.imdb ? `<p>IMDb Rating: ${m.imdb}</p>` : ""}
-      ${m.tmdb ? `<p>TMDb Rating: ${m.tmdb}</p>` : ""}
-      ${Array.isArray(m.platform) ? `<p>Platform: ${m.platform.join(', ')}</p>` : ""}
-      ${m.trailer ? `<a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Trailer</a>` : ""}
     `;
     container.appendChild(card);
   });
@@ -88,7 +68,6 @@ function renderSection(section, movies, paginated = false) {
   }
 }
 
-// 🔹 Setup See More buttons
 function setupSeeMoreButtons() {
   document.querySelectorAll('.see-more-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -98,7 +77,6 @@ function setupSeeMoreButtons() {
   });
 }
 
-// 🔹 Filtering
 function applyFilters() {
   const searchText = document.getElementById("search-box").value.toLowerCase();
   const section = document.getElementById("section-filter").value;
@@ -123,7 +101,6 @@ function applyFilters() {
   renderMovies(filtered);
 }
 
-// 🔹 Render filtered movies
 function renderMovies(filteredMovies) {
   const sections = Object.keys(sectionStates);
   sections.forEach(section => {
@@ -206,11 +183,12 @@ function autoScrollTrending() {
   setInterval(scrollToCard, 3000);
 }
 
-// 🔹 Initialize everything on page
+// 🔹 Initialize everything on page load
 document.addEventListener('DOMContentLoaded', () => {
-  loadMovies();                  // 🔁 Load all sections
-  setupSeeMoreButtons();        // 🔘 See More button logic
-  setupFilterListeners();       // 🎛️ Filter system
-  setupDarkModeToggle();        // 🌙 Dark mode toggle
-  autoScrollTrending();         // 🔄 Trending auto-scroll
+  const sections = Object.keys(sectionStates);
+  sections.forEach(section => loadSection(section));
+  setupSeeMoreButtons();
+  setupFilterListeners();
+  setupDarkModeToggle();
+  autoScrollTrending();
 });
