@@ -1,143 +1,387 @@
 {
-  "sections": [
+  "trending": [
     {
-      "title": "Trending",
-      "movies": [
-        {
-          "title": "TANZID VHI (2025)",
-          "lang": ["English", "Hindi"],
-          "quality": ["1080p"],
-          "date": "2025-08-15",
-          "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
-          "poster": "https://i.imgur.com/wmRNvPj.jpeg"
-        },
-        {
-          "title": "Ordinary Angels (2024)",
-          "lang": ["English", "Korean"],
-          "quality": ["1080p", "4k"],
-          "date": "2025-08-15",
-          "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
-          "poster": "https://i.ibb.co/7xkmZ6ww/Tik-Video-App-7546663346980850966-6.jpg"
-        },
-        {
-          "title": "Ordinary Angels (2024)",
-          "lang": ["English", "Telugu"],
-          "quality": ["1080p"],
-          "date": "2025-08-15",
-          "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
-          "poster": "https://i.imgur.com/WPeTLYq.jpeg"
-        }
-      ]
+      "title": "TANZID VHI (2025)",
+      "lang": ["English", "Hindi"],
+      "quality": ["1080p"],
+      "date": "2025-08-15",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "poster": "https://i.imgur.com/wmRNvPj.jpeg"
+    },
+{
+      "title": "Ordinary Angels (2024)",
+      "lang": ["English", "Korean"],
+      "quality": ["1080p", "4k"],
+      "date": "2025-08-15",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "poster": "https://i.ibb.co/7xkmZ6ww/Tik-Video-App-7546663346980850966-6.jpg"
+    },
+{
+      "title": "Ordinary Angels (2024)",
+      "lang": ["English", "Telugu"],
+      "quality": ["1080p"],
+      "date": "2025-08-15",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "poster": "https://i.imgur.com/WPeTLYq.jpeg"
+    },
+{
+      "title": "Ordinary Angels (2024)",
+      "lang": ["English", "Korean"],
+      "quality": ["1080p"],
+      "date": "2025-08-15",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "poster": "https://i.imgur.com/FCF5oUi.jpeg"
+    },
+{
+      "title": "Ordinary Angels (2024)",
+      "lang": ["English", "Japanese"],
+      "quality": ["1080p"],
+      "date": "2025-08-15",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "poster": "https://i.imgur.com/OoaY3ro.jpeg"
+    },
+{
+      "title": "Ordinary Angels (2024)",
+      "lang": ["English", "Chinese"],
+      "quality": ["1080p"],
+      "date": "2025-08-15",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "poster": "https://i.imgur.com/AkZ7458.jpeg"
+    },
+{
+      "title": "Ordinary Angels (2024)",
+      "lang": ["English", "Russian"],
+      "quality": ["1080p"],
+      "date": "2025-08-15",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "poster": "https://i.imgur.com/x1UCCpt.jpeg"
+    },
+{
+      "title": "Ordinary Angels (2024)",
+      "lang": ["English", "French"],
+      "quality": ["1080p"],
+      "date": "2025-08-15",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "poster": "https://i.imgur.com/dAnkgsc.jpeg"
+    },
+{
+      "title": "Ordinary Angels (2024)",
+      "lang": ["English", "Spanish"],
+      "quality": ["1080p"],
+      "date": "2025-08-15",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "poster": "https://i.ibb.co/8gnK6r7z/peaky-blinders-549874356-large.jpg"
+    },
+{
+      "title": "Ordinary Angels (2024)",
+      "lang": ["Turkish", "Hindi"],
+      "quality": ["1080p"],
+      "date": "2025-08-15",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg"
     },
     {
-      "title": "Recently Updated",
-      "movies": [
-        {
-          "title": "Bachelor Point S5 (2025)",
-          "lang": ["Hindi", "Bangla"],
-          "quality": ["480p", "720p"],
-          "date": "2025-08-26",
-          "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
-          "poster": "https://i.imgur.com/qkm8Pml.jpeg"
-        },
-        {
-          "title": "Kingdom (2025)",
-          "lang": ["Urdu", "Tamil"],
-          "quality": ["480p", "720p"],
-          "date": "2025-08-26",
-          "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
-          "poster": "https://i.imgur.com/WPeTLYq.jpeg"
-        }
-      ]
+      "title": "The Bad Guys 2 (2025)",
+      "lang": ["English"],
+      "quality": ["720p", "1080p"],
+      "date": "2025-08-20",
+      "trailer": "https://youtu.be/AZKbhA-n80c?si=gtUzYn_MEjoXcK8K",
+      "poster": "https://images.pexels.com/photos/18386911/pexels-photo-18386911.jpeg"
+    }
+  ],
+  "recent": [
+    {
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg"
+    },
+{
+      "title": "Kingdom (2025)",
+      "lang": ["Urdu", "Tamil"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.imgur.com/WPeTLYq.jpeg"
+    },
+{
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.ibb.co/N6hgYMg8/Tik-Video-App-7546663346980850966-2.jpg"
+    },
+{
+      "title": "Kingdom (2025)",
+      "lang": ["Portuguese", "German"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.ibb.co/2rvSWzH/Tik-Video-App-7546120309779205398-6.jpg"
+    },
+{
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.ibb.co/PGsmwc6T/peaky-blinders-549874356-large.jpg"
+    },
+{
+      "title": "Kingdom (2025)",
+      "lang": ["Polish", "Persian"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.ibb.co/MqxWqwn/Tik-Video-App-7546120309779205398-2.jpg"
+    },
+{
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.ibb.co/2TqXW52/Tik-Video-App-7546119430284070166-9.jpg"
+    },
+{
+      "title": "Kingdom (2025)",
+      "lang": ["Arabic", "Korean"],
+      "quality": ["480p", "4k"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.ibb.co/hRLd6j0b/Tik-Video-App-7546119430284070166-7.jpg"
+    },
+{
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.ibb.co/354sq4M3/images-26.jpg"
+    },
+{
+      "title": "Kingdom (2025)",
+      "lang": ["Malayalam", "Kannada"],
+      "quality": ["480p", "WEB-DL [HD]"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.ibb.co/ksVFvWqR/Tik-Video-App-7546119430284070166-2.jpg"
+    },
+{
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.ibb.co/zWj68jDv/Tik-Video-App-7546119430284070166-3.jpg"
+    },
+{
+      "title": "Kingdom (2025)",
+      "lang": ["Marathi", "Gujarati"],
+      "quality": ["PRE-HDRip", "WEB-DL"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.ibb.co/d4rL1nLj/images-22.jpg"
+    },
+{
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.ibb.co/spzt0d0f/images-13.jpg"
+    },
+{
+      "title": "Kingdom (2025)",
+      "lang": ["Nepali", "Punjabi"],
+      "quality": ["480p", "HDRip"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.ibb.co/rR3VJNY2/images-12.jpg"
+    },
+{
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.ibb.co/DPyVMjqV/darkknight-building-24x36-20e90057-f673-4cc3-9ce7-7b0d3eeb7d83-480x-progressive.jpg"
+    },
+{
+      "title": "Kingdom (2025)",
+      "lang": ["Hindi", "Others"],
+      "quality": ["Blu-Ray", "Hindi Dub Org"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.ibb.co/LDhjJp7R/images-25.jpg"
+    },
+{
+      "title": "Kingdom (2025)",
+      "lang": ["Hindi", "Telugu"],
+      "quality": ["Bangla Bub Org", "S-Print"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.ibb.co/4nLt5Wqg/IMG-20250909-WA0003.jpg"
+    },
+{
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.ibb.co/gMC5Yhgw/images-24.jpg"
+    },
+{
+      "title": "Kingdom (2025)",
+      "lang": ["Hindi", "Telugu"],
+      "quality": ["4K uHDRip WEBRip", "Dual Audio Org"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.ibb.co/DPzn3vWn/images-27.jpg"
+    },
+{
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg"
+    },
+{
+      "title": "The Bad Guys 2 (2025)",
+      "lang": ["English"],
+      "quality": ["720p", "1080p"],
+      "date": "2025-08-20",
+      "trailer": "https://youtu.be/AZKbhA-n80c?si=gtUzYn_MEjoXcK8K",
+      "poster": "https://images.pexels.com/photos/18386911/pexels-photo-18386911.jpeg"
+    }
+  ],
+"latest": [
+    {
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg"
+    },
+{
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg"
+    },
+{
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg"
+    },
+{
+      "title": "The Bad Guys 2 (2025)",
+      "lang": ["English"],
+      "quality": ["720p", "1080p"],
+      "date": "2025-08-20",
+      "trailer": "https://youtu.be/AZKbhA-n80c?si=gtUzYn_MEjoXcK8K",
+      "poster": "https://images.pexels.com/photos/18386911/pexels-photo-18386911.jpeg"
+    }
+  ],
+"movies": [
+    {
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg"
+    },
+{
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg"
+    },
+{
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg"
+    },
+{
+      "title": "The Bad Guys 2 (2025)",
+      "lang": ["English"],
+      "quality": ["720p", "1080p"],
+      "date": "2025-08-20",
+      "trailer": "https://youtu.be/AZKbhA-n80c?si=gtUzYn_MEjoXcK8K",
+      "poster": "https://images.pexels.com/photos/18386911/pexels-photo-18386911.jpeg"
+    }
+  ],
+"webseries": [
+    {
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg"
+    },
+{
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg"
+    },
+{
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg"
+    },
+{
+      "title": "The Bad Guys 2 (2025)",
+      "lang": ["English"],
+      "quality": ["720p", "1080p"],
+      "date": "2025-08-20",
+      "trailer": "https://youtu.be/AZKbhA-n80c?si=gtUzYn_MEjoXcK8K",
+      "poster": "https://i.ibb.co/PGsmwc6T/peaky-blinders-549874356-large.jpg"
+    }
+  ],
+"drama": [
+    {
+      "title": "Bachelor Point S5 (2025)",
+      "lang": ["Hindi", "Bangla"],
+      "quality": ["480p", "720p"],
+      "date": "2025-08-26",
+      "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg"
     },
     {
-      "title": "Latest",
-      "movies": [
-        {
-          "title": "Bachelor Point S5 (2025)",
-          "lang": ["Hindi", "Bangla"],
-          "quality": ["480p", "720p"],
-          "date": "2025-08-26",
-          "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
-          "poster": "https://i.imgur.com/qkm8Pml.jpeg"
-        },
-        {
-          "title": "Bachelor Point S5 (2025)",
-          "lang": ["Hindi", "Bangla"],
-          "quality": ["480p", "720p"],
-          "date": "2025-08-26",
-          "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
-          "poster": "https://i.imgur.com/qkm8Pml.jpeg"
-        }
-      ]
-    },
-    {
-      "title": "Most Popular Movies",
-      "movies": [
-        {
-          "title": "Bachelor Point S5 (2025)",
-          "lang": ["Hindi", "Bangla"],
-          "quality": ["480p", "720p"],
-          "date": "2025-08-26",
-          "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
-          "poster": "https://i.imgur.com/qkm8Pml.jpeg"
-        },
-        {
-          "title": "Bachelor Point S5 (2025)",
-          "lang": ["Hindi", "Bangla"],
-          "quality": ["480p", "720p"],
-          "date": "2025-08-26",
-          "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
-          "poster": "https://i.imgur.com/qkm8Pml.jpeg"
-        }
-      ]
-    },
-    {
-      "title": "Most Popular Web Series",
-      "movies": [
-        {
-          "title": "Bachelor Point S5 (2025)",
-          "lang": ["Hindi", "Bangla"],
-          "quality": ["480p", "720p"],
-          "date": "2025-08-26",
-          "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
-          "poster": "https://i.imgur.com/qkm8Pml.jpeg"
-        },
-        {
-          "title": "Bachelor Point S5 (2025)",
-          "lang": ["Hindi", "Bangla"],
-          "quality": ["480p", "720p"],
-          "date": "2025-08-26",
-          "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
-          "poster": "https://i.imgur.com/qkm8Pml.jpeg"
-        }
-      ]
-    },
-    {
-      "title": "Most Popular Drama",
-      "movies": [
-        {
-          "title": "Bachelor Point S5 (2025)",
-          "lang": ["Hindi", "Bangla"],
-          "quality": ["480p", "720p"],
-          "date": "2025-08-26",
-          "trailer": "https://www.youtube.com/live/obsklH6ajr0?si=w7stTzLJsZSEhkGa",
-          "poster": "https://i.imgur.com/qkm8Pml.jpeg"
-        },
-        {
-          "title": "Dhumketu (2025)",
-          "episode": "1-10",
-          "genre": ["Horror", "Thriller"],
-          "lang": ["Bangla"],
-          "type": ["Web Series"],
-          "quality": ["720p"],
-          "country": ["Bangladesh"],
-          "platform": ["Bongo"],
-          "date": "2025-08-17",
-          "trailer": "https://youtu.be/knGCfzm4jWs?si=POxf91G--H5G6kKX",
-          "poster": "https://images.pexels.com/photos/12838778/pexels-photo-12838778.jpeg"
-        }
-      ]
+      "title": "Dhumketu (2025)",
+      "episode": "1-10",
+      "genre": ["Horror", "Thriller"],
+      "lang": ["Bangla"],
+      "type": ["Web Series"],
+      "quality": ["720p"],
+      "country": ["Bangladesh"],
+      "platform": ["Bongo"],
+      "date": "2025-08-17",
+      "trailer": "https://youtu.be/knGCfzm4jWs?si=POxf91G--H5G6kKX",
+      "poster": "https://images.pexels.com/photos/12838778/pexels-photo-12838778.jpeg"
     }
   ]
 }
