@@ -83,6 +83,7 @@ nav a:hover {
   background-color: #444;
   border-color: #666;
 }
+
 .filter-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* ✅ 3 items per row */
@@ -113,6 +114,10 @@ nav a:hover {
   background-color: #f0f0f0;
   border-color: #999;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+body.dark #theme-toggle {
+  background-color: #00A33D;
 }
 
 /* ===== Section Heading ===== */
