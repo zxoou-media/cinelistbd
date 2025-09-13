@@ -50,9 +50,9 @@ nav a:hover {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 10px;
+  flex-wrap: nowrap;              /* ✅ Prevent wrapping */
   padding: 0 16px;
+  margin-top: 10px;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -64,7 +64,7 @@ nav a:hover {
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 15px;
-  min-width: 240px;
+  min-width: 200px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
@@ -76,14 +76,16 @@ nav a:hover {
   color: white;
   font-size: 14px;
   cursor: pointer;
+  white-space: nowrap;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
-  white-space: nowrap;
 }
+
 #theme-toggle:hover {
   background-color: #444;
   border-color: #666;
 }
+
 body.dark #theme-toggle {
   background-color: #00A33D;
 }
@@ -479,17 +481,40 @@ section[style*="display: block"] {
 
 @media (max-width: 480px) {
   .search-row {
-    flex-direction: column;
-    align-items: stretch;
+    display: grid;
+    grid-template-columns: 1fr auto;
     gap: 8px;
     padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
   }
 
-  #search-box,
-  #theme-toggle {
-    width: 100%;
+  #search-box {
     font-size: 13px;
     padding: 9px 12px;
+  }
+
+  #theme-toggle {
+    font-size: 13px;
+    padding: 9px 12px;
+  }
+
+  .dark-mode-toggle {
+    font-size: 12px;       
+    padding: 6px 10px;           
+    border-radius: 8px;          
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #444;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .dark-mode-toggle:hover {
+    background-color: #333;
+    border-color: #666;
   }
 
   .filter-row {
