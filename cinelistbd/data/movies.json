@@ -1,8 +1,205 @@
 {
-  "trending": [{ "title": "TANZID VHI", "poster": "https://i.imgur.com/wmRNvPj.jpeg", "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d", "lang": ["English"], "quality": ["1080p"], "date": "2025-08-15" }],
-  "recent": [{ "title": "Bachelor Point S5", "poster": "https://i.imgur.com/qkm8Pml.jpeg", "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d", "lang": ["Bangla"], "quality": ["720p"], "date": "2025-08-26" }],
-  "latest": [{ "title": "Kingdom", "poster": "https://i.imgur.com/WPeTLYq.jpeg", "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d", "lang": ["Urdu"], "quality": ["720p"], "date": "2025-08-26" }],
-  "movies": [{ "title": "Ordinary Angels", "poster": "https://i.ibb.co/7xkmZ6ww/Tik-Video-App-7546663346980850966-6.jpg", "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d", "lang": ["English"], "quality": ["4k"], "date": "2025-08-15" }],
-  "webseries": [{ "title": "Dhumketu", "poster": "https://i.imgur.com/wmRNvPj.jpeg", "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d", "lang": ["Bangla"], "quality": ["720p"], "date": "2025-08-17" }],
-  "drama": [{ "title": "Bachelor Point S5", "poster": "https://i.imgur.com/WPeTLYq.jpeg", "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d", "lang": ["Bangla"], "quality": ["720p"], "date": "2025-08-26" }]
-}
+  "trending": [
+    {
+      "title": "TANZID VHI",
+      "poster": "https://i.imgur.com/wmRNvPj.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["English"],
+      "quality": ["1080p"],
+      "date": "2025-08-15"
+    },
+    {
+      "title": "TANZID VHI",
+      "poster": "https://i.imgur.com/wmRNvPj.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["English"],
+      "quality": ["1080p"],
+      "date": "2025-08-15"
+    },
+    {
+      "title": "TANZID VHI",
+      "poster": "https://i.imgur.com/wmRNvPj.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["English"],
+      "quality": ["1080p"],
+      "date": "2025-08-15"
+    },
+    {
+      "title": "TANZID VHI",
+      "poster": "https://i.imgur.com/wmRNvPj.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["English"],
+      "quality": ["1080p"],
+      "date": "2025-08-15"
+    }
+  ],
+  "recent": [
+    {
+      "title": "Bachelor Point S5",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["Bangla"],
+      "quality": ["720p"],
+      "date": "2025-08-26"
+    },
+    {
+      "title": "Bachelor Point S5",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["Bangla"],
+      "quality": ["720p"],
+      "date": "2025-08-26"
+    },
+    {
+      "title": "Bachelor Point S5",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["Bangla"],
+      "quality": ["720p"],
+      "date": "2025-08-26"
+    },
+    {
+      "title": "Bachelor Point S5",
+      "poster": "https://i.imgur.com/qkm8Pml.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["Bangla"],
+      "quality": ["720p"],
+      "date": "2025-08-26"
+    }
+  ],
+  "latest": [
+    {
+      "title": "Kingdom",
+      "poster": "https://i.imgur.com/WPeTLYq.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["Urdu"],
+      "quality": ["720p"],
+      "date": "2025-08-26"
+    },
+    {
+      "title": "Kingdom",
+      "poster": "https://i.imgur.com/WPeTLYq.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["Urdu"],
+      "quality": ["720p"],
+      "date": "2025-08-26"
+    },
+    {
+      "title": "Kingdom",
+      "poster": "https://i.imgur.com/WPeTLYq.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["Urdu"],
+      "quality": ["720p"],
+      "date": "2025-08-26"
+    },
+    {
+      "title": "Kingdom",
+      "poster": "https://i.imgur.com/WPeTLYq.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["Urdu"],
+      "quality": ["720p"],
+      "date": "2025-08-26"
+    }
+  ],
+  "movies": [
+    {
+      "title": "Ordinary Angels",
+      "poster": "https://i.ibb.co/7xkmZ6ww/Tik-Video-App-7546663346980850966-6.jpg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["English"],
+      "quality": ["4k"],
+      "date": "2025-08-15"
+    },
+    {
+      "title": "Ordinary Angels",
+      "poster": "https://i.ibb.co/7xkmZ6ww/Tik-Video-App-7546663346980850966-6.jpg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["English"],
+      "quality": ["4k"],
+      "date": "2025-08-15"
+    },
+    {
+      "title": "Ordinary Angels",
+      "poster": "https://i.ibb.co/7xkmZ6ww/Tik-Video-App-7546663346980850966-6.jpg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["English"],
+      "quality": ["4k"],
+      "date": "2025-08-15"
+    },
+    {
+      "title": "Ordinary Angels",
+      "poster": "https://i.ibb.co/7xkmZ6ww/Tik-Video-App-7546663346980850966-6.jpg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["English"],
+      "quality": ["4k"],
+      "date": "2025-08-15"
+    }
+  ],
+  "webseries": [
+    {
+      "title": "Dhumketu",
+      "poster": "https://i.imgur.com/wmRNvPj.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["Bangla"],
+      "quality": ["720p"],
+      "date": "2025-08-17"
+    },
+    {
+      "title": "Dhumketu",
+      "poster": "https://i.imgur.com/wmRNvPj.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["Bangla"],
+      "quality": ["720p"],
+      "date": "2025-08-17"
+    },
+    {
+      "title": "Dhumketu",
+      "poster": "https://i.imgur.com/wmRNvPj.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["Bangla"],
+      "quality": ["720p"],
+      "date": "2025-08-17"
+    },
+    {
+      "title": "Dhumketu",
+      "poster": "https://i.imgur.com/wmRNvPj.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["Bangla"],
+      "quality": ["720p"],
+      "date": "2025-08-17"
+    }
+  ],
+  "drama": [
+    {
+      "title": "Dhumketu",
+      "poster": "https://i.imgur.com/wmRNvPj.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["Bangla"],
+      "quality": ["720p"],
+      "date": "2025-08-17"
+    },
+    {
+      "title": "Dhumketu",
+      "poster": "https://i.imgur.com/wmRNvPj.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["Bangla"],
+      "quality": ["720p"],
+      "date": "2025-08-17"
+    },
+    {
+      "title": "Dhumketu",
+      "poster": "https://i.imgur.com/wmRNvPj.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["Bangla"],
+      "quality": ["720p"],
+      "date": "2025-08-17"
+    },
+    {
+      "title": "Dhumketu",
+      "poster": "https://i.imgur.com/wmRNvPj.jpeg",
+      "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "lang": ["Bangla"],
+      "quality": ["720p"],
+      "date": "2025-08-17"
+    }
+  ],
