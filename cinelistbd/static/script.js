@@ -68,6 +68,8 @@ function renderSection(section, movies, paginated = false) {
   }
 }
 
+${m.watch ? `<a href="${m.watch}" target="_blank" class="watch-btn">▶ Watch Movie</a>` : ""}
+
 function setupSeeMoreButtons() {
   document.querySelectorAll('.see-more-btn').forEach(btn => {
     btn.addEventListener('click', () => {
