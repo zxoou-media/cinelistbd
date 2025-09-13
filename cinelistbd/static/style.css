@@ -1,4 +1,4 @@
-/* ===== Base styles ===== */
+/* ===== Base Styles ===== */
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   background: #f0f0f0;
@@ -53,7 +53,9 @@ nav a:hover {
   flex-wrap: wrap;
   margin-top: 10px;
   padding: 0 16px;
-  box-sizing: border-box;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #search-box {
@@ -78,46 +80,45 @@ nav a:hover {
   transition: all 0.3s ease;
   white-space: nowrap;
 }
-
 #theme-toggle:hover {
   background-color: #444;
   border-color: #666;
 }
-
-.filter-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* ✅ 3 items per row */
-  gap: 10px;
-  padding: 0 12px;
-  margin-top: 12px;
-  box-sizing: border-box;
+body.dark #theme-toggle {
+  background-color: #00A33D;
 }
 
+/* ===== Filter Buttons ===== */
+.filter-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 0 16px;
+  margin-top: 12px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .filter-row select {
   appearance: none;
   background-color: #ffffff;
   color: #333;
   border: 1px solid #ccc;
-  border-radius: 12px;             /* ✅ Rounded like home button */
+  border-radius: 12px;
   padding: 10px 12px;
   font-size: 13px;
   font-weight: 600;
   text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* ✅ Button-like depth */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   cursor: pointer;
   transition: all 0.3s ease;
   width: 100%;
-  box-sizing: border-box;
+  min-width: 0;
 }
-
 .filter-row select:hover {
   background-color: #f0f0f0;
   border-color: #999;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-
-body.dark #theme-toggle {
-  background-color: #00A33D;
 }
 
 /* ===== Section Heading ===== */
@@ -141,7 +142,6 @@ body.dark #theme-toggle {
 }
 body.dark .section-heading-wrapper h2 {
   background-color: #008000;
-  color: #fff;
 }
 body.dark .section-heading-wrapper h2:hover {
   background-color: #aa0000;
@@ -193,7 +193,7 @@ body.dark .section-heading-wrapper h2:hover {
   }
 }
 
-/* ===== Card Styles ===== */
+/* ===== Cards ===== */
 .recent-card, .latest-card, .movies-card, .webseries-card, .drama-card {
   background: #fff;
   padding: 15px;
@@ -206,7 +206,7 @@ body.dark .section-heading-wrapper h2:hover {
   transform: scale(1.02);
 }
 
-/* ===== Poster Styling ===== */
+/* ===== Poster ===== */
 .poster {
   width: 100%;
   height: auto;
@@ -219,6 +219,25 @@ body.dark .section-heading-wrapper h2:hover {
 }
 .poster:hover {
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.poster-frame {
+  width: 100%;
+  height: 300px;
+  background-color: #ddd;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}
+body.dark .poster-frame {
+  background-color: #333;
+  color: #aaa;
+  box-shadow: inset 0 0 10px rgba(255,255,255,0.05);
 }
 
 /* ===== Buttons ===== */
@@ -298,7 +317,7 @@ footer {
   margin-top: 20px;
 }
 
-/* ===== Dark Mode ===== */
+/* ===== Dark Mode Overrides ===== */
 body.dark {
   background-color: #121212;
   color: #f0f0f0;
@@ -367,26 +386,6 @@ body.dark .movies-card p,
 body.dark .webseries-card p,
 body.dark .drama-card p {
   color: #ccc;
-}
-
-.poster-frame {
-  width: 100%;
-  height: 300px;
-  background-color: #ddd;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  color: #666;
-  font-style: italic;
-}
-body.dark .poster-frame {
-  background-color: #333;
-  color: #aaa;
-  box-shadow: inset 0 0 10px rgba(255,255,255,0.05);
 }
 
 /* ===== Pagination ===== */
@@ -461,36 +460,17 @@ section[style*="display: block"] {
   }
 
   .filter-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* ✅ 3 items per row */
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     padding: 0 16px;
     margin-top: 12px;
-    box-sizing: border-box;
   }
 
   .filter-row select {
-    appearance: none;
-    background-color: #ffffff;
-    color: #333;
-    border: 1px solid #ccc;
-    border-radius: 12px;             /* ✅ Rounded like home button */
-    padding: 8px 10px;
     font-size: 13px;
-    font-weight: 600;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-    box-sizing: border-box;
+    padding: 8px 10px;
   }
 
-  .filter-row select:hover {
-    background-color: #f0f0f0;
-    border-color: #999;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  }
   .see-more-btn {
     font-size: 15px;
     padding: 10px 18px;
@@ -513,7 +493,7 @@ section[style*="display: block"] {
   }
 
   .filter-row {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* ✅ Auto-wrap */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 8px;
   }
 
