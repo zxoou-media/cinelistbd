@@ -135,6 +135,7 @@
   </header>
 
 <main>
+  <!-- 🔥 TRENDING -->
   <section id="trending">
     <div class="section-heading-wrapper">
       <h2>🔥 TRENDING</h2>
@@ -142,12 +143,13 @@
     <div id="trending-scroll" class="scroll-row"></div>
   </section>
 
+  <!-- 🔘 External Buttons -->
   <div class="app-buttons">
     <a href="https://www.youtube.com" target="_blank" class="app-btn">📺 YouTube</a>
     <a href="https://www.tiktok.com" target="_blank" class="app-btn">🎵 TikTok</a>
   </div>
 
-  <!-- RECENT -->
+  <!-- 🆕 RECENT -->
   <section id="recent">
     <div class="section-heading-wrapper">
       <h2>🆕 RECENTLY UPDATED</h2>
@@ -158,7 +160,7 @@
     </div>
   </section>
 
-  <!-- LATEST -->
+  <!-- 🎬 LATEST -->
   <section id="latest">
     <div class="section-heading-wrapper">
       <h2>Latest Movies</h2>
@@ -169,7 +171,7 @@
     </div>
   </section>
 
-  <!-- MOVIES -->
+  <!-- 🎥 MOVIES -->
   <section id="movies">
     <div class="section-heading-wrapper">
       <h2>Most Popular Movies</h2>
@@ -180,7 +182,7 @@
     </div>
   </section>
 
-  <!-- WEBSERIES -->
+  <!-- 📺 WEBSERIES -->
   <section id="webseries">
     <div class="section-heading-wrapper">
       <h2>Most Popular Web Series</h2>
@@ -191,7 +193,7 @@
     </div>
   </section>
 
-  <!-- DRAMA -->
+  <!-- 🎭 DRAMA -->
   <section id="drama">
     <div class="section-heading-wrapper">
       <h2>Most Popular Drama</h2>
@@ -201,6 +203,24 @@
       <button class="see-more-btn" data-section="drama">See More</button>
     </div>
   </section>
+
+  <!-- 🔁 Pagination -->
+  <div class="pagination">
+    {% if current_page > 1 %}
+      <a href="{{ url_for('section_page', page=current_page - 1) }}" class="page-btn">Previous</a>
+    {% endif %}
+
+    {% for page_num in page_range %}
+      <a href="{{ url_for('section_page', page=page_num) }}"
+         class="page-btn {% if page_num == current_page %}active{% endif %}">
+         {{ page_num }}
+      </a>
+    {% endfor %}
+
+    {% if current_page < total_pages %}
+      <a href="{{ url_for('section_page', page=current_page + 1) }}" class="page-btn">Next</a>
+    {% endif %}
+  </div>
 </main>
 
   <footer>
