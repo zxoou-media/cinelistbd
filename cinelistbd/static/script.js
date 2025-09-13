@@ -55,7 +55,7 @@ function renderSection(section, movies, paginated = false) {
       ${m.date ? `<p>Release: ${m.date}</p>` : ""}
       ${Array.isArray(m.lang) ? `<p>Language: ${m.lang.join(', ')}</p>` : ""}
       ${Array.isArray(m.quality) ? `<p>Quality: ${m.quality.join(', ')}</p>` : ""}
-${m.watch ? `<a href="${m.watch}" target="_blank" class="watch-btn">▶ Watch Movie</a>` : ""}
+${m.trailer ? `<a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Movie</a>` : ""}
     `;
     container.appendChild(card);
   });
