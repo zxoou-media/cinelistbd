@@ -356,6 +356,26 @@ body.dark .drama-card p {
   color: #ccc;
 }
 
+.poster-frame {
+  width: 100%;
+  height: 300px;
+  background-color: #ddd;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}
+body.dark .poster-frame {
+  background-color: #333;
+  color: #aaa;
+  box-shadow: inset 0 0 10px rgba(255,255,255,0.05);
+}
+
 /* ===== Pagination ===== */
 .pagination {
   display: flex;
