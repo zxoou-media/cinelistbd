@@ -18,7 +18,16 @@ def home():
             "movies": data.get(key, [])
         })
 
-    return render_template("index.html", sections=sections, current_page=1, total_pages=1, page_range=[1])
+    # ✅ Calculate pagination info for other sections
+    all_keys = [k for k in data.keys() if k not in home_sections]
+    total_pages = (len(all_keys) + 2) // 3
+    page_range = list(range(1, total_pages + 1))
+
+    return render_template("index.html",
+                           sections=sections,
+                           current_page=1,
+                           total_pages=total_pages,
+                           page_range=page_range)
 
 @app.route('/sections/<int:page>')
 def section_page(page):
@@ -41,7 +50,11 @@ def section_page(page):
 
     page_range = list(range(max(1, page - 2), min(total_pages, page + 2) + 1))
 
-    return render_template("index.html", sections=sections, current_page=page, total_pages=total_pages, page_range=page_range)
+    return render_template("index.html",
+                           sections=sections,
+                           current_page=page,
+                           total_pages=total_pages,
+                           page_range=page_range)
 
 @app.route('/api/movies')
 def movies_api():
