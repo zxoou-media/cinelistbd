@@ -8,15 +8,6 @@ const sectionStates = {
   drama: 0
 };
 
-const sectionMap = {
-  trending: 'trending-scroll',
-  recent: 'recent-list',
-  latest: 'latest-list',
-  movies: 'popularmovies-list',
-  webseries: 'popularwebseries-list',
-  drama: 'populardrama-list'
-};
-
 // 🔹 Load section from backend
 async function loadSection(section) {
   try {
@@ -46,13 +37,13 @@ async function loadMore(section) {
 
 // 🔹 Poster fallback
 function getPosterPath(m) {
-  if (!m.poster) return '/img/default.jpg';
+  if (!m.poster || m.poster.trim() === "") return null;
   return m.poster.startsWith('http') ? m.poster : `/img/${m.poster}`;
 }
 
 // 🔹 Render section
 function renderSection(section, movies, paginated = false) {
-  const container = document.getElementById(sectionMap[section]);
+  const container = document.getElementById(`${section}-list`);
   if (!container) return;
   if (!paginated) container.innerHTML = '';
 
@@ -66,7 +57,7 @@ function renderSection(section, movies, paginated = false) {
     const posterPath = getPosterPath(m);
     card.innerHTML = `
       <a href="${m.trailer}" target="_blank">
-        <img src="${posterPath}" alt="${m.title}" class="poster" />
+        ${posterPath ? `<img src="${posterPath}" alt="${m.title}" class="poster" />` : `<div class="poster-frame">No Poster</div>`}
       </a>
       <h3>${m.title}</h3>
       ${m.sequel ? `<p>Sequel: ${m.sequel}</p>` : ""}
@@ -134,19 +125,22 @@ function applyFilters() {
 
 // 🔹 Render filtered movies
 function renderMovies(filteredMovies) {
-  Object.keys(sectionMap).forEach(section => {
-    const container = document.getElementById(sectionMap[section]);
-    container.innerHTML = '';
-    sectionStates[section] = 0;
-    const wrapper = container.closest('section');
-    if (wrapper) wrapper.style.display = 'none';
+  const sections = Object.keys(sectionStates);
+  sections.forEach(section => {
+    const container = document.getElementById(`${section}-list`);
+    if (container) {
+      container.innerHTML = '';
+      sectionStates[section] = 0;
+      const wrapper = container.closest('section');
+      if (wrapper) wrapper.style.display = 'none';
+    }
   });
 
-  Object.keys(sectionStates).forEach(section => {
+  sections.forEach(section => {
     const movies = filteredMovies.filter(m => m.category === section);
     if (movies.length > 0) {
       renderSection(section, movies, true);
-      const container = document.getElementById(sectionMap[section]);
+      const container = document.getElementById(`${section}-list`);
       const wrapper = container.closest('section');
       if (wrapper) wrapper.style.display = 'block';
     }
@@ -179,7 +173,7 @@ function setupDarkModeToggle() {
 
 // 🔹 Auto-scroll for trending
 function autoScrollTrending() {
-  const trending = document.getElementById('trending-scroll');
+  const trending = document.getElementById('trending-list');
   let index = 0;
   let isUserScrolling = false;
   let scrollTimeout;
@@ -209,10 +203,10 @@ function autoScrollTrending() {
     }, 150);
   });
 
-  setInterval(scrollToCard}, 3000); // 🔁 Auto-scroll every 3 seconds
+  setInterval(scrollToCard, 3000);
 }
 
-// 🔹 Initialize everything on page load
+// 🔹 Initialize everything on page
 document.addEventListener('DOMContentLoaded', () => {
   loadMovies();                  // 🔁 Load all sections
   setupSeeMoreButtons();        // 🔘 See More button logic
