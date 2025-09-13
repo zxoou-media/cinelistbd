@@ -202,5 +202,15 @@
       "quality": ["720p"],
       "date": "2025-08-17"
     }
-  ]
+  ],
+  "banglamovies": [
+  {
+    "title": "Poran",
+    "poster": "https://i.imgur.com/poran.jpg",
+    "trailer": "https://youtu.be/porantrailer",
+    "lang": ["Bangla"],
+    "quality": ["1080p"],
+    "date": "2025-08-20"
+  }
+]
 }
