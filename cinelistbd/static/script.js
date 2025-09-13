@@ -55,6 +55,7 @@ function renderSection(section, movies, paginated = false) {
       ${m.date ? `<p>Release: ${m.date}</p>` : ""}
       ${Array.isArray(m.lang) ? `<p>Language: ${m.lang.join(', ')}</p>` : ""}
       ${Array.isArray(m.quality) ? `<p>Quality: ${m.quality.join(', ')}</p>` : ""}
+${m.watch ? `<a href="${m.watch}" target="_blank" class="watch-btn">▶ Watch Movie</a>` : ""}
     `;
     container.appendChild(card);
   });
@@ -67,8 +68,6 @@ function renderSection(section, movies, paginated = false) {
     }
   }
 }
-
-${m.watch ? `<a href="${m.watch}" target="_blank" class="watch-btn">▶ Watch Movie</a>` : ""}
 
 function setupSeeMoreButtons() {
   document.querySelectorAll('.see-more-btn').forEach(btn => {
