@@ -1,6 +1,6 @@
 let allMovies = [];
-
 const sectionStates = {
+  trending: 0,
   recent: 0,
   latest: 0,
   movies: 0,
@@ -17,46 +17,48 @@ const sectionMap = {
   drama: 'populardrama-list'
 };
 
-async function loadMovies() {
+// 🔹 Load section from backend
+async function loadSection(section) {
   try {
-    const res = await fetch('/api/movies');
+    const res = await fetch(`/api/movies?section=${section}&offset=0&limit=20`);
     const data = await res.json();
-
-    const trending = data.trending.map(m => ({ ...m, category: 'trending' }));
-    const recent = data.recent.map(m => ({ ...m, category: 'recent' }));
-    const latest = data.latest.map(m => ({ ...m, category: 'latest' }));
-    const movies = data.movies.map(m => ({ ...m, category: 'movies' }));
-    const webseries = data.webseries.map(m => ({ ...m, category: 'webseries' }));
-    const drama = data.drama.map(m => ({ ...m, category: 'drama' }));
-
-    allMovies = [...trending, ...recent, ...latest, ...movies, ...webseries, ...drama];
-    renderInitialMovies();
+    const movies = data.movies.map(m => ({ ...m, category: section }));
+    allMovies = [...allMovies, ...movies];
+    renderSection(section, movies, true);
   } catch (err) {
-    console.error("Failed to load movies:", err);
+    console.error(`Failed to load ${section}:`, err);
   }
 }
 
-function renderInitialMovies() {
-  renderSection('trending', allMovies.filter(m => m.category === 'trending'));
-  ['recent', 'latest', 'movies', 'webseries', 'drama'].forEach(section => {
-    renderSection(section, allMovies.filter(m => m.category === section), true);
-  });
+// 🔹 Load more on See More click
+async function loadMore(section) {
+  const offset = sectionStates[section] * 20;
+  try {
+    const res = await fetch(`/api/movies?section=${section}&offset=${offset}&limit=20`);
+    const data = await res.json();
+    const movies = data.movies.map(m => ({ ...m, category: section }));
+    allMovies = [...allMovies, ...movies];
+    renderSection(section, movies, true);
+  } catch (err) {
+    console.error(`Failed to load more ${section}:`, err);
+  }
 }
 
+// 🔹 Poster fallback
 function getPosterPath(m) {
   if (!m.poster) return '/img/default.jpg';
   return m.poster.startsWith('http') ? m.poster : `/img/${m.poster}`;
 }
 
+// 🔹 Render section
 function renderSection(section, movies, paginated = false) {
   const container = document.getElementById(sectionMap[section]);
   if (!container) return;
-
   if (!paginated) container.innerHTML = '';
 
   const start = sectionStates[section] * 20;
   const end = start + 20;
-  const slice = paginated ? movies.slice(start, end) : movies;
+  const slice = paginated ? movies.slice(0, 20) : movies;
 
   slice.forEach(m => {
     const card = document.createElement('div');
@@ -69,18 +71,18 @@ function renderSection(section, movies, paginated = false) {
       <h3>${m.title}</h3>
       ${m.sequel ? `<p>Sequel: ${m.sequel}</p>` : ""}
       ${m.episode && Array.isArray(m.type) && m.type.includes("Web Series") ? `<p>Episode: ${m.episode}</p>` : ""}
-      ${Array.isArray(m.genre) && m.genre.length ? `<p>Genre: ${m.genre.join(', ')}</p>` : ""}
-      ${Array.isArray(m.lang) && m.lang.length ? `<p>Language: ${m.lang.join(', ')}</p>` : ""}
-      ${Array.isArray(m.country) && m.country.length ? `<p>Country: ${m.country.join(', ')}</p>` : ""}
-      ${Array.isArray(m.type) && m.type.length ? `<p>Type: ${m.type.join(', ')}</p>` : ""}
-      ${Array.isArray(m.actors) && m.actors.length ? `<p>Actors: ${m.actors.join(', ')}</p>` : ""}
-      ${Array.isArray(m.directors) && m.directors.length ? `<p>Directors: ${m.directors.join(', ')}</p>` : ""}
+      ${Array.isArray(m.genre) ? `<p>Genre: ${m.genre.join(', ')}</p>` : ""}
+      ${Array.isArray(m.lang) ? `<p>Language: ${m.lang.join(', ')}</p>` : ""}
+      ${Array.isArray(m.country) ? `<p>Country: ${m.country.join(', ')}</p>` : ""}
+      ${Array.isArray(m.type) ? `<p>Type: ${m.type.join(', ')}</p>` : ""}
+      ${Array.isArray(m.actors) ? `<p>Actors: ${m.actors.join(', ')}</p>` : ""}
+      ${Array.isArray(m.directors) ? `<p>Directors: ${m.directors.join(', ')}</p>` : ""}
       ${m.runtime ? `<p>Runtime: ${m.runtime}</p>` : ""}
       ${m.date ? `<p>Release: ${m.date}</p>` : ""}
-      ${Array.isArray(m.quality) && m.quality.length ? `<p>Quality: ${m.quality.join(', ')}</p>` : ""}
+      ${Array.isArray(m.quality) ? `<p>Quality: ${m.quality.join(', ')}</p>` : ""}
       ${m.imdb ? `<p>IMDb Rating: ${m.imdb}</p>` : ""}
       ${m.tmdb ? `<p>TMDb Rating: ${m.tmdb}</p>` : ""}
-      ${Array.isArray(m.platform) && m.platform.length ? `<p>Platform: ${m.platform.join(', ')}</p>` : ""}
+      ${Array.isArray(m.platform) ? `<p>Platform: ${m.platform.join(', ')}</p>` : ""}
       ${m.trailer ? `<a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Trailer</a>` : ""}
     `;
     container.appendChild(card);
@@ -95,16 +97,17 @@ function renderSection(section, movies, paginated = false) {
   }
 }
 
+// 🔹 Setup See More buttons
 function setupSeeMoreButtons() {
   document.querySelectorAll('.see-more-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const section = btn.getAttribute('data-section');
-      const movies = allMovies.filter(m => m.category === section);
-      renderSection(section, movies, true);
+      loadMore(section);
     });
   });
 }
 
+// 🔹 Filtering
 function applyFilters() {
   const searchText = document.getElementById("search-box").value.toLowerCase();
   const section = document.getElementById("section-filter").value;
@@ -117,43 +120,24 @@ function applyFilters() {
   const filtered = allMovies.filter(movie => {
     const matchesSearch = movie.title.toLowerCase().includes(searchText);
     const matchesSection = !section || movie.category === section;
-    const matchesPlatform = !platform || (
-      Array.isArray(movie.platform) ? movie.platform.includes(platform) : movie.platform === platform
-    );
-    const matchesGenre = !genre || (
-      Array.isArray(movie.genre) ? movie.genre.includes(genre) : movie.genre === genre
-    );
-    const matchesLang = !lang || (
-      Array.isArray(movie.lang) ? movie.lang.includes(lang) : movie.lang === lang
-    );
-    const matchesType = !type || (
-      Array.isArray(movie.type) ? movie.type.includes(type) : movie.type === type
-    );
-    const matchesQuality = !quality || (
-      Array.isArray(movie.quality) ? movie.quality.includes(quality) : movie.quality === quality
-    );
+    const matchesPlatform = !platform || (Array.isArray(movie.platform) ? movie.platform.includes(platform) : movie.platform === platform);
+    const matchesGenre = !genre || (Array.isArray(movie.genre) ? movie.genre.includes(genre) : movie.genre === genre);
+    const matchesLang = !lang || (Array.isArray(movie.lang) ? movie.lang.includes(lang) : movie.lang === lang);
+    const matchesType = !type || (Array.isArray(movie.type) ? movie.type.includes(type) : movie.type === type);
+    const matchesQuality = !quality || (Array.isArray(movie.quality) ? movie.quality.includes(quality) : movie.quality === quality);
 
-    return (
-      matchesSearch &&
-      matchesSection &&
-      matchesPlatform &&
-      matchesGenre &&
-      matchesLang &&
-      matchesType &&
-      matchesQuality
-    );
+    return matchesSearch && matchesSection && matchesPlatform && matchesGenre && matchesLang && matchesType && matchesQuality;
   });
 
   renderMovies(filtered);
 }
 
+// 🔹 Render filtered movies
 function renderMovies(filteredMovies) {
   Object.keys(sectionMap).forEach(section => {
     const container = document.getElementById(sectionMap[section]);
     container.innerHTML = '';
     sectionStates[section] = 0;
-
-    // Hide section wrapper initially
     const wrapper = container.closest('section');
     if (wrapper) wrapper.style.display = 'none';
   });
@@ -162,8 +146,6 @@ function renderMovies(filteredMovies) {
     const movies = filteredMovies.filter(m => m.category === section);
     if (movies.length > 0) {
       renderSection(section, movies, true);
-
-      // Show section wrapper only if movies exist
       const container = document.getElementById(sectionMap[section]);
       const wrapper = container.closest('section');
       if (wrapper) wrapper.style.display = 'block';
@@ -171,6 +153,7 @@ function renderMovies(filteredMovies) {
   });
 }
 
+// 🔹 Filter listeners
 function setupFilterListeners() {
   const filterIds = [
     'search-box',
@@ -181,12 +164,12 @@ function setupFilterListeners() {
     'type-filter',
     'quality-filter'
   ];
-
   filterIds.forEach(id => {
     document.getElementById(id).addEventListener('input', applyFilters);
   });
 }
 
+// 🔹 Dark mode toggle
 function setupDarkModeToggle() {
   const toggleBtn = document.getElementById('theme-toggle');
   toggleBtn.addEventListener('click', () => {
@@ -194,6 +177,7 @@ function setupDarkModeToggle() {
   });
 }
 
+// 🔹 Auto-scroll for trending
 function autoScrollTrending() {
   const trending = document.getElementById('trending-scroll');
   let index = 0;
@@ -203,7 +187,6 @@ function autoScrollTrending() {
   function scrollToCard() {
     const cards = trending.querySelectorAll('.trending-card');
     if (cards.length === 0 || isUserScrolling) return;
-
     index = (index + 1) % cards.length;
     const scrollTo = cards[index].offsetLeft;
     trending.scrollTo({ left: scrollTo, behavior: 'smooth' });
@@ -212,15 +195,12 @@ function autoScrollTrending() {
   trending.addEventListener('scroll', () => {
     isUserScrolling = true;
     clearTimeout(scrollTimeout);
-
     scrollTimeout = setTimeout(() => {
       isUserScrolling = false;
-
       const cards = trending.querySelectorAll('.trending-card');
       for (let i = 0; i < cards.length; i++) {
         const cardLeft = cards[i].offsetLeft;
         const scrollLeft = trending.scrollLeft;
-
         if (cardLeft >= scrollLeft) {
           index = i - 1 >= 0 ? i - 1 : 0;
           break;
@@ -229,14 +209,14 @@ function autoScrollTrending() {
     }, 150);
   });
 
-  setInterval(scrollToCard, 3000);
+  setInterval(scrollToCard}, 3000); // 🔁 Auto-scroll every 3 seconds
 }
 
-// Initialize everything
+// 🔹 Initialize everything on page load
 document.addEventListener('DOMContentLoaded', () => {
-  loadMovies();
-  setupSeeMoreButtons();
-  setupFilterListeners();
-  setupDarkModeToggle();
-  autoScrollTrending();
+  loadMovies();                  // 🔁 Load all sections
+  setupSeeMoreButtons();        // 🔘 See More button logic
+  setupFilterListeners();       // 🎛️ Filter system
+  setupDarkModeToggle();        // 🌙 Dark mode toggle
+  autoScrollTrending();         // 🔄 Trending auto-scroll
 });
