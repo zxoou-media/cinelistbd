@@ -154,22 +154,24 @@
     <a href="https://www.tiktok.com" target="_blank" class="app-btn">🎵 TikTok</a>
   </div>
 
-  {% if total_pages > 1 %}
+{% if total_pages > 1 %}
   <div class="pagination">
     {% if current_page > 1 %}
       <a href="{{ url_for('section_page', page=current_page - 1) }}" class="page-btn">Previous</a>
     {% endif %}
+
     {% for page_num in page_range %}
       <a href="{{ url_for('section_page', page=page_num) }}"
          class="page-btn {% if page_num == current_page %}active{% endif %}">
          {{ page_num }}
       </a>
     {% endfor %}
+
     {% if current_page < total_pages %}
       <a href="{{ url_for('section_page', page=current_page + 1) }}" class="page-btn">Next</a>
     {% endif %}
   </div>
-  {% endif %}
+{% endif %}
 </main>
 
   <footer>
