@@ -38,16 +38,24 @@
       "title": "Bachelor Point S5",
       "poster": "https://i.imgur.com/qkm8Pml.jpeg",
       "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "sequel": "2",
+      "genre": ["Crime", "Drama"],
+      "type": ["Movie"],
       "lang": ["Bangla"],
       "quality": ["720p"],
+      "platform": ["Chorki"],
       "date": "2025-08-26"
     },
     {
       "title": "Bachelor Point S5",
       "poster": "https://i.imgur.com/qkm8Pml.jpeg",
       "trailer": "https://youtu.be/tve6oq8otbg?si=oT9B0F7swFmo-Q9d",
+      "episode": "1-10",
+      "genre": ["Horror", "Thriller"],
+      "type": ["Web Series"],
       "lang": ["Bangla"],
       "quality": ["720p"],
+      "platform": ["Bongo"],
       "date": "2025-08-26"
     },
     {
