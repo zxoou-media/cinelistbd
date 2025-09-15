@@ -5,7 +5,10 @@ const sectionStates = {
 };
 
 function getPosterPath(m) {
-  if (!m.poster || m.poster.trim() === "") return null;
+  return m.poster && m.poster.trim() !== ""
+    ? m.poster
+    : '/img/fallback.jpg';
+}
   return m.poster.startsWith('http') ? m.poster : `/img/${m.poster}`;
 }
 
