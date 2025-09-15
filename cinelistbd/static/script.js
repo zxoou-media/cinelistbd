@@ -52,9 +52,14 @@ function renderSection(section, movies, paginated = false) {
         ${posterPath ? `<img src="${posterPath}" alt="${m.title}" class="poster" />` : `<div class="poster-frame">No Poster</div>`}
       </a>
       <h3>${m.title}</h3>
-      ${m.date ? `<p>Release: ${m.date}</p>` : ""}
+      ${m.sequel ? `<p>Sequel: ${m.sequel}</p>` : ""}
+      ${m.episode && Array.isArray(m.type) && m.type.includes("Web Series") ? `<p>Episode: ${m.episode}</p>` : ""}
+      ${Array.isArray(m.genre) && m.genre.length ? `<p>Genre: ${m.genre.join(', ')}</p>` : ""}
+      ${Array.isArray(m.type) && m.type.length ? `<p>Type: ${m.type.join(', ')}</p>` : ""}
       ${Array.isArray(m.lang) ? `<p>Language: ${m.lang.join(', ')}</p>` : ""}
       ${Array.isArray(m.quality) ? `<p>Quality: ${m.quality.join(', ')}</p>` : ""}
+      ${Array.isArray(m.platform) && m.platform.length ? `<p>Platform: ${m.platform.join(', ')}</p>` : ""}
+      ${m.date ? `<p>Release: ${m.date}</p>` : ""}
       ${m.trailer ? `<a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Movie</a>` : ""}
     `;
     container.appendChild(card);
@@ -231,9 +236,14 @@ function renderSearchResults() {
         ${posterPath ? `<img src="${posterPath}" alt="${m.title}" class="poster" />` : `<div class="poster-frame">No Poster</div>`}
       </a>
       <h3>${m.title}</h3>
-      ${m.date ? `<p>Release: ${m.date}</p>` : ""}
+      ${m.sequel ? `<p>Sequel: ${m.sequel}</p>` : ""}
+      ${m.episode && Array.isArray(m.type) && m.type.includes("Web Series") ? `<p>Episode: ${m.episode}</p>` : ""}
+      ${Array.isArray(m.genre) && m.genre.length ? `<p>Genre: ${m.genre.join(', ')}</p>` : ""}
+      ${Array.isArray(m.type) && m.type.length ? `<p>Type: ${m.type.join(', ')}</p>` : ""}
       ${Array.isArray(m.lang) ? `<p>Language: ${m.lang.join(', ')}</p>` : ""}
       ${Array.isArray(m.quality) ? `<p>Quality: ${m.quality.join(', ')}</p>` : ""}
+      ${Array.isArray(m.platform) && m.platform.length ? `<p>Platform: ${m.platform.join(', ')}</p>` : ""}
+      ${m.date ? `<p>Release: ${m.date}</p>` : ""}
       ${m.trailer ? `<a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Movie</a>` : ""}
     `;
     searchResultsList.appendChild(card);
@@ -288,9 +298,14 @@ function renderFilterResults() {
         ${posterPath ? `<img src="${posterPath}" alt="${m.title}" class="poster" />` : `<div class="poster-frame">No Poster</div>`}
       </a>
       <h3>${m.title}</h3>
-      ${m.date ? `<p>Release: ${m.date}</p>` : ""}
+      ${m.sequel ? `<p>Sequel: ${m.sequel}</p>` : ""}
+      ${m.episode && Array.isArray(m.type) && m.type.includes("Web Series") ? `<p>Episode: ${m.episode}</p>` : ""}
+      ${Array.isArray(m.genre) && m.genre.length ? `<p>Genre: ${m.genre.join(', ')}</p>` : ""}
+      ${Array.isArray(m.type) && m.type.length ? `<p>Type: ${m.type.join(', ')}</p>` : ""}
       ${Array.isArray(m.lang) ? `<p>Language: ${m.lang.join(', ')}</p>` : ""}
       ${Array.isArray(m.quality) ? `<p>Quality: ${m.quality.join(', ')}</p>` : ""}
+      ${Array.isArray(m.platform) && m.platform.length ? `<p>Platform: ${m.platform.join(', ')}</p>` : ""}
+      ${m.date ? `<p>Release: ${m.date}</p>` : ""}
       ${m.trailer ? `<a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Movie</a>` : ""}
     `;
     filterResultsList.appendChild(card);
