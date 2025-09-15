@@ -208,8 +208,9 @@ function renderMovies(filteredMovies) {
       container.innerHTML = '';
       sectionStates[section] = 0;
       const wrapper = container.closest('section');
-      if (wrapper) wrapper.style.display = 'none';
-    }
+      if (wrapper) {
+  wrapper.style.display = 'block';
+}
   });
 
   sections.forEach(section => {
@@ -263,6 +264,9 @@ function setupDarkModeToggle() {
 // 🔁 Auto Scroll for Trending
 function autoScrollTrending() {
   const trending = document.getElementById('trending-list');
+  if (!trending) return; // ✅ Prevent error if element not found
+  ...
+}
   let index = 0;
   let isUserScrolling = false;
   let scrollTimeout;
