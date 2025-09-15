@@ -34,6 +34,28 @@ async function loadMore(section) {
   }
 }
 
+function createMovieCard(m) {
+  const card = document.createElement('div');
+  card.className = 'trending-card';
+  const posterPath = getPosterPath(m);
+  card.innerHTML = `
+    <a href="${m.trailer}" target="_blank">
+      ${posterPath ? `<img src="${posterPath}" alt="${m.title}" class="poster" />` : `<div class="poster-frame">No Poster</div>`}
+    </a>
+    <h3>${m.title}</h3>
+    ${m.sequel ? `<p>Sequel: ${m.sequel}</p>` : ""}
+    ${m.episode && Array.isArray(m.type) && m.type.includes("Web Series") ? `<p>Episode: ${m.episode}</p>` : ""}
+    ${Array.isArray(m.genre) && m.genre.length ? `<p>Genre: ${m.genre.join(', ')}</p>` : ""}
+    ${Array.isArray(m.type) && m.type.length ? `<p>Type: ${m.type.join(', ')}</p>` : ""}
+    ${Array.isArray(m.lang) ? `<p>Language: ${m.lang.join(', ')}</p>` : ""}
+    ${Array.isArray(m.quality) ? `<p>Quality: ${m.quality.join(', ')}</p>` : ""}
+    ${Array.isArray(m.platform) && m.platform.length ? `<p>Platform: ${m.platform.join(', ')}</p>` : ""}
+    ${m.date ? `<p>Release: ${m.date}</p>` : ""}
+    ${m.trailer ? `<a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Movie</a>` : ""}
+  `;
+  return card;
+}
+
 function renderSection(section, movies, paginated = false) {
   const container = document.getElementById(`${section}-list`);
   if (!container) return;
@@ -44,24 +66,7 @@ function renderSection(section, movies, paginated = false) {
   const slice = paginated ? movies.slice(0, 20) : movies;
 
   slice.forEach(m => {
-    const card = document.createElement('div');
-    card.className = `${m.category}-card`;
-    const posterPath = getPosterPath(m);
-    card.innerHTML = `
-      <a href="${m.trailer}" target="_blank">
-        ${posterPath ? `<img src="${posterPath}" alt="${m.title}" class="poster" />` : `<div class="poster-frame">No Poster</div>`}
-      </a>
-      <h3>${m.title}</h3>
-      ${m.sequel ? `<p>Sequel: ${m.sequel}</p>` : ""}
-      ${m.episode && Array.isArray(m.type) && m.type.includes("Web Series") ? `<p>Episode: ${m.episode}</p>` : ""}
-      ${Array.isArray(m.genre) && m.genre.length ? `<p>Genre: ${m.genre.join(', ')}</p>` : ""}
-      ${Array.isArray(m.type) && m.type.length ? `<p>Type: ${m.type.join(', ')}</p>` : ""}
-      ${Array.isArray(m.lang) ? `<p>Language: ${m.lang.join(', ')}</p>` : ""}
-      ${Array.isArray(m.quality) ? `<p>Quality: ${m.quality.join(', ')}</p>` : ""}
-      ${Array.isArray(m.platform) && m.platform.length ? `<p>Platform: ${m.platform.join(', ')}</p>` : ""}
-      ${m.date ? `<p>Release: ${m.date}</p>` : ""}
-      ${m.trailer ? `<a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Movie</a>` : ""}
-    `;
+    const card = createMovieCard(m);
     container.appendChild(card);
   });
 
@@ -83,28 +88,94 @@ function setupSeeMoreButtons() {
   });
 }
 
+// 🔍 All Search Result
+const searchResultsList = document.getElementById('search-results-list');
+const searchResultsSection = document.getElementById('search-results-section');
+const seeMoreSearchBtn = document.getElementById('see-more-search');
+let searchFiltered = [];
+let searchIndex = 0;
+const searchPageSize = 20;
+
+function renderSearchResults() {
+  const slice = searchFiltered.slice(searchIndex, searchIndex + searchPageSize);
+  slice.forEach(m => {
+    const card = createMovieCard(m);
+    searchResultsList.appendChild(card);
+  });
+  searchIndex += searchPageSize;
+  seeMoreSearchBtn.style.display = searchIndex < searchFiltered.length ? 'block' : 'none';
+}
+
+seeMoreSearchBtn.addEventListener('click', renderSearchResults);
+
+// 🎛️ All Filter Result
+const filterResultsList = document.getElementById('filter-results-list');
+const filterResultsSection = document.getElementById('filter-results-section');
+const seeMoreFilterBtn = document.getElementById('see-more-filter');
+let filterFiltered = [];
+let filterIndex = 0;
+const filterPageSize = 20;
+
+function renderFilterResults() {
+  const slice = filterFiltered.slice(filterIndex, filterIndex + filterPageSize);
+  slice.forEach(m => {
+    const card = createMovieCard(m);
+    filterResultsList.appendChild(card);
+  });
+  filterIndex += filterPageSize;
+  seeMoreFilterBtn.style.display = filterIndex < filterFiltered.length ? 'block' : 'none';
+}
+
+seeMoreFilterBtn.addEventListener('click', renderFilterResults);
+
+// 🔁 Unified Filter Logic
 function applyFilters() {
-  const searchText = document.getElementById("search-box").value.toLowerCase();
+  const query = document.getElementById("search-box").value.toLowerCase().trim();
   const section = document.getElementById("section-filter").value;
-  const platform = document.getElementById("platform-filter").value;
-  const genre = document.getElementById("genre-filter").value;
-  const lang = document.getElementById("lang-filter").value;
-  const type = document.getElementById("type-filter").value;
-  const quality = document.getElementById("quality-filter").value;
+  const platform = document.getElementById("platform-filter").value.toLowerCase();
+  const genre = document.getElementById("genre-filter").value.toLowerCase();
+  const lang = document.getElementById("lang-filter").value.toLowerCase();
+  const type = document.getElementById("type-filter").value.toLowerCase();
+  const quality = document.getElementById("quality-filter").value.toLowerCase();
 
-  const filtered = allMovies.filter(movie => {
-    const matchesSearch = movie.title.toLowerCase().includes(searchText);
-    const matchesSection = !section || movie.category === section;
-    const matchesPlatform = !platform || (Array.isArray(movie.platform) ? movie.platform.includes(platform) : movie.platform === platform);
-    const matchesGenre = !genre || (Array.isArray(movie.genre) ? movie.genre.includes(genre) : movie.genre === genre);
-    const matchesLang = !lang || (Array.isArray(movie.lang) ? movie.lang.includes(lang) : movie.lang === lang);
-    const matchesType = !type || (Array.isArray(movie.type) ? movie.type.includes(type) : movie.type === type);
-    const matchesQuality = !quality || (Array.isArray(movie.quality) ? movie.quality.includes(quality) : movie.quality === quality);
+  const match = (field, value) => {
+    if (!value) return true;
+    if (!field) return false;
+    const str = Array.isArray(field) ? field.join(', ') : field.toString();
+    return str.toLowerCase().includes(value);
+  };
 
-    return matchesSearch && matchesSection && matchesPlatform && matchesGenre && matchesLang && matchesType && matchesQuality;
+  const filtered = allMovies.filter(m => {
+    return (
+      match(m.title, query) &&
+      (!section || m.category === section) &&
+      match(m.platform, platform) &&
+      match(m.genre, genre) &&
+      match(m.lang, lang) &&
+      match(m.type, type) &&
+      match(m.quality, quality)
+    );
   });
 
-  renderMovies(filtered);
+  if (query) {
+    searchFiltered = filtered;
+    searchIndex = 0;
+    searchResultsList.innerHTML = '';
+    searchResultsSection.style.display = filtered.length > 0 ? 'block' : 'none';
+    renderSearchResults();
+    filterResultsSection.style.display = 'none';
+  } else if (platform || genre || lang || type || quality) {
+    filterFiltered = filtered;
+    filterIndex = 0;
+    filterResultsList.innerHTML = '';
+    filterResultsSection.style.display = filtered.length > 0 ? 'block' : 'none';
+    renderFilterResults();
+    searchResultsSection.style.display = 'none';
+  } else {
+    searchResultsSection.style.display = 'none';
+    filterResultsSection.style.display = 'none';
+    renderMovies(filtered);
+  }
 }
 
 function renderMovies(filteredMovies) {
@@ -126,25 +197,39 @@ function renderMovies(filteredMovies) {
       const container = document.getElementById(`${section}-list`);
       const wrapper = container.closest('section');
       if (wrapper) wrapper.style.display = 'block';
-    }
+}
   });
 }
 
-function setupFilterListeners() {
-  const filterIds = [
-    'search-box',
-    'section-filter',
-    'platform-filter',
-    'genre-filter',
-    'lang-filter',
-    'type-filter',
-    'quality-filter'
-  ];
-  filterIds.forEach(id => {
-    document.getElementById(id).addEventListener('input', applyFilters);
-  });
-}
+// 🧭 Section Filter Logic
+document.getElementById('section-filter').addEventListener('change', () => {
+  const selected = document.getElementById('section-filter').value;
+  const allSections = Object.keys(sectionStates);
 
+  allSections.forEach(id => {
+    const section = document.getElementById(id);
+    if (section) section.style.display = 'none';
+  });
+
+  if (!selected || selected === '') {
+    const path = window.location.pathname;
+    let show = [];
+
+    if (path.includes('movies')) show = ['movies', 'latest', 'recent'];
+    else if (path.includes('webseries')) show = ['webseries', 'trending', 'recent'];
+    else show = ['trending', 'latest', 'recent'];
+
+    show.forEach(id => {
+      const section = document.getElementById(id);
+      if (section) section.style.display = 'block';
+    });
+  } else {
+    const section = document.getElementById(selected);
+    if (section) section.style.display = 'block';
+  }
+});
+
+// 🌙 Dark Mode Toggle
 function setupDarkModeToggle() {
   const toggleBtn = document.getElementById('theme-toggle');
   toggleBtn.addEventListener('click', () => {
@@ -152,6 +237,7 @@ function setupDarkModeToggle() {
   });
 }
 
+// 🔁 Auto Scroll for Trending
 function autoScrollTrending() {
   const trending = document.getElementById('trending-list');
   let index = 0;
@@ -186,169 +272,7 @@ function autoScrollTrending() {
   setInterval(scrollToCard, 3000);
 }
 
-// ✅ Injected: All Search Result Logic
-const searchResultsList = document.getElementById('search-results-list');
-const searchResultsSection = document.getElementById('search-results-section');
-const seeMoreSearchBtn = document.getElementById('see-more-search');
-
-let searchFiltered = [];
-let searchIndex = 0;
-const searchPageSize = 20;
-
-document.getElementById('search-box').addEventListener('input', () => {
-  const query = document.getElementById('search-box').value.toLowerCase().trim();
-  if (!query) {
-    searchResultsSection.style.display = 'none';
-    searchResultsList.innerHTML = '';
-    return;
-  }
-
-  searchFiltered = allMovies.filter(m => {
-    return (
-      m.title?.toLowerCase().includes(query) ||
-      m.platform?.toLowerCase().includes(query) ||
-      m.genre?.toLowerCase().includes(query) ||
-      m.lang?.toLowerCase().includes(query) ||
-      m.type?.toLowerCase().includes(query) ||
-      m.quality?.toLowerCase().includes(query) ||
-      m.country?.toLowerCase().includes(query) ||
-      m.date?.toLowerCase().includes(query) ||
-      m.year?.toString().includes(query)
-    );
-  });
-
-  searchIndex = 0;
-  searchResultsList.innerHTML = '';
-  searchResultsSection.style.display = 'block';
-  renderSearchResults();
-});
-
-seeMoreSearchBtn.addEventListener('click', renderSearchResults);
-
-function renderSearchResults() {
-  const slice = searchFiltered.slice(searchIndex, searchIndex + searchPageSize);
-  slice.forEach(m => {
-    const card = document.createElement('div');
-    card.className = 'trending-card';
-    const posterPath = getPosterPath(m);
-    card.innerHTML = `
-      <a href="${m.trailer}" target="_blank">
-        ${posterPath ? `<img src="${posterPath}" alt="${m.title}" class="poster" />` : `<div class="poster-frame">No Poster</div>`}
-      </a>
-      <h3>${m.title}</h3>
-      ${m.sequel ? `<p>Sequel: ${m.sequel}</p>` : ""}
-      ${m.episode && Array.isArray(m.type) && m.type.includes("Web Series") ? `<p>Episode: ${m.episode}</p>` : ""}
-      ${Array.isArray(m.genre) && m.genre.length ? `<p>Genre: ${m.genre.join(', ')}</p>` : ""}
-      ${Array.isArray(m.type) && m.type.length ? `<p>Type: ${m.type.join(', ')}</p>` : ""}
-      ${Array.isArray(m.lang) ? `<p>Language: ${m.lang.join(', ')}</p>` : ""}
-      ${Array.isArray(m.quality) ? `<p>Quality: ${m.quality.join(', ')}</p>` : ""}
-      ${Array.isArray(m.platform) && m.platform.length ? `<p>Platform: ${m.platform.join(', ')}</p>` : ""}
-      ${m.date ? `<p>Release: ${m.date}</p>` : ""}
-      ${m.trailer ? `<a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Movie</a>` : ""}
-    `;
-    searchResultsList.appendChild(card);
-  });
-
-  searchIndex += searchPageSize;
-  seeMoreSearchBtn.style.display = searchIndex < searchFiltered.length ? 'block' : 'none';
-}
-
-// ✅ Injected: All Filter Result Logic
-const filterResultsList = document.getElementById('filter-results-list');
-const filterResultsSection = document.getElementById('filter-results-section');
-const seeMoreFilterBtn = document.getElementById('see-more-filter');
-
-let filterFiltered = [];
-let filterIndex = 0;
-const filterPageSize = 20;
-
-function applyGlobalFilters() {
-  const platform = document.getElementById("platform-filter").value.toLowerCase();
-  const genre = document.getElementById("genre-filter").value.toLowerCase();
-  const lang = document.getElementById("lang-filter").value.toLowerCase();
-  const type = document.getElementById("type-filter").value.toLowerCase();
-  const quality = document.getElementById("quality-filter").value.toLowerCase();
-
-  filterFiltered = allMovies.filter(m => {
-    return (
-      (!platform || m.platform?.toLowerCase().includes(platform)) &&
-      (!genre || m.genre?.toLowerCase().includes(genre)) &&
-      (!lang || m.lang?.toLowerCase().includes(lang)) &&
-      (!type || m.type?.toLowerCase().includes(type)) &&
-      (!quality || m.quality?.toLowerCase().includes(quality))
-    );
-  });
-
-  filterIndex = 0;
-  filterResultsList.innerHTML = '';
-  filterResultsSection.style.display = filterFiltered.length > 0 ? 'block' : 'none';
-  renderFilterResults();
-}
-
-seeMoreFilterBtn.addEventListener('click', renderFilterResults);
-
-function renderFilterResults() {
-  const slice = filterFiltered.slice(filterIndex, filterIndex + filterPageSize);
-  slice.forEach(m => {
-    const card = document.createElement('div');
-    card.className = 'trending-card';
-    const posterPath = getPosterPath(m);
-    card.innerHTML = `
-      <a href="${m.trailer}" target="_blank">
-        ${posterPath ? `<img src="${posterPath}" alt="${m.title}" class="poster" />` : `<div class="poster-frame">No Poster</div>`}
-      </a>
-      <h3>${m.title}</h3>
-      ${m.sequel ? `<p>Sequel: ${m.sequel}</p>` : ""}
-      ${m.episode && Array.isArray(m.type) && m.type.includes("Web Series") ? `<p>Episode: ${m.episode}</p>` : ""}
-      ${Array.isArray(m.genre) && m.genre.length ? `<p>Genre: ${m.genre.join(', ')}</p>` : ""}
-      ${Array.isArray(m.type) && m.type.length ? `<p>Type: ${m.type.join(', ')}</p>` : ""}
-      ${Array.isArray(m.lang) ? `<p>Language: ${m.lang.join(', ')}</p>` : ""}
-      ${Array.isArray(m.quality) ? `<p>Quality: ${m.quality.join(', ')}</p>` : ""}
-      ${Array.isArray(m.platform) && m.platform.length ? `<p>Platform: ${m.platform.join(', ')}</p>` : ""}
-      ${m.date ? `<p>Release: ${m.date}</p>` : ""}
-      ${m.trailer ? `<a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Movie</a>` : ""}
-    `;
-    filterResultsList.appendChild(card);
-  });
-
-  filterIndex += filterPageSize;
-  seeMoreFilterBtn.style.display = filterIndex < filterFiltered.length ? 'block' : 'none';
-}
-
-// ✅ Injected: Section Filter Logic
-document.getElementById('section-filter').addEventListener('change', () => {
-  const selected = document.getElementById('section-filter').value;
-  const allSections = Object.keys(sectionStates);
-
-  allSections.forEach(id => {
-    const section = document.getElementById(id);
-    if (section) section.style.display = 'none';
-  });
-
-  if (!selected || selected === '') {
-    const path = window.location.pathname;
-    let show = [];
-
-    if (path.includes('movies')) show = ['movies', 'latest', 'recent'];
-    else if (path.includes('webseries')) show = ['webseries', 'trending', 'recent'];
-    else show = ['trending', 'latest', 'recent'];
-
-    show.forEach(id => {
-      const section = document.getElementById(id);
-      if (section) section.style.display = 'block';
-    });
-  } else {
-    const section = document.getElementById(selected);
-    if (section) section.style.display = 'block';
-  }
-});
-
-// ✅ Hook global filter listeners
-['platform-filter', 'genre-filter', 'lang-filter', 'type-filter', 'quality-filter'].forEach(id => {
-  document.getElementById(id).addEventListener('change', applyGlobalFilters);
-});
-
-// ✅ Initialize everything
+// 🎯 Initialize Everything
 document.addEventListener('DOMContentLoaded', () => {
   const sections = Object.keys(sectionStates);
   sections.forEach(section => loadSection(section));
