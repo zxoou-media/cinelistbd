@@ -6,7 +6,7 @@ const sectionStates = {
 
 function getPosterPath(m) {
   if (!m.poster || m.poster.trim() === "") return null;
-return m.poster.startsWith('http') ? m.poster : `/img/${m.poster}`;
+  return m.poster.startsWith('http') ? m.poster : `/img/${m.poster}`;
 }
 
 function createMovieCard(m) {
