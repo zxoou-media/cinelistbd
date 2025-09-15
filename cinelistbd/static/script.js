@@ -202,6 +202,8 @@ function applyFilters() {
 
 function renderMovies(filteredMovies) {
   const sections = Object.keys(sectionStates);
+
+  // 🔄 Reset all section containers
   sections.forEach(section => {
     const container = document.getElementById(`${section}-list`);
     if (container) {
@@ -209,17 +211,20 @@ function renderMovies(filteredMovies) {
       sectionStates[section] = 0;
       const wrapper = container.closest('section');
       if (wrapper) {
-  wrapper.style.display = 'block';
-}
+        wrapper.style.display = 'none';
+      }
+    }
   });
 
+  // 🎯 Render filtered movies section-wise
   sections.forEach(section => {
     const movies = filteredMovies.filter(m => m.category === section);
     if (movies.length > 0) {
       renderSection(section, movies, true);
       const container = document.getElementById(`${section}-list`);
-      const wrapper = container.closest('section');
-      if (wrapper.style.display = 'block';
+      const wrapper = container?.closest('section');
+      if (wrapper) {
+        wrapper.style.display = 'block';
       }
     }
   });
@@ -264,9 +269,8 @@ function setupDarkModeToggle() {
 // 🔁 Auto Scroll for Trending
 function autoScrollTrending() {
   const trending = document.getElementById('trending-list');
-  if (!trending) return; // ✅ Prevent error if element not found
-  ...
-}
+  if (!trending) return;
+
   let index = 0;
   let isUserScrolling = false;
   let scrollTimeout;
