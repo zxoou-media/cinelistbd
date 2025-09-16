@@ -37,11 +37,14 @@ function showNoResult(sectionId) {
 }
 
 async function loadSection(section) {
+  if (document.getElementById(`${section}-list`)?.children.length > 0) return;
+
   try {
     const res = await fetch(`/api/movies?section=${section}&offset=0&limit=20`);
     const data = await res.json();
     const movies = data.movies.map(m => ({ ...m, category: section }));
-    allMovies = [...allMovies, ...movies];
+    allMovies = [...allMovies.filter(m => m.category !== section), ...movies];
+    sectionStates[section] = 0;
     renderSection(section, movies, true);
   } catch (err) {
     console.error(`Failed to load ${section}:`, err);
@@ -252,7 +255,7 @@ function renderMovies(filteredMovies) {
 }
 
 // 🧭 Section Filter Logic
-document.getElementById('section-filter').addEventListener('change', () => {
+document.getElementById('section-filter').addEventListener('change', async () => {
   const selected = document.getElementById('section-filter').value;
   const allSections = Object.keys(sectionStates);
 
@@ -262,8 +265,15 @@ document.getElementById('section-filter').addEventListener('change', () => {
     if (section) section.style.display = 'none';
   });
 
+  // ✅ "All Sections" selected → show default 3 sections based on current page
   if (!selected || selected === '') {
-    // ✅ "All Sections" selected → show default 3 sections based on current page
+    allSections.forEach(id => {
+      const wrapper = document.getElementById(id);
+      if (wrapper && !wrapper.hasAttribute('data-static')) {
+        wrapper.remove();
+      }
+    });
+
     const path = window.location.pathname.toLowerCase();
     let show = [];
 
@@ -276,31 +286,41 @@ document.getElementById('section-filter').addEventListener('change', () => {
       const section = document.getElementById(id);
       if (section) section.style.display = 'block';
     });
-  } else {
-    // ✅ Specific section selected → show only that section
-    if (allSections.includes(selected)) {
-      const section = document.getElementById(selected);
-      if (section) {
-        section.style.display = 'block';
-        section.scrollIntoView({ behavior: 'smooth' });
+
+    return;
+  }
+
+  // ✅ Specific section selected → show only that section
+  if (allSections.includes(selected)) {
+    let section = document.getElementById(selected);
+
+    if (section) {
+      section.style.display = 'block';
+      section.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      const wrapper = document.createElement('section');
+      wrapper.id = selected;
+      wrapper.innerHTML = `
+        <div class="section-heading-wrapper">
+          <h2>${selected.charAt(0).toUpperCase() + selected.slice(1)}</h2>
+        </div>
+        <div id="${selected}-list" class="grid-row"></div>
+        <div class="see-more-wrapper">
+          <button class="see-more-btn" data-section="${selected}">See More</button>
+        </div>
+      `;
+      document.querySelector('main').prepend(wrapper);
+      sectionStates[selected] = 0;
+
+      const existing = allMovies.filter(m => m.category === selected);
+      if (existing.length === 0) {
+        await loadSection(selected);
       } else {
-        // ✅ Section not in DOM → dynamically render it
-        loadSection(selected); // fetch + render from API
-        const wrapper = document.createElement('section');
-        wrapper.id = selected;
-        wrapper.innerHTML = `
-          <div class="section-heading-wrapper">
-            <h2>${selected.charAt(0).toUpperCase() + selected.slice(1)}</h2>
-          </div>
-          <div id="${selected}-list" class="grid-row"></div>
-          <div class="see-more-wrapper">
-            <button class="see-more-btn" data-section="${selected}">See More</button>
-          </div>
-        `;
-        document.querySelector('main').prepend(wrapper);
-        sectionStates[selected] = 0;
-        setupSeeMoreButtons();
+        renderSection(selected, existing, true);
       }
+
+      setupSeeMoreButtons();
+      wrapper.scrollIntoView({ behavior: 'smooth' });
     }
   }
 });
