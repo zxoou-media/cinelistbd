@@ -544,42 +544,25 @@ section[style*="display: block"] {
 }
 
 /* 🔍 All Search Result Styling */
-#search-results-section {
-  margin: 30px 0;
-  padding: 0 16px;
-}
-
-#search-results-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 16px;
-}
-
-#see-more-search {
-  margin-top: 20px;
-}
-
-/* 🎛️ All Filter Result Styling */
+#search-results-section,
 #filter-results-section {
   margin: 30px 0;
   padding: 0 16px;
 }
 
+#search-results-list,
 #filter-results-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(2, 1fr); /* ✅ Default: 2 items on mobile */
   gap: 16px;
-}
-
-#see-more-filter {
-  margin-top: 20px;
+  padding: 0 12px;
 }
 
 /* 📱 Mobile Responsive (max-width: 480px) */
 @media (max-width: 480px) {
   #search-results-list,
   #filter-results-list {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* ✅ 2 items on small mobile */
     gap: 12px;
   }
 
@@ -589,17 +572,12 @@ section[style*="display: block"] {
   }
 }
 
-/* 📱 Tablet Responsive (max-width: 768px) */
-@media (max-width: 768px) {
+/* 💻 Laptop/Desktop (min-width: 768px) */
+@media (min-width: 768px) {
   #search-results-list,
   #filter-results-list {
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 14px;
-  }
-
-  .see-more-btn {
-    font-size: 15px;
-    padding: 10px 18px;
+    grid-template-columns: repeat(4, 1fr); /* ✅ 4 items on laptop */
+    gap: 20px;
   }
 
   .trending-card h3 {
@@ -627,34 +605,4 @@ section[style*="display: block"] {
 .poster-frame:hover {
   background: #444;
   transition: background 0.3s ease;
-}
-
-.grid-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* ✅ 4 items per row on laptop */
-  gap: 20px;
-  padding: 20px;
-}
-
-@media (max-width: 768px) {
-  .grid-row {
-    grid-template-columns: repeat(4, 1fr); /* ✅ 4 items per row on tablet */
-    gap: 10px;
-    padding: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .grid-row {
-    grid-template-columns: repeat(2, 1fr); /* ✅ 2 items per row on mobile */
-    gap: 10px;
-    padding: 12px;
-  }
-}
-
-.poster {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
 }
