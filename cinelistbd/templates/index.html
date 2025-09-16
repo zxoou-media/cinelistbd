@@ -136,7 +136,7 @@
 
 <main>
 
-  <!-- Search Result Section -->
+  <!-- 🔍 Search Result Section -->
   <section id="search-results-section" style="display: none;">
     <div class="section-heading-wrapper"><h2>All Search Result</h2></div>
     <div id="search-results-list" class="grid-row"></div>
@@ -145,7 +145,7 @@
     </div>
   </section>
 
-  <!-- Filter Result Section -->
+  <!-- 🎛️ Filter Result Section -->
   <section id="filter-results-section" style="display: none;">
     <div class="section-heading-wrapper"><h2>All Filter Result</h2></div>
     <div id="filter-results-list" class="grid-row"></div>
@@ -154,60 +154,45 @@
     </div>
   </section>
 
-  <!-- Static Sections (Home Page Only) -->
+  <!-- 🏠 Static Sections (Home Page Only) -->
   {% if current_page == 0 %}
-    <section id="trending" data-static="true">
-      <div class="section-heading-wrapper"><h2>🔥 Trending</h2></div>
-      <div id="trending-list" class="scroll-row"></div>
-    </section>
-
-    <section id="recent" data-static="true">
-      <div class="section-heading-wrapper"><h2>🕒 Recently Updated</h2></div>
-      <div id="recent-list" class="grid-row"></div>
-      <div class="see-more-wrapper">
-        <button class="see-more-btn" data-section="recent">See More</button>
-      </div>
-    </section>
-
-    <section id="latest" data-static="true">
-      <div class="section-heading-wrapper"><h2>🆕 Latest Movies</h2></div>
-      <div id="latest-list" class="grid-row"></div>
-      <div class="see-more-wrapper">
-        <button class="see-more-btn" data-section="latest">See More</button>
-      </div>
-    </section>
+    {% for section in sections %}
+      <section id="{{ section.id }}" data-static="true">
+        <div class="section-heading-wrapper">
+          <h2>{{ section.title }}</h2>
+        </div>
+        <div id="{{ section.id }}-list" class="{% if section.id == 'trending' %}scroll-row{% else %}grid-row{% endif %}"></div>
+        {% if section.id != 'trending' %}
+          <div class="see-more-wrapper">
+            <button class="see-more-btn" data-section="{{ section.id }}">See More</button>
+          </div>
+        {% endif %}
+      </section>
+    {% endfor %}
   {% endif %}
 
-  <!-- Dynamic Sections (Page-wise) -->
-  {% if current_page == 1 %}
-    {% set dynamic_sections = ['movies', 'webseries', 'drama'] %}
-  {% elif current_page == 2 %}
-    {% set dynamic_sections = ['action', 'romance', 'crime'] %}
-  {% elif current_page == 3 %}
-    {% set dynamic_sections = ['anime', 'fantasy', 'thriller'] %}
-  {% else %}
-    {% set dynamic_sections = [] %}
+  <!-- 📄 Dynamic Sections (Page-wise) -->
+  {% if current_page > 0 %}
+    {% for section in sections %}
+      <section id="{{ section.id }}">
+        <div class="section-heading-wrapper">
+          <h2>{{ section.title }}</h2>
+        </div>
+        <div id="{{ section.id }}-list" class="grid-row"></div>
+        <div class="see-more-wrapper">
+          <button class="see-more-btn" data-section="{{ section.id }}">See More</button>
+        </div>
+      </section>
+    {% endfor %}
   {% endif %}
 
-  {% for section_id in dynamic_sections %}
-    <section id="{{ section_id }}">
-      <div class="section-heading-wrapper">
-        <h2>{{ section_id | title }}</h2>
-      </div>
-      <div id="{{ section_id }}-list" class="grid-row"></div>
-      <div class="see-more-wrapper">
-        <button class="see-more-btn" data-section="{{ section_id }}">See More</button>
-      </div>
-    </section>
-  {% endfor %}
-
-  <!-- App Buttons -->
+  <!-- 📱 App Buttons -->
   <div class="app-buttons">
     <a href="https://www.youtube.com" target="_blank" class="app-btn">📺 YouTube</a>
     <a href="https://www.tiktok.com" target="_blank" class="app-btn">🎵 TikTok</a>
   </div>
 
-  <!-- Pagination -->
+  <!-- 📌 Pagination -->
   {% if total_pages > 1 %}
     <div class="pagination">
       {% if current_page > 1 %}
