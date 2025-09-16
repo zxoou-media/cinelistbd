@@ -211,6 +211,7 @@ function applyFilters() {
     );
   });
 
+  // ✅ If search is active
   if (query) {
     searchFiltered = filtered;
     searchIndex = 0;
@@ -219,7 +220,17 @@ function applyFilters() {
     return;
   }
 
+  // ✅ If any filter or section is active
   if (platform || genre || lang || type || quality || section) {
+    // ✅ Hide fallback sections
+    const allSections = Object.keys(sectionStates);
+    allSections.forEach(id => {
+      const wrapper = document.getElementById(id);
+      if (wrapper && !wrapper.hasAttribute('data-static')) {
+        wrapper.style.display = 'none';
+      }
+    });
+
     filterFiltered = filtered;
     filterIndex = 0;
     filterResultsSection.style.display = 'block';
@@ -227,6 +238,7 @@ function applyFilters() {
     return;
   }
 
+  // ✅ No filter active → show fallback sections
   renderMovies(filtered);
 }
 
