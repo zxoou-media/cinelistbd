@@ -628,3 +628,25 @@ section[style*="display: block"] {
   background: #444;
   transition: background 0.3s ease;
 }
+
+.grid-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .grid-row {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    padding: 16px;
+  }
+}
+
+.poster {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
