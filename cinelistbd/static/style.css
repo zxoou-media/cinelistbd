@@ -628,3 +628,33 @@ section[style*="display: block"] {
   background: #444;
   transition: background 0.3s ease;
 }
+
+.grid-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* ✅ 4 items per row on laptop */
+  gap: 20px;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .grid-row {
+    grid-template-columns: repeat(4, 1fr); /* ✅ 4 items per row on tablet */
+    gap: 10px;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-row {
+    grid-template-columns: repeat(2, 1fr); /* ✅ 2 items per row on mobile */
+    gap: 10px;
+    padding: 12px;
+  }
+}
+
+.poster {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
