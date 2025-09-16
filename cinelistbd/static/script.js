@@ -177,14 +177,8 @@ const keywordMatch = (movie, query) => {
 
 // 🔁 Unified Filter Logic
 function applyFilters() {
-  // ✅ DOM reset to prevent leftover results
-  searchResultsList.innerHTML = '';
-  filterResultsList.innerHTML = '';
-  searchResultsSection.style.display = 'none';
-  filterResultsSection.style.display = 'none';
-
   const query = document.getElementById("search-box").value.toLowerCase().trim();
-  const section = document.getElementById("section-filter").value.toLowerCase();
+  const section = document.getElementById("section-filter").value;
   const platform = document.getElementById("platform-filter").value.toLowerCase();
   const genre = document.getElementById("genre-filter").value.toLowerCase();
   const lang = document.getElementById("lang-filter").value.toLowerCase();
@@ -201,7 +195,7 @@ function applyFilters() {
   const filtered = allMovies.filter(m => {
     return (
       keywordMatch(m, query) &&
-      (!section || (m.category && m.category.toLowerCase() === section)) &&
+      (!section || m.category === section) &&
       match(m.platform, platform) &&
       match(m.genre, genre) &&
       match(m.lang, lang) &&
@@ -213,21 +207,22 @@ function applyFilters() {
   if (query) {
     searchFiltered = filtered;
     searchIndex = 0;
+    searchResultsList.innerHTML = '';
+    filterResultsSection.style.display = 'none';
     searchResultsSection.style.display = 'block';
     renderSearchResults();
     return;
   }
 
-  if (platform || genre || lang || type || quality || section) {
+  if (platform || genre || lang || type || quality) {
     filterFiltered = filtered;
     filterIndex = 0;
+    filterResultsList.innerHTML = '';
+    searchResultsSection.style.display = 'none';
     filterResultsSection.style.display = 'block';
     renderFilterResults();
     return;
   }
-
-  renderMovies(filtered);
-}
 
   searchResultsSection.style.display = 'none';
   filterResultsSection.style.display = 'none';
