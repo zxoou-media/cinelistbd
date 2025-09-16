@@ -277,15 +277,29 @@ document.getElementById('section-filter').addEventListener('change', () => {
       if (section) section.style.display = 'block';
     });
   } else {
-    // ✅ Always try to show selected section, even if not in current page
+    // ✅ Specific section selected → show only that section
     if (allSections.includes(selected)) {
       const section = document.getElementById(selected);
       if (section) {
         section.style.display = 'block';
-        section.scrollIntoView({ behavior: 'smooth' }); // optional UX polish
+        section.scrollIntoView({ behavior: 'smooth' });
       } else {
-        // 🔍 Section exists logically but not in DOM → show fallback
-        showNoResult(`${selected}-list`);
+        // ✅ Section not in DOM → dynamically render it
+        loadSection(selected); // fetch + render from API
+        const wrapper = document.createElement('section');
+        wrapper.id = selected;
+        wrapper.innerHTML = `
+          <div class="section-heading-wrapper">
+            <h2>${selected.charAt(0).toUpperCase() + selected.slice(1)}</h2>
+          </div>
+          <div id="${selected}-list" class="grid-row"></div>
+          <div class="see-more-wrapper">
+            <button class="see-more-btn" data-section="${selected}">See More</button>
+          </div>
+        `;
+        document.querySelector('main').prepend(wrapper);
+        sectionStates[selected] = 0;
+        setupSeeMoreButtons();
       }
     }
   }
