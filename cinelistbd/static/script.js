@@ -1,4 +1,9 @@
+// 🔁 Global State
 let allMovies = [];
+let searchFiltered = [];
+let filterFiltered = [];
+let searchIndex = 0;
+let filterIndex = 0;
 const sectionStates = {
   trending: 0, recent: 0, latest: 0,
   movies: 0, webseries: 0, drama: 0,
@@ -6,11 +11,21 @@ const sectionStates = {
   anime: 0, fantasy: 0, thriller: 0
 };
 
+// 🔁 DOM References
+const searchResultsList = document.getElementById('search-results-list');
+const searchResultsSection = document.getElementById('search-results-section');
+const filterResultsList = document.getElementById('filter-results-list');
+const filterResultsSection = document.getElementById('filter-results-section');
+const seeMoreSearchBtn = document.getElementById('see-more-search');
+const seeMoreFilterBtn = document.getElementById('see-more-filter');
+
+// 🔍 Poster Path
 function getPosterPath(m) {
   if (!m.poster || m.poster.trim() === "") return '/img/fallback.jpg';
   return m.poster.startsWith('http') ? m.poster : `/img/${m.poster}`;
 }
 
+// 🎬 Movie Card
 function createMovieCard(m) {
   const card = document.createElement('div');
   card.className = `${m.category}-card`;
@@ -33,14 +48,15 @@ function createMovieCard(m) {
   return card;
 }
 
+// ❌ No Result
 function showNoResult(sectionId) {
   const container = document.getElementById(sectionId);
   container.innerHTML = `<p style="text-align:center; padding:20px;">😢 No results found</p>`;
 }
 
+// 🔁 Load Section
 async function loadSection(section) {
   if (document.getElementById(`${section}-list`)?.children.length > 0) return;
-
   try {
     const res = await fetch(`/api/movies?section=${section}&offset=0&limit=20`);
     const data = await res.json();
@@ -53,6 +69,7 @@ async function loadSection(section) {
   }
 }
 
+// 🔁 Load More
 async function loadMore(section) {
   const offset = sectionStates[section] * 20;
   try {
@@ -66,6 +83,7 @@ async function loadMore(section) {
   }
 }
 
+// 🎬 Render Section
 function renderSection(section, movies, paginated = false) {
   const container = document.getElementById(`${section}-list`);
   if (!container) return;
@@ -94,6 +112,7 @@ function renderSection(section, movies, paginated = false) {
   }
 }
 
+// 🔁 See More Buttons
 function setupSeeMoreButtons() {
   document.querySelectorAll('.see-more-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -103,145 +122,57 @@ function setupSeeMoreButtons() {
   });
 }
 
-// 🔍 Search Result
-const searchResultsList = document.getElementById('search-results-list');
-const searchResultsSection = document.getElementById('search-results-section');
-const seeMoreSearchBtn = document.getElementById('see-more-search');
-let searchFiltered = [];
-let searchIndex = 0;
-const searchPageSize = 20;
-
-function renderSearchResults() {
-  const slice = searchFiltered.slice(searchIndex, searchIndex + searchPageSize);
-  if (slice.length === 0 && searchIndex === 0) {
-    showNoResult('search-results-list');
-    return;
-  }
-  slice.forEach(m => {
-    const card = createMovieCard(m);
-    searchResultsList.appendChild(card);
-  });
-  searchIndex += searchPageSize;
-  seeMoreSearchBtn.style.display = searchIndex < searchFiltered.length ? 'block' : 'none';
-}
-
-seeMoreSearchBtn.addEventListener('click', renderSearchResults);
-
-// 🎛️ Filter Result
-const filterResultsList = document.getElementById('filter-results-list');
-const filterResultsSection = document.getElementById('filter-results-section');
-const seeMoreFilterBtn = document.getElementById('see-more-filter');
-let filterFiltered = [];
-let filterIndex = 0;
-const filterPageSize = 20;
-
-function renderFilterResults() {
-  const slice = filterFiltered.slice(filterIndex, filterIndex + filterPageSize);
-  if (slice.length === 0 && filterIndex === 0) {
-    showNoResult('filter-results-list');
-    return;
-  }
-  slice.forEach(m => {
-    const card = createMovieCard(m);
-    filterResultsList.appendChild(card);
-  });
-  filterIndex += filterPageSize;
-  seeMoreFilterBtn.style.display = filterIndex < filterFiltered.length ? 'block' : 'none';
-}
-
-seeMoreFilterBtn.addEventListener('click', renderFilterResults);
-
-// 🔍 Keyword Match Across All Fields
-const keywordMatch = (movie, query) => {
+// 🔍 Keyword Match
+function keywordMatch(movie, query) {
   if (!query) return true;
   query = query.toLowerCase();
-
   const fields = [
-    movie.title,
-    movie.platform,
-    movie.genre,
-    movie.lang,
-    movie.type,
-    movie.quality,
-    movie.country,
-    movie.date,
-    movie.year
+    movie.title, movie.platform, movie.genre, movie.lang,
+    movie.type, movie.quality, movie.country, movie.date, movie.year
   ];
-
   return fields.some(field => {
     if (!field) return false;
     const str = Array.isArray(field) ? field.join(', ') : field.toString();
     return str.toLowerCase().includes(query);
   });
-};
+}
 
 // 🔁 Unified Filter Logic
-function renderMovies(filteredMovies) {
-  const sections = Object.keys(sectionStates);
+function applyFilters() {
+  searchResultsList.innerHTML = '';
+  filterResultsList.innerHTML = '';
+  searchResultsSection.style.display = 'none';
+  filterResultsSection.style.display = 'none';
 
-  // ✅ Clear all section containers
-  sections.forEach(section => {
-    const container = document.getElementById(`${section}-list`);
-    if (container) {
-      container.innerHTML = '';
-      sectionStates[section] = 0;
-      const wrapper = container.closest('section');
-      if (wrapper) wrapper.style.display = 'none';
-    }
+  const query = document.getElementById("search-box").value.toLowerCase().trim();
+  const sectionRaw = document.getElementById("section-filter").value;
+  const section = sectionRaw ? sectionRaw.toLowerCase() : null;
+  const platform = document.getElementById("platform-filter").value.toLowerCase();
+  const genre = document.getElementById("genre-filter").value.toLowerCase();
+  const lang = document.getElementById("lang-filter").value.toLowerCase();
+  const type = document.getElementById("type-filter").value.toLowerCase();
+  const quality = document.getElementById("quality-filter").value.toLowerCase();
+
+  const match = (field, value) => {
+    if (!value) return true;
+    if (!field) return false;
+    const str = Array.isArray(field) ? field.join(', ') : field.toString();
+    return str.toLowerCase().includes(value);
+  };
+
+  const filtered = allMovies.filter(m => {
+    return (
+      keywordMatch(m, query) &&
+      (!section || (m.category && m.category.toLowerCase() === section)) &&
+      match(m.platform, platform) &&
+      match(m.genre, genre) &&
+      match(m.lang, lang) &&
+      match(m.type, type) &&
+      match(m.quality, quality)
+    );
   });
 
-  // ✅ Render filtered movies section-wise
-  sections.forEach(section => {
-    const movies = filteredMovies.filter(m => m.category && m.category.toLowerCase() === section.toLowerCase());
-    if (movies.length > 0) {
-      renderSection(section, movies, true);
-      const container = document.getElementById(`${section}-list`);
-      const wrapper = container?.closest('section');
-      if (wrapper) wrapper.style.display = 'block';
-    }
-  });
-}
-
-// 🎬 Section-wise Movie Renderer
-function renderMovies(filteredMovies) {
-  const sections = Object.keys(sectionStates);
-
-  // ✅ Clear all section containers
-  sections.forEach(section => {
-    const container = document.getElementById(`${section}-list`);
-    if (container) {
-      container.innerHTML = '';
-      sectionStates[section] = 0;
-      const wrapper = container.closest('section');
-      if (wrapper) wrapper.style.display = 'none';
-    }
-  });
-
-  // ✅ Render filtered movies section-wise
-  sections.forEach(section => {
-    const movies = filteredMovies.filter(m => m.category && m.category.toLowerCase() === section.toLowerCase());
-    if (movies.length > 0) {
-      renderSection(section, movies, true);
-      const container = document.getElementById(`${section}-list`);
-      const wrapper = container?.closest('section');
-      if (wrapper) wrapper.style.display = 'block';
-    }
-  });
-}
-
-// 🧭 Section Filter Logic
-document.getElementById('section-filter').addEventListener('change', async () => {
-  const selected = document.getElementById('section-filter').value;
   const allSections = Object.keys(sectionStates);
-
-  // 🔁 Hide all sections first
-  allSections.forEach(id => {
-    const section = document.getElementById(id);
-    if (section) section.style.display = 'none';
-  });
-
-  // ✅ "All Sections" selected → fallback logic
-  if (!selected || selected === '') {
   allSections.forEach(id => {
     const wrapper = document.getElementById(id);
     if (wrapper && !wrapper.hasAttribute('data-static')) {
@@ -249,65 +180,78 @@ document.getElementById('section-filter').addEventListener('change', async () =>
     }
   });
 
-  const currentPage = parseInt(window.location.pathname.split('/sections/')[1]) || 0;
-  let show = [];
+  if (query) {
+    searchFiltered = filtered;
+    searchIndex = 0;
+    searchResultsSection.style.display = 'block';
+    renderSearchResults();
+    return;
+  }
 
-  if (currentPage === 1) show = ['movies', 'webseries', 'drama'];
-  else if (currentPage === 2) show = ['action', 'romance', 'crime'];
-  else if (currentPage === 3) show = ['anime', 'fantasy', 'thriller'];
-  else show = ['trending', 'latest', 'recent'];
+  if (platform || genre || lang || type || quality || section) {
+    filterFiltered = filtered;
+    filterIndex = 0;
+    filterResultsSection.style.display = 'block';
+    renderFilterResults();
+    return;
+  }
 
-  show.forEach(id => {
-    const section = document.getElementById(id);
-    if (section) section.style.display = 'block';
-  });
-
-  // ✅ Reset filter/search result DOM
-  searchResultsList.innerHTML = '';
-  filterResultsList.innerHTML = '';
-  searchResultsSection.style.display = 'none';
-  filterResultsSection.style.display = 'none';
-
-  applyFilters(); // Re-evaluate filters and show fallback sections
-
-  return;
+  renderMovies(filtered);
 }
 
-  // ✅ Specific section selected → show only that section
-  if (allSections.includes(selected)) {
-    let section = document.getElementById(selected);
-
-    if (section) {
-      section.style.display = 'block';
-      section.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      const wrapper = document.createElement('section');
-      wrapper.id = selected;
-      wrapper.setAttribute('data-static', 'false');
-      wrapper.innerHTML = `
-        <div class="section-heading-wrapper">
-          <h2>${selected.charAt(0).toUpperCase() + selected.slice(1)}</h2>
-        </div>
-        <div id="${selected}-list" class="grid-row"></div>
-        <div class="see-more-wrapper">
-          <button class="see-more-btn" data-section="${selected}">See More</button>
-        </div>
-      `;
-      document.querySelector('main').prepend(wrapper);
-      sectionStates[selected] = 0;
-
-      const existing = allMovies.filter(m => m.category === selected);
-      if (existing.length === 0) {
-        await loadSection(selected);
-      } else {
-        renderSection(selected, existing, true);
-      }
-
-      setupSeeMoreButtons();
-      wrapper.scrollIntoView({ behavior: 'smooth' });
+// 🎬 Section Renderer
+function renderMovies(filteredMovies) {
+  const sections = Object.keys(sectionStates);
+  sections.forEach(section => {
+    const container = document.getElementById(`${section}-list`);
+    if (container) {
+      container.innerHTML = '';
+      sectionStates[section] = 0;
+      const wrapper = container.closest('section');
+      if (wrapper) wrapper.style.display = 'none';
     }
+  });
+
+  sections.forEach(section => {
+    const movies = filteredMovies.filter(m => m.category && m.category.toLowerCase() === section.toLowerCase());
+    if (movies.length > 0) {
+renderSection(section, movies, true);
+      const container = document.getElementById(`${section}-list`);
+      const wrapper = container?.closest('section');
+      if (wrapper) wrapper.style.display = 'block';
+    }
+  });
+}
+
+// 🔍 Render Search Results
+function renderSearchResults() {
+  const slice = searchFiltered.slice(searchIndex, searchIndex + 20);
+  if (slice.length === 0 && searchIndex === 0) {
+    searchResultsList.innerHTML = `<p style="text-align:center; padding:20px;">😢 No results found</p>`;
+    return;
   }
-});
+  slice.forEach(m => {
+    const card = createMovieCard(m);
+    searchResultsList.appendChild(card);
+  });
+  searchIndex += 20;
+  seeMoreSearchBtn.style.display = searchIndex < searchFiltered.length ? 'block' : 'none';
+}
+
+// 🔍 Render Filter Results
+function renderFilterResults() {
+  const slice = filterFiltered.slice(filterIndex, filterIndex + 20);
+  if (slice.length === 0 && filterIndex === 0) {
+    filterResultsList.innerHTML = `<p style="text-align:center; padding:20px;">😢 No results found</p>`;
+    return;
+  }
+  slice.forEach(m => {
+    const card = createMovieCard(m);
+    filterResultsList.appendChild(card);
+  });
+  filterIndex += 20;
+  seeMoreFilterBtn.style.display = filterIndex < filterFiltered.length ? 'block' : 'none';
+}
 
 // 🌙 Dark Mode Toggle
 function setupDarkModeToggle() {
