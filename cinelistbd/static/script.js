@@ -256,18 +256,20 @@ document.getElementById('section-filter').addEventListener('change', () => {
   const selected = document.getElementById('section-filter').value;
   const allSections = Object.keys(sectionStates);
 
+  // 🔁 Hide all sections first
   allSections.forEach(id => {
     const section = document.getElementById(id);
     if (section) section.style.display = 'none';
   });
 
   if (!selected || selected === '') {
+    // ✅ "All Sections" selected → show default 3 sections based on current page
     const path = window.location.pathname.toLowerCase();
     let show = [];
 
-    if (path.includes('movies')) show = ['movies', 'latest', 'recent'];
-    else if (path.includes('webseries')) show = ['webseries', 'trending', 'recent'];
-    else if (path.includes('drama')) show = ['drama', 'latest', 'recent'];
+    if (path.includes('/movies')) show = ['movies', 'latest', 'recent'];
+    else if (path.includes('/webseries')) show = ['webseries', 'trending', 'recent'];
+    else if (path.includes('/drama')) show = ['drama', 'latest', 'recent'];
     else show = ['trending', 'latest', 'recent'];
 
     show.forEach(id => {
@@ -275,8 +277,17 @@ document.getElementById('section-filter').addEventListener('change', () => {
       if (section) section.style.display = 'block';
     });
   } else {
-    const section = document.getElementById(selected);
-    if (section) section.style.display = 'block';
+    // ✅ Always try to show selected section, even if not in current page
+    if (allSections.includes(selected)) {
+      const section = document.getElementById(selected);
+      if (section) {
+        section.style.display = 'block';
+        section.scrollIntoView({ behavior: 'smooth' }); // optional UX polish
+      } else {
+        // 🔍 Section exists logically but not in DOM → show fallback
+        showNoResult(`${selected}-list`);
+      }
+    }
   }
 });
 
