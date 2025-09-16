@@ -1,7 +1,9 @@
 let allMovies = [];
 const sectionStates = {
   trending: 0, recent: 0, latest: 0,
-  movies: 0, webseries: 0, drama: 0
+  movies: 0, webseries: 0, drama: 0,
+  action: 0, romance: 0, crime: 0,
+  anime: 0, fantasy: 0, thriller: 0
 };
 
 function getPosterPath(m) {
@@ -11,7 +13,7 @@ function getPosterPath(m) {
 
 function createMovieCard(m) {
   const card = document.createElement('div');
-  card.className = 'trending-card';
+  card.className = `${m.category}-card`;
   const posterPath = getPosterPath(m);
   card.innerHTML = `
     <a href="${m.trailer}" target="_blank">
@@ -71,7 +73,7 @@ function renderSection(section, movies, paginated = false) {
 
   const start = sectionStates[section] * 20;
   const end = start + 20;
-  const slice = paginated ? movies.slice(0, 20) : movies;
+  const slice = paginated ? movies.slice(start, end) : movies;
 
   if (slice.length === 0) {
     showNoResult(`${section}-list`);
@@ -83,7 +85,7 @@ function renderSection(section, movies, paginated = false) {
     container.appendChild(card);
   });
 
-  if (paginated) {
+  if (paginated && slice.length > 0) {
     sectionStates[section]++;
     const seeMoreBtn = document.querySelector(`.see-more-btn[data-section="${section}"]`);
     if (end >= movies.length && seeMoreBtn) {
@@ -235,9 +237,7 @@ function renderMovies(filteredMovies) {
       container.innerHTML = '';
       sectionStates[section] = 0;
       const wrapper = container.closest('section');
-      if (wrapper) {
-        wrapper.style.display = 'none';
-      }
+      if (wrapper) wrapper.style.display = 'none';
     }
   });
 
@@ -247,9 +247,7 @@ function renderMovies(filteredMovies) {
       renderSection(section, movies, true);
       const container = document.getElementById(`${section}-list`);
       const wrapper = container?.closest('section');
-      if (wrapper) {
-        wrapper.style.display = 'block';
-      }
+      if (wrapper) wrapper.style.display = 'block';
     }
   });
 }
@@ -265,21 +263,21 @@ document.getElementById('section-filter').addEventListener('change', async () =>
     if (section) section.style.display = 'none';
   });
 
-  // ✅ "All Sections" selected → show default 3 sections based on current page
+  // ✅ "All Sections" selected → fallback logic
   if (!selected || selected === '') {
     allSections.forEach(id => {
       const wrapper = document.getElementById(id);
       if (wrapper && !wrapper.hasAttribute('data-static')) {
-        wrapper.remove();
+        wrapper.style.display = 'none';
       }
     });
 
-    const path = window.location.pathname.toLowerCase();
+    const currentPage = parseInt(window.location.pathname.split('/sections/')[1]) || 0;
     let show = [];
 
-    if (path.includes('/movies')) show = ['movies', 'latest', 'recent'];
-    else if (path.includes('/webseries')) show = ['webseries', 'trending', 'recent'];
-    else if (path.includes('/drama')) show = ['drama', 'latest', 'recent'];
+    if (currentPage === 1) show = ['movies', 'webseries', 'drama'];
+    else if (currentPage === 2) show = ['action', 'romance', 'crime'];
+    else if (currentPage === 3) show = ['anime', 'fantasy', 'thriller'];
     else show = ['trending', 'latest', 'recent'];
 
     show.forEach(id => {
@@ -300,6 +298,7 @@ document.getElementById('section-filter').addEventListener('change', async () =>
     } else {
       const wrapper = document.createElement('section');
       wrapper.id = selected;
+      wrapper.setAttribute('data-static', 'false');
       wrapper.innerHTML = `
         <div class="section-heading-wrapper">
           <h2>${selected.charAt(0).toUpperCase() + selected.slice(1)}</h2>
@@ -328,8 +327,12 @@ document.getElementById('section-filter').addEventListener('change', async () =>
 // 🌙 Dark Mode Toggle
 function setupDarkModeToggle() {
   const toggleBtn = document.getElementById('theme-toggle');
+  const currentTheme = localStorage.getItem('theme');
+  if (currentTheme === 'dark') document.body.classList.add('dark');
+
   toggleBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark');
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
   });
 }
 
@@ -366,6 +369,9 @@ function autoScrollTrending() {
       }
     }, 150);
   });
+
+  trending.addEventListener('mouseenter', () => isUserScrolling = true);
+  trending.addEventListener('mouseleave', () => isUserScrolling = false);
 
   setInterval(scrollToCard, 3000);
 }
