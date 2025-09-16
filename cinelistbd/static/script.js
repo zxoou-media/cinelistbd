@@ -177,7 +177,7 @@ const keywordMatch = (movie, query) => {
 
 // 🔁 Unified Filter Logic
 function applyFilters() {
-  // ✅ DOM reset to prevent leftover results
+  // ✅ DOM reset
   searchResultsList.innerHTML = '';
   filterResultsList.innerHTML = '';
   searchResultsSection.style.display = 'none';
@@ -211,8 +211,18 @@ function applyFilters() {
     );
   });
 
+  const allSections = Object.keys(sectionStates);
+
   // ✅ If search is active
   if (query) {
+    // 🔁 Hide fallback sections
+    allSections.forEach(id => {
+      const wrapper = document.getElementById(id);
+      if (wrapper && !wrapper.hasAttribute('data-static')) {
+        wrapper.style.display = 'none';
+      }
+    });
+
     searchFiltered = filtered;
     searchIndex = 0;
     searchResultsSection.style.display = 'block';
@@ -222,8 +232,7 @@ function applyFilters() {
 
   // ✅ If any filter or section is active
   if (platform || genre || lang || type || quality || section) {
-    // ✅ Hide fallback sections
-    const allSections = Object.keys(sectionStates);
+    // 🔁 Hide fallback sections
     allSections.forEach(id => {
       const wrapper = document.getElementById(id);
       if (wrapper && !wrapper.hasAttribute('data-static')) {
