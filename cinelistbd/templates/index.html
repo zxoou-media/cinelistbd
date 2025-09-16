@@ -154,11 +154,28 @@
     </div>
   </section>
 
-  <!-- Static Sections (Only for Home Page) -->
-  {% if request.path == '/' %}
-    <section id="trending" data-static="true"> ... </section>
-    <section id="recent" data-static="true"> ... </section>
-    <section id="latest" data-static="true"> ... </section>
+  <!-- Static Sections (Home Page Only) -->
+  {% if current_page == 0 %}
+    <section id="trending" data-static="true">
+      <div class="section-heading-wrapper"><h2>🔥 Trending</h2></div>
+      <div id="trending-list" class="scroll-row"></div>
+    </section>
+
+    <section id="recent" data-static="true">
+      <div class="section-heading-wrapper"><h2>🕒 Recently Updated</h2></div>
+      <div id="recent-list" class="grid-row"></div>
+      <div class="see-more-wrapper">
+        <button class="see-more-btn" data-section="recent">See More</button>
+      </div>
+    </section>
+
+    <section id="latest" data-static="true">
+      <div class="section-heading-wrapper"><h2>🆕 Latest Movies</h2></div>
+      <div id="latest-list" class="grid-row"></div>
+      <div class="see-more-wrapper">
+        <button class="see-more-btn" data-section="latest">See More</button>
+      </div>
+    </section>
   {% endif %}
 
   <!-- Dynamic Sections (Page-wise) -->
