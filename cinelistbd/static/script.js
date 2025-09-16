@@ -176,79 +176,30 @@ const keywordMatch = (movie, query) => {
 };
 
 // 🔁 Unified Filter Logic
-function applyFilters() {
-  // ✅ DOM reset
-  searchResultsList.innerHTML = '';
-  filterResultsList.innerHTML = '';
-  searchResultsSection.style.display = 'none';
-  filterResultsSection.style.display = 'none';
+function renderMovies(filteredMovies) {
+  const sections = Object.keys(sectionStates);
 
-  const query = document.getElementById("search-box").value.toLowerCase().trim();
-  const sectionRaw = document.getElementById("section-filter").value;
-  const section = sectionRaw ? sectionRaw.toLowerCase() : null;
-  const platform = document.getElementById("platform-filter").value.toLowerCase();
-  const genre = document.getElementById("genre-filter").value.toLowerCase();
-  const lang = document.getElementById("lang-filter").value.toLowerCase();
-  const type = document.getElementById("type-filter").value.toLowerCase();
-  const quality = document.getElementById("quality-filter").value.toLowerCase();
-
-  const match = (field, value) => {
-    if (!value) return true;
-    if (!field) return false;
-    const str = Array.isArray(field) ? field.join(', ') : field.toString();
-    return str.toLowerCase().includes(value);
-  };
-
-  const filtered = allMovies.filter(m => {
-    return (
-      keywordMatch(m, query) &&
-      (!section || (m.category && m.category.toLowerCase() === section)) &&
-      match(m.platform, platform) &&
-      match(m.genre, genre) &&
-      match(m.lang, lang) &&
-      match(m.type, type) &&
-      match(m.quality, quality)
-    );
+  // ✅ Clear all section containers
+  sections.forEach(section => {
+    const container = document.getElementById(`${section}-list`);
+    if (container) {
+      container.innerHTML = '';
+      sectionStates[section] = 0;
+      const wrapper = container.closest('section');
+      if (wrapper) wrapper.style.display = 'none';
+    }
   });
 
-  const allSections = Object.keys(sectionStates);
-
-  // ✅ If search is active
-  if (query) {
-    // 🔁 Hide fallback sections
-    allSections.forEach(id => {
-      const wrapper = document.getElementById(id);
-      if (wrapper && !wrapper.hasAttribute('data-static')) {
-        wrapper.style.display = 'none';
-      }
-    });
-
-    searchFiltered = filtered;
-    searchIndex = 0;
-    searchResultsSection.style.display = 'block';
-    renderSearchResults();
-    return;
-  }
-
-  // ✅ If any filter or section is active
-  if (platform || genre || lang || type || quality || section) {
-    // 🔁 Hide fallback sections
-    allSections.forEach(id => {
-      const wrapper = document.getElementById(id);
-      if (wrapper && !wrapper.hasAttribute('data-static')) {
-        wrapper.style.display = 'none';
-      }
-    });
-
-    filterFiltered = filtered;
-    filterIndex = 0;
-    filterResultsSection.style.display = 'block';
-    renderFilterResults();
-    return;
-  }
-
-  // ✅ No filter active → show fallback sections
-  renderMovies(filtered);
+  // ✅ Render filtered movies section-wise
+  sections.forEach(section => {
+    const movies = filteredMovies.filter(m => m.category && m.category.toLowerCase() === section.toLowerCase());
+    if (movies.length > 0) {
+      renderSection(section, movies, true);
+      const container = document.getElementById(`${section}-list`);
+      const wrapper = container?.closest('section');
+      if (wrapper) wrapper.style.display = 'block';
+    }
+  });
 }
 
 // 🎬 Section-wise Movie Renderer
