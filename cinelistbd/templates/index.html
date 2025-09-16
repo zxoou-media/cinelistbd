@@ -136,74 +136,61 @@
 
 <main>
 
-  <!-- ✅ Injected: All Search Result Section -->
+  <!-- Search Result Section -->
   <section id="search-results-section" style="display: none;">
-    <div class="section-heading-wrapper">
-      <h2>All Search Result</h2>
-    </div>
+    <div class="section-heading-wrapper"><h2>All Search Result</h2></div>
     <div id="search-results-list" class="grid-row"></div>
     <div class="see-more-wrapper">
       <button id="see-more-search" class="see-more-btn">See More</button>
     </div>
   </section>
 
-  <!-- ✅ Injected: All Filter Result Section -->
+  <!-- Filter Result Section -->
   <section id="filter-results-section" style="display: none;">
-    <div class="section-heading-wrapper">
-      <h2>All Filter Result</h2>
-    </div>
+    <div class="section-heading-wrapper"><h2>All Filter Result</h2></div>
     <div id="filter-results-list" class="grid-row"></div>
     <div class="see-more-wrapper">
       <button id="see-more-filter" class="see-more-btn">See More</button>
     </div>
   </section>
 
-<!-- ✅ Static Sections (Always present, never removed) -->
-  <section id="movies" data-static="true">
-    <div class="section-heading-wrapper"><h2>Most Popular Movies</h2></div>
-    <div id="movies-list" class="grid-row"></div>
-    <div class="see-more-wrapper">
-      <button class="see-more-btn" data-section="movies">See More</button>
-    </div>
-  </section>
-
-  <section id="latest" data-static="true">
-    <div class="section-heading-wrapper"><h2>Latest Movies</h2></div>
-    <div id="latest-list" class="grid-row"></div>
-    <div class="see-more-wrapper">
-      <button class="see-more-btn" data-section="latest">See More</button>
-    </div>
-  </section>
-
-  <section id="recent" data-static="true">
-    <div class="section-heading-wrapper"><h2>Recently Updated</h2></div>
-    <div id="recent-list" class="grid-row"></div>
-    <div class="see-more-wrapper">
-      <button class="see-more-btn" data-section="recent">See More</button>
-    </div>
-  </section>
-
-  {% for section in sections %}
-  {% if section.id not in ['movies', 'latest', 'recent'] %}
-    <section id="{{ section.id }}">
-      <div class="section-heading-wrapper">
-        <h2>{{ section.title }}</h2>
-      </div>
-      <div id="{{ section.id }}-list" class="{% if section.id == 'trending' %}scroll-row{% else %}grid-row{% endif %}"></div>
-      {% if section.id != 'trending' %}
-        <div class="see-more-wrapper">
-          <button class="see-more-btn" data-section="{{ section.id }}">See More</button>
-        </div>
-      {% endif %}
-    </section>
+  <!-- Static Sections (Only for Home Page) -->
+  {% if request.path == '/' %}
+    <section id="trending" data-static="true"> ... </section>
+    <section id="recent" data-static="true"> ... </section>
+    <section id="latest" data-static="true"> ... </section>
   {% endif %}
-{% endfor %}
 
+  <!-- Dynamic Sections (Page-wise) -->
+  {% if current_page == 1 %}
+    {% set dynamic_sections = ['movies', 'webseries', 'drama'] %}
+  {% elif current_page == 2 %}
+    {% set dynamic_sections = ['action', 'romance', 'crime'] %}
+  {% elif current_page == 3 %}
+    {% set dynamic_sections = ['anime', 'fantasy', 'thriller'] %}
+  {% else %}
+    {% set dynamic_sections = [] %}
+  {% endif %}
+
+  {% for section_id in dynamic_sections %}
+    <section id="{{ section_id }}">
+      <div class="section-heading-wrapper">
+        <h2>{{ section_id | title }}</h2>
+      </div>
+      <div id="{{ section_id }}-list" class="grid-row"></div>
+      <div class="see-more-wrapper">
+        <button class="see-more-btn" data-section="{{ section_id }}">See More</button>
+      </div>
+    </section>
+  {% endfor %}
+
+  <!-- App Buttons -->
   <div class="app-buttons">
     <a href="https://www.youtube.com" target="_blank" class="app-btn">📺 YouTube</a>
     <a href="https://www.tiktok.com" target="_blank" class="app-btn">🎵 TikTok</a>
   </div>
 
+  <!-- Pagination -->
   {% if total_pages > 1 %}
     <div class="pagination">
       {% if current_page > 1 %}
@@ -222,6 +209,7 @@
       {% endif %}
     </div>
   {% endif %}
+
 </main>
 
 <footer>
