@@ -4,6 +4,7 @@ import os, json
 app = Flask(__name__, static_folder='static', template_folder='templates')
 DATA_FILE = os.path.join(app.root_path, 'data', 'movies.json')
 
+# ✅ Home Page: Static Sections Only
 @app.route('/')
 def home():
     with open(DATA_FILE, 'r', encoding='utf-8') as f:
@@ -18,23 +19,25 @@ def home():
             "movies": data.get(key, [])
         })
 
-    # ✅ Calculate pagination info for other sections
+    # Pagination info for dynamic sections
     all_keys = [k for k in data.keys() if k not in home_sections]
     total_pages = (len(all_keys) + 2) // 3
     page_range = list(range(1, total_pages + 1))
 
     return render_template("index.html",
                            sections=sections,
-                           current_page=1,
+                           current_page=0,  # ✅ Home page = 0
                            total_pages=total_pages,
                            page_range=page_range)
 
+# ✅ Dynamic Section Pages
 @app.route('/sections/<int:page>')
 def section_page(page):
     with open(DATA_FILE, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
-    all_keys = [k for k in data.keys() if k not in ["trending", "recent", "latest"]]
+    home_sections = ["trending", "recent", "latest"]
+    all_keys = [k for k in data.keys() if k not in home_sections]
     total_pages = (len(all_keys) + 2) // 3
     start = (page - 1) * 3
     end = start + 3
@@ -56,6 +59,7 @@ def section_page(page):
                            total_pages=total_pages,
                            page_range=page_range)
 
+# ✅ API Endpoint for JS Fetch
 @app.route('/api/movies')
 def movies_api():
     section = request.args.get('section')
@@ -71,6 +75,7 @@ def movies_api():
     else:
         return jsonify({'movies': []})
 
+# ✅ Serve Poster Images
 @app.route('/img/<path:filename>')
 def serve_image(filename):
     return send_from_directory(os.path.join(app.static_folder, 'img'), filename)
