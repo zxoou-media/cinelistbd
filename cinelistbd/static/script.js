@@ -265,30 +265,36 @@ document.getElementById('section-filter').addEventListener('change', async () =>
 
   // ✅ "All Sections" selected → fallback logic
   if (!selected || selected === '') {
-    allSections.forEach(id => {
-      const wrapper = document.getElementById(id);
-      if (wrapper && !wrapper.hasAttribute('data-static')) {
-        wrapper.style.display = 'none';
-      }
-    });
+  allSections.forEach(id => {
+    const wrapper = document.getElementById(id);
+    if (wrapper && !wrapper.hasAttribute('data-static')) {
+      wrapper.style.display = 'none';
+    }
+  });
 
-    const currentPage = parseInt(window.location.pathname.split('/sections/')[1]) || 0;
-    let show = [];
+  const currentPage = parseInt(window.location.pathname.split('/sections/')[1]) || 0;
+  let show = [];
 
-    if (currentPage === 1) show = ['movies', 'webseries', 'drama'];
-    else if (currentPage === 2) show = ['action', 'romance', 'crime'];
-    else if (currentPage === 3) show = ['anime', 'fantasy', 'thriller'];
-    else show = ['trending', 'latest', 'recent'];
+  if (currentPage === 1) show = ['movies', 'webseries', 'drama'];
+  else if (currentPage === 2) show = ['action', 'romance', 'crime'];
+  else if (currentPage === 3) show = ['anime', 'fantasy', 'thriller'];
+  else show = ['trending', 'latest', 'recent'];
 
-    show.forEach(id => {
-      const section = document.getElementById(id);
-      if (section) section.style.display = 'block';
-    });
+  show.forEach(id => {
+    const section = document.getElementById(id);
+    if (section) section.style.display = 'block';
+  });
 
-    applyFilters();
+  // ✅ Reset filter/search result DOM
+  searchResultsList.innerHTML = '';
+  filterResultsList.innerHTML = '';
+  searchResultsSection.style.display = 'none';
+  filterResultsSection.style.display = 'none';
 
-    return;
-  }
+  applyFilters(); // Re-evaluate filters and show fallback sections
+
+  return;
+}
 
   // ✅ Specific section selected → show only that section
   if (allSections.includes(selected)) {
