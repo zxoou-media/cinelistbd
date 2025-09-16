@@ -285,6 +285,8 @@ document.getElementById('section-filter').addEventListener('change', async () =>
       if (section) section.style.display = 'block';
     });
 
+    applyFilters();
+
     return;
   }
 
