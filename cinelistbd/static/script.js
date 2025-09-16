@@ -146,6 +146,30 @@ function renderFilterResults() {
 
 seeMoreFilterBtn.addEventListener('click', renderFilterResults);
 
+// 🔍 Keyword Match Across All Fields
+const keywordMatch = (movie, query) => {
+  if (!query) return true;
+  query = query.toLowerCase();
+
+  const fields = [
+    movie.title,
+    movie.platform,
+    movie.genre,
+    movie.lang,
+    movie.type,
+    movie.quality,
+    movie.country,
+    movie.date,
+    movie.year
+  ];
+
+  return fields.some(field => {
+    if (!field) return false;
+    const str = Array.isArray(field) ? field.join(', ') : field.toString();
+    return str.toLowerCase().includes(query);
+  });
+};
+
 // 🔁 Unified Filter Logic
 function applyFilters() {
   const query = document.getElementById("search-box").value.toLowerCase().trim();
@@ -165,7 +189,7 @@ function applyFilters() {
 
   const filtered = allMovies.filter(m => {
     return (
-      match(m.title, query) &&
+      keywordMatch(m, query) &&
       (!section || m.category === section) &&
       match(m.platform, platform) &&
       match(m.genre, genre) &&
@@ -202,8 +226,6 @@ function applyFilters() {
 
 function renderMovies(filteredMovies) {
   const sections = Object.keys(sectionStates);
-
-  // 🔄 Reset all section containers
   sections.forEach(section => {
     const container = document.getElementById(`${section}-list`);
     if (container) {
@@ -216,7 +238,6 @@ function renderMovies(filteredMovies) {
     }
   });
 
-  // 🎯 Render filtered movies section-wise
   sections.forEach(section => {
     const movies = filteredMovies.filter(m => m.category === section);
     if (movies.length > 0) {
@@ -241,11 +262,12 @@ document.getElementById('section-filter').addEventListener('change', () => {
   });
 
   if (!selected || selected === '') {
-    const path = window.location.pathname;
+    const path = window.location.pathname.toLowerCase();
     let show = [];
 
     if (path.includes('movies')) show = ['movies', 'latest', 'recent'];
     else if (path.includes('webseries')) show = ['webseries', 'trending', 'recent'];
+    else if (path.includes('drama')) show = ['drama', 'latest', 'recent'];
     else show = ['trending', 'latest', 'recent'];
 
     show.forEach(id => {
