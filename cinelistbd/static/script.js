@@ -153,6 +153,31 @@ function applyFilters() {
   const type = document.getElementById("type-filter").value.toLowerCase();
   const quality = document.getElementById("quality-filter").value.toLowerCase();
 
+  // ✅ Update Filter Result Heading
+  const heading = document.getElementById("filter-results-heading");
+  if (heading) {
+    if (sectionRaw) {
+      const sectionLabels = {
+        trending: "Trending",
+        recent: "Recently Updated",
+        latest: "Latest Movies",
+        movies: "Popular Movies",
+        webseries: "Popular Web Series",
+        drama: "Popular Drama",
+        action: "Action",
+        romance: "Romance",
+        crime: "Crime",
+        anime: "Anime",
+        fantasy: "Fantasy",
+        thriller: "Thriller"
+      };
+      const label = sectionLabels[sectionRaw.toLowerCase()] || sectionRaw;
+      heading.textContent = `${label} Results`;
+    } else {
+      heading.textContent = "All Filter Result";
+    }
+  }
+
   const match = (field, value) => {
     if (!value) return true;
     if (!field) return false;
