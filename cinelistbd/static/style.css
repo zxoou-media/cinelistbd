@@ -128,10 +128,10 @@ nav a:hover {
 /* ===== Search & Filter ===== */
 .search-row {
   display: flex;
-  flex-direction: column; /* Start with column layout for small screens */
   justify-content: center;
   align-items: center;
   gap: 0.625rem;
+  flex-wrap: nowrap; /* Keep on one line for larger screens */
   padding: 0 1rem;
   margin-top: 0.625rem;
   max-width: 37.5rem;
@@ -140,15 +140,14 @@ nav a:hover {
 }
 #search-box {
   flex: 1;
-  width: 100%; /* Full width for mobile */
   padding: 0.625rem 1rem;
   border-radius: 0.375rem;
   border: 1px solid var(--border-light);
   font-size: 0.9375rem;
+  min-width: 12.5rem;
   box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.05);
 }
 #theme-toggle {
-  width: 100%; /* Full width for mobile */
   padding: 0.625rem 1rem;
   border-radius: 0.5rem;
   border: 1px solid #444;
@@ -164,7 +163,7 @@ nav a:hover {
 /* ===== Filter Buttons ===== */
 .filter-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); /* Responsive grid for mobile */
+  grid-template-columns: repeat(3, 1fr); /* Default to 3 columns */
   gap: 0.625rem;
   padding: 0 1rem;
   margin-top: 0.75rem;
@@ -242,11 +241,11 @@ nav a:hover {
 /* ===== All Other Cards & Grids (General Card Styling) ===== */
 .grid-row {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Default for mobile */
+  grid-template-columns: repeat(auto-fill, minmax(8.75rem, 1fr)); /* Default for mobile */
   gap: 1rem;
   padding: 0 0.75rem;
-  max-width: 60rem;
-  margin: 0 auto;
+  max-width: 60rem; /* Max width for content to prevent stretching */
+  margin: 0 auto; /* Center the grid */
 }
 .card {
   background: var(--card-light);
@@ -255,9 +254,10 @@ nav a:hover {
   text-align: center;
   box-shadow: 0 0.1875rem 0.375rem rgba(0,0,0,0.1);
   transition: transform 0.3s;
-  display: flex;
+  display: flex; /* Flexbox for content alignment */
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Center content horizontally */
+  justify-content: space-between; /* Space out content vertically */
 }
 .card:hover {
   transform: scale(1.02);
@@ -265,14 +265,14 @@ nav a:hover {
 
 .card h3 {
   font-weight: 700;
-  font-size: 1.05rem;
-  margin-top: 0.625rem;
+  font-size: 1.05rem; /* Adjusted for rem */
+  margin-top: 0.625rem; /* Add some margin above h3 */
   margin-bottom: 0.25rem;
   color: var(--text-light);
 }
 .card p {
-  margin: 0.125rem 0;
-  font-size: 0.9rem;
+  margin: 0.125rem 0; /* Adjusted for rem */
+  font-size: 0.9rem; /* Adjusted for rem */
   line-height: 1.3;
   color: #444;
 }
@@ -281,11 +281,11 @@ nav a:hover {
 /* ===== Poster & Buttons ===== */
 .poster {
   width: 100%;
-  height: auto;
-  max-height: 18.75rem;
+  height: auto; /* Allow image to define its height */
+  max-height: 18.75rem; /* Max height for consistency, adjust if needed */
   object-fit: cover;
   border-radius: 0.375rem;
-  margin-bottom: 0.625rem;
+  margin-bottom: 0.625rem; /* Margin below poster */
   cursor: pointer;
   transition: box-shadow 0.3s;
 }
@@ -297,7 +297,7 @@ nav a:hover {
   border-radius: 0.375rem;
   cursor: pointer;
   font-weight: bold;
-  margin-top: 0.625rem;
+  margin-top: 0.625rem; /* Margin above button */
   transition: background 0.3s;
   text-decoration: none;
   display: inline-block;
@@ -376,41 +376,123 @@ footer {
 
 /* ===== Media Queries for Responsive Design ===== */
 
-/* 💻 Tablet (min-width: 481px) */
-@media (min-width: 481px) {
+/* 📱 Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  html {
+    font-size: 15px; /* Adjust base font size for smaller screens */
+  }
+  #site-title {
+    font-size: 1.6rem;
+  }
+  .site-header {
+    padding: 1rem;
+  }
+  nav a {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
   .search-row {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 1rem;
-    max-width: 60rem;
+    flex-direction: column; /* Stack search and toggle vertically */
+    gap: 0.5rem;
+    padding: 0 0.75rem;
   }
-  #search-box {
-    flex: 1 1 auto;
-    width: auto;
-    min-width: 15rem;
-  }
-  #theme-toggle {
-    width: auto;
+  #search-box, #theme-toggle {
+    width: 100%; /* Full width for mobile */
+    min-width: unset; /* Remove min-width restriction */
+    font-size: 0.875rem;
+    padding: 0.6rem 0.75rem;
   }
   .filter-row {
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-    max-width: 60rem;
-    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on small mobile */
+    gap: 0.5rem;
+    padding: 0 0.75rem;
+  }
+  .filter-row select {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.6rem;
+  }
+  .trending-card {
+    min-width: 10rem;
+    max-width: 100%; /* Allow cards to stretch if needed */
+  }
+  .scroll-row {
+    padding: 0 0.5rem;
+    gap: 0.75rem;
   }
   .grid-row {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for general grid */
+    gap: 0.75rem;
+    padding: 0 0.5rem;
+  }
+  .card h3 {
+    font-size: 0.95rem;
+  }
+  .card p {
+    font-size: 0.85rem;
+  }
+  .poster {
+    max-height: 15rem; /* Smaller poster height for mobile */
+    margin-bottom: 0.5rem; /* Adjust margin */
+  }
+  .watch-btn {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+  .see-more-btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+  .app-buttons {
+    gap: 0.75rem;
+    margin: 1rem 0;
+  }
+  .app-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  .pagination {
+    margin: 1.5rem 0;
+  }
+  .page-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
   }
 }
 
-/* 🖥️ Laptop & Desktop (min-width: 769px) */
-@media (min-width: 769px) {
+/* 💻 Tablet (min-width: 481px and max-width: 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
   html {
-    font-size: 17px;
+    font-size: 15.5px; /* Slightly larger base font size */
   }
   .site-header {
-    flex-direction: row;
+    padding: 1.25rem 1.5rem;
+  }
+  #site-title {
+    font-size: 1.9rem;
+  }
+  .search-row,
+  .filter-row {
+    max-width: 45rem;
+    padding: 0 1.25rem;
+  }
+  .grid-row {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for tablet */
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+  .trending-card {
+    min-width: 11rem;
+    max-width: 13rem;
+  }
+}
+
+/* 🖥️ Laptop & Desktop (min-width: 769px and max-width: 1200px) */
+@media (min-width: 769px) and (max-width: 1200px) {
+  html {
+    font-size: 16px; /* Default base font size */
+  }
+  .site-header {
+    flex-direction: row; /* Header items in a row */
     justify-content: space-between;
     padding: 1.5rem 2rem;
   }
@@ -419,28 +501,36 @@ footer {
   }
   .search-row,
   .filter-row {
-    max-width: 65rem;
+    max-width: 50rem;
+    padding: 0 2rem;
   }
   .grid-row {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.75rem;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for laptop/desktop */
+    gap: 1.25rem;
+    padding: 0 1.5rem;
   }
 }
 
 /* 🖥️ Large Desktop (min-width: 1201px) */
 @media (min-width: 1201px) {
   html {
-    font-size: 18px;
+    font-size: 17px; /* Larger base font size for large screens */
   }
   .site-header {
+    flex-direction: row;
+    justify-content: space-between;
     padding: 1.5rem 4rem;
+  }
+  #site-title {
+    margin-bottom: 0;
   }
   .search-row,
   .filter-row {
-    max-width: 75rem;
+    max-width: 65rem; /* Wider search/filter */
   }
   .grid-row {
-    grid-template-columns: repeat(5, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns for large desktop */
+    gap: 1.5rem;
+    padding: 0 2rem;
   }
 }
