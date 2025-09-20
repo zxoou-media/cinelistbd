@@ -40,7 +40,7 @@ function createMovieCard(m) {
     ${Array.isArray(m.genre) && m.genre.length ? `<p>Genre: ${m.genre.join(', ')}</p>` : ""}
     ${Array.isArray(m.type) && m.type.length ? `<p>Type: ${m.type.join(', ')}</p>` : ""}
     ${Array.isArray(m.lang) ? `<p>Language: ${m.lang.join(', ')}</p>` : ""}
-    ${Array.isArray(m.country) ? `<p>Country: ${m.lang.join(', ')}</p>` : ""}
+    ${Array.isArray(m.country) ? `<p>Country: ${m.country.join(', ')}</p>` : ""}
     ${Array.isArray(m.quality) ? `<p>Quality: ${m.quality.join(', ')}</p>` : ""}
     ${Array.isArray(m.platform) && m.platform.length ? `<p>Platform: ${m.platform.join(', ')}</p>` : ""}
     ${m.date ? `<p>Release: ${m.date}</p>` : ""}
