@@ -42,9 +42,11 @@
       "genre": ["Crime", "Drama"],
       "type": ["Movie"],
       "lang": ["Bangla"],
+      "country": ["Bangladesh"],
       "quality": ["720p"],
       "platform": ["Chorki"],
       "date": "2025-08-26"
+      "year": "2025"
     },
     {
       "title": "Bachelor Point S5",
@@ -54,9 +56,11 @@
       "genre": ["Horror", "Thriller"],
       "type": ["Web Series"],
       "lang": ["Bangla"],
+      "country": ["Bangladesh"],
       "quality": ["720p"],
       "platform": ["Bongo"],
       "date": "2025-08-26"
+      "year": "2025"
     },
     {
       "title": "Bachelor Point S5",
