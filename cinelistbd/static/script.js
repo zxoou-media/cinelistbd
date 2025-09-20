@@ -44,7 +44,7 @@ function createMovieCard(m) {
     ${Array.isArray(m.quality) ? `<p>Quality: ${m.quality.join(', ')}</p>` : ""}
     ${Array.isArray(m.platform) && m.platform.length ? `<p>Platform: ${m.platform.join(', ')}</p>` : ""}
     ${m.date ? `<p>Release: ${m.date}</p>` : ""}
-    ${Array.isArray(m.year) ? `<p>Year: ${m.lang.join(', ')}</p>` : ""}
+    ${m.year ? `<p>Year: ${m.year}</p>` : ""}
     ${m.trailer ? `<a href="${m.trailer}" target="_blank" class="watch-btn">▶ Watch Movie</a>` : ""}
   `;
   return card;
